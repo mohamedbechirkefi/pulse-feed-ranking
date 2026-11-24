@@ -5,11 +5,17 @@ Pure functions of a config and explicit numpy Generators. No hidden global state
 """
 from __future__ import annotations
 
+import hashlib
+import json
 from dataclasses import dataclass
+from functools import lru_cache
+from pathlib import Path
 
 import numpy as np
 
 from .config import SimConfig
+
+REPO_ROOT = Path(__file__).resolve().parents[2]
 
 # Fixed order of spawned streams per master seed. Changing it changes every result.
 STREAMS = ("catalog", "users", "pools", "examination", "choice", "noise", "tiebreak")
@@ -28,10 +34,14 @@ def spawn_streams(master_seed: int) -> dict[str, np.random.Generator]:
 
 
 def topic_distribution(cfg: SimConfig) -> np.ndarray:
-    """Catalog topic distribution pi: uniform, or Zipf with pi_z proportional to 1 / z^s, z = 1..K."""
+    """Catalog topic distribution pi: uniform, Zipf (pi_z proportional to 1 / z^s, z = 1..K), or the
+    custom weights of the config (EXP-004: MovieLens primary-topic shares, protocol section 15.6)."""
     K = cfg.n_topics
     if cfg.pool_skew == "uniform":
         return np.full(K, 1.0 / K)
+    if cfg.pool_skew == "custom":
+        w = np.asarray(cfg.topic_weights, dtype=float)
+        return w / w.sum()
     w = 1.0 / np.arange(1, K + 1, dtype=float) ** cfg.zipf_s
     return w / w.sum()
 
@@ -62,8 +72,43 @@ def make_catalog(cfg: SimConfig, rng: np.random.Generator) -> Catalog:
     return Catalog(topics=topics, emb=emb, pos_share=pos / mass)
 
 
+class PreferenceFileError(ValueError):
+    """The preference-vector file is missing, altered (SHA-256 mismatch) or malformed."""
+
+
+@lru_cache(maxsize=4)
+def load_preference_file(path: str, sha256: str, root: str = str(REPO_ROOT)) -> np.ndarray:
+    """Preference vectors (M, K) from a JSON file {"vectors": [[...], ...]}, verified by SHA-256."""
+    f = Path(root) / path
+    if not f.exists():
+        raise PreferenceFileError(f"{path} not found; run scripts/prepare_movielens.py (protocol section 15)")
+    blob = f.read_bytes()
+    actual = hashlib.sha256(blob).hexdigest()
+    if actual != sha256:
+        raise PreferenceFileError(f"{path} SHA-256 {actual} does not match the config {sha256}")
+    v = np.asarray(json.loads(blob)["vectors"], dtype=float)
+    if v.ndim != 2 or np.any(v < 0) or np.any(np.abs(v.sum(axis=1) - 1.0) > 1e-9):
+        raise PreferenceFileError(f"{path}: vectors must be rows on the simplex")
+    return v
+
+
+def sample_file_preferences(vectors: np.ndarray, n_users: int, rng: np.random.Generator) -> np.ndarray:
+    """U rows sampled without replacement (protocol section 15.6)."""
+    if n_users > vectors.shape[0]:
+        raise ValueError(f"cannot sample {n_users} users from {vectors.shape[0]} vectors")
+    idx = rng.choice(vectors.shape[0], size=n_users, replace=False)
+    p = vectors[idx].copy()
+    return p / p.sum(axis=1, keepdims=True)
+
+
 def initial_preferences(cfg: SimConfig, rng: np.random.Generator) -> np.ndarray:
-    """p_u(0) ~ Dirichlet(alpha0 * 1_K), shape (U, K). Rows renormalised against round-off."""
+    """p_u(0) ~ Dirichlet(alpha0 * 1_K), shape (U, K), or sampled from a preference file
+    (user_source = "file"). Rows renormalised against round-off."""
+    if cfg.user_source == "file":
+        vec = load_preference_file(cfg.user_pref_path, cfg.user_pref_sha256)
+        if vec.shape[1] != cfg.n_topics:
+            raise PreferenceFileError(f"preference file has {vec.shape[1]} topics, config has {cfg.n_topics}")
+        return sample_file_preferences(vec, cfg.n_users, rng)
     p = rng.dirichlet(np.full(cfg.n_topics, cfg.alpha0), size=cfg.n_users)
     # Very small alpha0 can underflow every component of a row to zero.
     zero = p.sum(axis=1) <= 0
@@ -89,9 +134,9 @@ def sample_pools(cfg: SimConfig, rng: np.random.Generator) -> np.ndarray:
     return np.sort(idx, axis=1)
 
 
-def like_probability(r: np.ndarray, tau: float) -> np.ndarray:
-    """sigmoid((r - 0.5) / tau)."""
-    return 1.0 / (1.0 + np.exp(-(r - 0.5) / tau))
+def like_probability(r: np.ndarray, tau: float, midpoint: float = 0.5) -> np.ndarray:
+    """sigmoid((r - c) / tau), c = midpoint (planning value 0.5; fitted values in protocol section 15)."""
+    return 1.0 / (1.0 + np.exp(-(r - midpoint) / tau))
 
 
 def drift(pref: np.ndarray, topic: np.ndarray, mask: np.ndarray, gamma: float, form: str) -> np.ndarray:

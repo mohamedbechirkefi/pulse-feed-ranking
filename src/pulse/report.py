@@ -28,6 +28,8 @@ PANDOC = Path(os.environ.get("PULSE_PANDOC", REPO_ROOT.parent / ".tools" / "pand
 TYPST_PY = Path(os.environ.get("PULSE_TYPST_PYTHON", REPO_ROOT.parent / ".tools" / "py" / "bin" / "python"))
 CONTROL = "random"
 EXTRA_CONTRASTS = (("mmr", "similarity"),)
+# Metrics interpreted only as a difference from random (protocol section 15.7): no extra contrasts.
+RANDOM_REFERENCED_ONLY = ("user_control",)
 
 
 def _cell_key(r: dict) -> str:
@@ -73,7 +75,8 @@ def summarise(results: list[dict]) -> list[dict]:
 
 
 def contrasts(results: list[dict]) -> list[dict]:
-    """Paired-by-seed contrasts within each cell: every arm minus random, plus MMR minus similarity."""
+    """Paired-by-seed contrasts within each cell: every arm minus random, plus MMR minus similarity
+    (except for user control, which is only a difference from random: protocol section 15.7)."""
     by_cell: dict[str, dict[str, dict[int, dict]]] = defaultdict(lambda: defaultdict(dict))
     for r in results:
         if r["status"] == "ok":
@@ -81,10 +84,10 @@ def contrasts(results: list[dict]) -> list[dict]:
     out = []
     for cell, arms in sorted(by_cell.items()):
         pairs = [(a, CONTROL) for a in sorted(arms) if a != CONTROL and CONTROL in arms]
-        pairs += [(a, b) for a, b in EXTRA_CONTRASTS if a in arms and b in arms]
+        extra = [(a, b) for a, b in EXTRA_CONTRASTS if a in arms and b in arms]
         for m in METRICS:
             fam = []
-            for a, b in pairs:
+            for a, b in pairs + ([] if m in RANDOM_REFERENCED_ONLY else extra):
                 seeds = sorted(set(arms[a]) & set(arms[b]))
                 xa = [arms[a][s]["metrics"][m] for s in seeds]
                 xb = [arms[b][s]["metrics"][m] for s in seeds]

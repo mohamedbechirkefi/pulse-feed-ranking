@@ -14,7 +14,8 @@ from typing import Any
 RANKERS = ("random", "popularity", "similarity", "linucb", "mmr")
 PREFERENCE_MODELS = ("static", "drifting")
 DRIFT_FORMS = ("convex", "additive_clip")
-POOL_SKEWS = ("uniform", "zipf")
+POOL_SKEWS = ("uniform", "zipf", "custom")
+USER_SOURCES = ("dirichlet", "file")
 
 
 class ConfigError(ValueError):
@@ -38,18 +39,25 @@ class SimConfig:
     alpha0: float = 1.0  # Dirichlet concentration of initial preferences
     beta: float = 0.85  # examination decay per position
     tau: float = 0.1  # choice-curve temperature
+    like_midpoint: float = 0.5  # c in sigmoid((r - c) / tau); fitted values in protocol section 15.11
     eta: float = 0.0  # feedback flip probability
     preference_model: str = "static"
     gamma: float = 0.0  # drift rate (drifting model only)
     drift_form: str = "convex"
     pool_skew: str = "uniform"
     zipf_s: float = 1.0
+    topic_weights: tuple | None = None  # pi for pool_skew = "custom" (EXP-004: MovieLens pi_ML)
+    user_source: str = "dirichlet"  # "file": p_u(0) sampled from a preference-vector file (EXP-004)
+    user_pref_path: str | None = None  # relative to the repository root
+    user_pref_sha256: str | None = None  # verified at load
     alpha_ucb: float = 1.0
     ridge_lambda: float = 1.0
     lambda_mmr: float = 0.5
     calib_alpha: float = 0.01  # Steck 2018 smoothing weight
 
     def __post_init__(self) -> None:
+        if isinstance(self.topic_weights, list):
+            object.__setattr__(self, "topic_weights", tuple(self.topic_weights))
         validate(self)
 
     def to_dict(self) -> dict[str, Any]:
@@ -88,6 +96,21 @@ def validate(c: SimConfig) -> None:
     _req(c.preference_model in PREFERENCE_MODELS, f"preference_model must be one of {PREFERENCE_MODELS}")
     _req(c.drift_form in DRIFT_FORMS, f"drift_form must be one of {DRIFT_FORMS}")
     _req(c.pool_skew in POOL_SKEWS, f"pool_skew must be one of {POOL_SKEWS}")
+    _req(c.user_source in USER_SOURCES, f"user_source must be one of {USER_SOURCES}")
+    if c.pool_skew == "custom":
+        w = c.topic_weights
+        _req(w is not None and len(w) == c.n_topics, "custom pool_skew needs n_topics topic_weights")
+        _req(all(isinstance(x, (int, float)) and x >= 0 for x in w), "topic_weights must be non-negative numbers")
+        _req(abs(sum(w) - 1.0) < 1e-9, "topic_weights must sum to 1")
+    else:
+        _req(c.topic_weights is None, "topic_weights is only allowed with pool_skew = custom")
+    if c.user_source == "file":
+        _req(isinstance(c.user_pref_path, str) and c.user_pref_path != "", "user_source file needs user_pref_path")
+        h = c.user_pref_sha256
+        _req(isinstance(h, str) and len(h) == 64 and all(ch in "0123456789abcdef" for ch in h),
+             "user_source file needs a 64-hex user_pref_sha256")
+    else:
+        _req(c.user_pref_path is None and c.user_pref_sha256 is None, "user_pref_* only with user_source = file")
     _req(c.n_topics >= 2, "n_topics must be >= 2 (normalised entropy divides by ln K)")
     _req(c.pool_size <= c.n_items, "pool_size must be <= n_items")
     _req(c.slate_size <= c.pool_size, "slate_size must be <= pool_size")

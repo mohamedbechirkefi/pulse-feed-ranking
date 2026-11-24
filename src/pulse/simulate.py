@@ -5,7 +5,7 @@ Per step t, for all users at once:
  1. draw the candidate pool (stream "pools"), and per (user, pool slot) tie keys ("tiebreak");
  2. the ranker returns a slate of k pool items;
  3. examination: position j (0-based) is examined if u < beta^j ("examination");
- 4. true like if u < sigmoid((r_ui - 0.5) / tau), r_ui at the current p_u(t) ("choice");
+ 4. true like if u < sigmoid((r_ui - c) / tau), c = like_midpoint, r_ui at the current p_u(t) ("choice");
  5. observed feedback = true like flipped with probability eta ("noise");
  6. the ranker updates on examined items' observed feedback;
  7. drifting model: p_u moves toward the topic of each truly liked examined item, in slate order.
@@ -89,7 +89,7 @@ def simulate(cfg: SimConfig, master_seed: int, trace: Trace | None = None) -> di
         z = cat.topics[slate]
         r = utility(pref, cat.pos_share[slate])
         examined = u_exam < pos_w[None, :]
-        true_like = u_like < like_probability(r, cfg.tau)
+        true_like = u_like < like_probability(r, cfg.tau, cfg.like_midpoint)
         observed = true_like ^ (u_flip < cfg.eta)
 
         ranker.update(slate, cat.emb[slate], examined, observed)

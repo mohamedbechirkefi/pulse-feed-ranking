@@ -1,0 +1,85 @@
+{
+ "label": "exploratory (calibration fit, protocol section 15.5 and 15.6)",
+ "target_like_rate_L_star": 0.5771428687720555,
+ "pi_ml": [
+  0.2536093707436666,
+  0.20266957232361754,
+  0.04630890765459003,
+  0.07545627894306728,
+  0.11549986379733043,
+  0.07409425224734405,
+  0.03677472078452738,
+  0.0697357668210297,
+  0.06837374012530646,
+  0.05747752655952057
+ ],
+ "topics": [
+  "Drama",
+  "Comedy",
+  "Action",
+  "Thriller",
+  "Romance",
+  "Horror",
+  "Adventure",
+  "Sci-Fi",
+  "Children's",
+  "Crime"
+ ],
+ "calibration_seeds": [
+  700001,
+  700020
+ ],
+ "bracket": [
+  -1.0,
+  2.0
+ ],
+ "tolerance": 1e-09,
+ "fits": {
+  "synthetic_tau0.1": {
+   "tau": 0.1,
+   "like_midpoint": 0.06642147188540548,
+   "achieved_mean_like": 0.5771428692690544,
+   "planning_midpoint_mean_like": 0.02062522456149448,
+   "users": "Dirichlet(1.0)",
+   "catalog": "uniform"
+  },
+  "synthetic_tau0.3": {
+   "tau": 0.3,
+   "like_midpoint": 0.005990049685351551,
+   "achieved_mean_like": 0.5771428687103086,
+   "planning_midpoint_mean_like": 0.20988931087908352,
+   "users": "Dirichlet(1.0)",
+   "catalog": "uniform"
+  },
+  "movielens_tau0.1": {
+   "tau": 0.1,
+   "like_midpoint": 0.06106666720006615,
+   "achieved_mean_like": 0.5771428687740988,
+   "planning_midpoint_mean_like": 0.01872682563970423,
+   "users": "calibration-half vectors (sampled 200 per seed without replacement)",
+   "catalog": "custom pi_ML"
+  }
+ },
+ "inputs_sha256": {
+  "ml1m_summary.json": "612e8a71b78770bbaddb223bcd2478429658b12103a65eadc81784787f73ea62",
+  "ml1m_prefs_calibration.json": "c4b007d7751b1d4d4efc55f490fcba243d25a240233bf26a2b87051fa465c6e3",
+  "ml1m_prefs_heldout.json": "75f9fb8ffa2a7e6eb14058b69d8d1722862591fd2447065de078415899f8c505"
+ },
+ "source_zip_sha256": "a6898adb50b9ca05aa231689da44c217cb524e7ebd39d264c56e2832f2c54e20",
+ "code_revision": {
+  "commit": "a15ec6d4944096899a4091d3939a66aba7e5fdf0",
+  "dirty": true
+ },
+ "environment": {
+  "pulse_version": "0.1.0",
+  "python": "3.12.1",
+  "numpy": "2.3.5",
+  "os": "macOS-15.3.1-arm64-arm-64bit",
+  "cpu": "Apple M1 Pro",
+  "git": {
+   "commit": "a15ec6d4944096899a4091d3939a66aba7e5fdf0",
+   "dirty": true
+  }
+ },
+ "wall_clock_s": 2.466
+}
