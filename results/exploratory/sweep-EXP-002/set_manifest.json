@@ -1,0 +1,114 @@
+{
+ "environment": {
+  "cpu": "Apple M1 Pro",
+  "git": {
+   "commit": "b9048556a635760ea092c3f15e034b0406195491",
+   "dirty": false
+  },
+  "numpy": "2.3.5",
+  "os": "macOS-15.3.1-arm64-arm-64bit",
+  "pulse_version": "0.1.0",
+  "python": "3.12.1"
+ },
+ "experiment_config": {
+  "base": {
+   "eta": 0.1,
+   "n_items": 1000,
+   "n_steps": 200,
+   "n_topics": 10,
+   "n_users": 200,
+   "pool_size": 50,
+   "preference_model": "drifting",
+   "slate_size": 10,
+   "window": 50
+  },
+  "blocks": [
+   {
+    "arms": [
+     {
+      "arm": "random",
+      "ranker": "random"
+     },
+     {
+      "arm": "popularity",
+      "ranker": "popularity"
+     },
+     {
+      "arm": "similarity",
+      "ranker": "similarity"
+     },
+     {
+      "alpha_ucb": 1.0,
+      "arm": "bandit",
+      "ranker": "linucb"
+     },
+     {
+      "arm": "mmr",
+      "lambda_mmr": 0.5,
+      "ranker": "mmr"
+     }
+    ],
+    "factors": {
+     "alpha0": [
+      1.0,
+      0.1
+     ],
+     "gamma": [
+      0.01,
+      0.05
+     ]
+    },
+    "name": "main"
+   },
+   {
+    "arms": [
+     {
+      "arm": "random",
+      "ranker": "random"
+     },
+     {
+      "arm": "similarity",
+      "ranker": "similarity"
+     }
+    ],
+    "factors": {
+     "alpha0": [
+      1.0,
+      0.1
+     ]
+    },
+    "name": "driftform",
+    "overrides": {
+     "drift_form": "additive_clip",
+     "gamma": 0.05
+    }
+   }
+  ],
+  "description": "Exploratory degenerate-case and runtime sweep: every cell of the draft EXP-002 matrix at full size with 2 exploratory seeds (930001+), disjoint from confirmatory seeds.",
+  "experiment_id": "XPL-EXP-002-SWEEP",
+  "label": "exploratory",
+  "output_dir": "results/exploratory/sweep-EXP-002",
+  "primary": {
+   "block": "main",
+   "cell": {
+    "alpha0": 1.0,
+    "gamma": 0.05
+   },
+   "control": "random",
+   "metric": "delta_h_pref",
+   "treatment": "similarity"
+  },
+  "seeds": {
+   "count": 2,
+   "first": 930001
+  }
+ },
+ "experiment_config_hash": "a65b1f1337858058a10882487d2bbe87d0134391feebf309c03490777c8c3a45",
+ "experiment_id": "XPL-EXP-002-SWEEP",
+ "finished_utc": "2026-11-24T16:05:07Z",
+ "label": "exploratory",
+ "n_failed": 0,
+ "n_runs": 48,
+ "started_utc": "2026-11-24T16:04:05Z",
+ "wall_clock_s": 61.432
+}

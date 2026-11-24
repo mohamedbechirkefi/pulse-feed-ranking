@@ -1,0 +1,80 @@
+{
+ "arm": "mmr",
+ "block": "main",
+ "cell": {
+  "pool_skew": "zipf",
+  "tau": 0.1
+ },
+ "config": {
+  "alpha0": 1.0,
+  "alpha_ucb": 1.0,
+  "beta": 0.85,
+  "calib_alpha": 0.01,
+  "drift_form": "convex",
+  "eta": 0.1,
+  "gamma": 0.0,
+  "item_noise": 0.3,
+  "item_signal": 1.0,
+  "lambda_mmr": 0.5,
+  "n_items": 1000,
+  "n_steps": 200,
+  "n_topics": 10,
+  "n_users": 200,
+  "pool_size": 50,
+  "pool_skew": "zipf",
+  "preference_model": "static",
+  "ranker": "mmr",
+  "ridge_lambda": 1.0,
+  "slate_size": 10,
+  "tau": 0.1,
+  "window": 50,
+  "zipf_s": 1.0
+ },
+ "config_hash": "ca1a3853c7eb2f0102f276e6fe3022b7eb6a3561951ad2376161a92159a73d57",
+ "diagnostics": {
+  "catalog_topic_entropy": 0.8718482538668346,
+  "design_topic_entropy": 0.865898839228621,
+  "distinct_items_exposed_window": 951,
+  "final_pref_entropy": 0.8344103016402952,
+  "h_exp_user_sd": 0.007857877431437742,
+  "initial_pref_entropy": 0.8344103016402952,
+  "n_dislike_events": 188133,
+  "n_examined_window": 53631,
+  "n_likes_window": 6364,
+  "pool_topic_entropy_window": 0.8713989708110975
+ },
+ "error": null,
+ "experiment_id": "XPL-EXP-003-SWEEP",
+ "label": "exploratory",
+ "manifest": {
+  "config_hash": "ca1a3853c7eb2f0102f276e6fe3022b7eb6a3561951ad2376161a92159a73d57",
+  "cpu": "Apple M1 Pro",
+  "git": {
+   "commit": "b9048556a635760ea092c3f15e034b0406195491",
+   "dirty": false
+  },
+  "numpy": "2.3.5",
+  "os": "macOS-15.3.1-arm64-arm-64bit",
+  "peak_memory_note": "process-wide peak RSS at the end of this run (runs share one process), not a per-run peak",
+  "peak_rss_bytes_process": 132775936,
+  "pulse_version": "0.1.0",
+  "python": "3.12.1",
+  "runtime_s": 1.8095,
+  "seed": 940002,
+  "started_utc": "2026-11-24T16:06:05Z"
+ },
+ "metrics": {
+  "delta_h_pref": null,
+  "gini_exposure": 0.5899886,
+  "h_exp": 0.9759846367728156,
+  "like_rate": 0.11866271372900002,
+  "miscalibration_kl": 0.403687125352577,
+  "relevance": 0.1018130359618116,
+  "user_control": -0.06948275953713597
+ },
+ "run_id": "XPL-EXP-003-SWEEP-main-pool_skew=zipf_tau=0.1-mmr-s940002",
+ "schema": "pulse.run_result",
+ "schema_version": "1.0.0",
+ "seed": 940002,
+ "status": "ok"
+}

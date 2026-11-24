@@ -1,0 +1,80 @@
+{
+ "arm": "popularity",
+ "block": "main",
+ "cell": {
+  "alpha0": 1.0,
+  "eta": 0.2
+ },
+ "config": {
+  "alpha0": 1.0,
+  "alpha_ucb": 1.0,
+  "beta": 0.85,
+  "calib_alpha": 0.01,
+  "drift_form": "convex",
+  "eta": 0.2,
+  "gamma": 0.0,
+  "item_noise": 0.3,
+  "item_signal": 1.0,
+  "lambda_mmr": 0.5,
+  "n_items": 1000,
+  "n_steps": 200,
+  "n_topics": 10,
+  "n_users": 200,
+  "pool_size": 50,
+  "pool_skew": "uniform",
+  "preference_model": "static",
+  "ranker": "popularity",
+  "ridge_lambda": 1.0,
+  "slate_size": 10,
+  "tau": 0.1,
+  "window": 50,
+  "zipf_s": 1.0
+ },
+ "config_hash": "6f625c42bf8f43abd5047b60b3efe6c559006ae76f6d59314afb75bd9b65d935",
+ "diagnostics": {
+  "catalog_topic_entropy": 0.9982088264656075,
+  "design_topic_entropy": 0.9999999999999998,
+  "distinct_items_exposed_window": 479,
+  "final_pref_entropy": 0.8426720913799808,
+  "h_exp_user_sd": 0.0035634282851152253,
+  "initial_pref_entropy": 0.8426720913799808,
+  "n_dislike_events": 167720,
+  "n_examined_window": 53713,
+  "n_likes_window": 11321,
+  "pool_topic_entropy_window": 0.9981295087231586
+ },
+ "error": null,
+ "experiment_id": "XPL-EXP-001-SWEEP",
+ "label": "exploratory",
+ "manifest": {
+  "config_hash": "6f625c42bf8f43abd5047b60b3efe6c559006ae76f6d59314afb75bd9b65d935",
+  "cpu": "Apple M1 Pro",
+  "git": {
+   "commit": "b9048556a635760ea092c3f15e034b0406195491",
+   "dirty": false
+  },
+  "numpy": "2.3.5",
+  "os": "macOS-15.3.1-arm64-arm-64bit",
+  "peak_memory_note": "process-wide peak RSS at the end of this run (runs share one process), not a per-run peak",
+  "peak_rss_bytes_process": 144801792,
+  "pulse_version": "0.1.0",
+  "python": "3.12.1",
+  "runtime_s": 0.7608,
+  "seed": 920001,
+  "started_utc": "2026-11-24T16:03:36Z"
+ },
+ "metrics": {
+  "delta_h_pref": null,
+  "gini_exposure": 0.7866328,
+  "h_exp": 0.9911957278970683,
+  "like_rate": 0.21076834285927057,
+  "miscalibration_kl": 0.3707249915547061,
+  "relevance": 0.10030790703280608,
+  "user_control": -0.08607619842594803
+ },
+ "run_id": "XPL-EXP-001-SWEEP-main-eta=0.2_alpha0=1.0-popularity-s920001",
+ "schema": "pulse.run_result",
+ "schema_version": "1.0.0",
+ "seed": 920001,
+ "status": "ok"
+}

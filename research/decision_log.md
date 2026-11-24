@@ -34,3 +34,33 @@ Each entry: id, date, decision, decided by, context, alternatives, consequences.
 ## D-005: Dependency resolution cutoff (2026-11-24)
 
 - **Decision:** `pyproject.toml` sets `[tool.uv] exclude-newer = "2026-11-10T00:00:00Z"`, so every locked version was published at least two weeks before 2026-11-24. Locked: numpy 2.3.5, pytest 8.4.2 (and pytest's dependencies).
+
+## D-006: Tie rule rounds scores to 12 decimals before comparison (2026-11-24)
+
+- **Decided by:** M2 session (implementation fix); open to owner review.
+- **Decision:** every ranker rounds its scores to 12 decimal places before sorting; items with equal rounded scores are ordered by ascending tie key from the shared seeded "tiebreak" stream (`src/pulse/rankers.py`).
+- **Context:** the test `test_zero_feedback_rankers_fall_back_to_tie_order` failed on first run: LinUCB cold-start scores (alpha / sqrt(lambda), equal in exact arithmetic) differed by about 1e-16, so slate order was set by floating-point round-off instead of the documented tie rule. The failure was recorded before the fix.
+- **Consequences:** under zero feedback, popularity, similarity and LinUCB produce exactly the random arm's slate (tested). Scores that differ by less than 5e-13 are treated as ties.
+
+## D-007: Operational clarifications made while implementing protocol v0.1 (2026-11-24)
+
+- **Decided by:** M2 session; awaiting owner review before freeze. None of these changes a hypothesis, metric choice or comparator; each fixes a detail the draft left open.
+- Examination: each position j (1-based) is examined independently with probability beta^(j-1) (not a cascade).
+- Feedback: every examined item gets explicit feedback; rankers learn only from examined items' observed (noisy) feedback.
+- Drift: uses true likes (the noise is observation noise), applied after the step in slate order; utility within a step uses p_u(t) at the start of the step.
+- Gini: item exposure counts are unweighted slate appearances in the final window.
+- Relevance and like rate: final window. User control: all consecutive step pairs (t, t+1), unweighted slate topic shares, one event per observed dislike of an examined item.
+- Miscalibration: KL against p_u at the end of the run (equal to p_u(0) under the static model).
+- Candidate pools: drawn per (user, step) by argpartition of uniform keys, then sorted by item id, so the pool order carries no information.
+- Peak memory: process-wide peak RSS (runs share one process), recorded as such in each manifest.
+- Seeds: confirmatory configs use 101001+, 102001+, 103001+ (EXP-001 to EXP-003); exploratory configs use 900001+ and higher, disjoint from every confirmatory seed.
+
+## D-008: Proposed protocol amendments from the exploratory smoke runs (2026-11-24, owner decision)
+
+- **Status:** proposals only. Not applied to `research/protocol.md` or any EXP protocol. The owner decides before freezing (G-FREEZE).
+- **Disclosure:** to estimate the paired-difference SD (protocol section 6) the session necessarily saw exploratory values of the primary contrast in the primary cell (seeds 910001 to 910010, disjoint from confirmatory seeds). Any amendment adopted now is therefore informed by exploratory outcomes and must be recorded as such in the frozen protocol.
+- **P1, choice-model calibration (degenerate feedback).** With the draft utility r_ui = sum_z p_uz pos_share_iz, r is about 0.10 for nearly every item when alpha_0 = 1.0, so sigmoid((r - 0.5) / 0.1) gives an observed like rate of about 0.02 at eta = 0 (sweep-EXP-001, var-probe). About 98% of feedback is "dislike", the similarity profile is dominated by subtracted embeddings, and at eta = 0.2 most observed likes are flips (like rate about 0.21 against 0.02 true). Options: (a) keep v0.1 and report the primary contrast as a property of this calibration; (b) centre the curve per user, sigmoid((r_ui - rbar_u) / tau) with rbar_u the user's mean utility over the catalog; (c) rescale utility so that a user's top topic gives r near 1 (for example r / max_z p_uz). Option (b) or (c) changes the generative model and should be justified by the like rate, not by the effect size.
+- **P2, user-control reference.** The random arm, which ignores feedback, scores about -0.089 on the user-control metric (regression of slate shares after a disliked topic appears). Propose that user control is only interpreted as a paired difference against random, stated in the protocol.
+- **P3, seed count.** The rule in protocol section 6 is met at n = 10 (SD of paired differences 0.0022 in the primary contrast, threshold 0.07; largest H_exp contrast SD 0.0075, popularity). Because the full matrix is cheap (about 16 minutes projected at 10 seeds), the owner may raise to 20 seeds for all experiments before the freeze; this is optional, not required by the rule. If P1 is adopted the SD must be re-estimated.
+- **P4, EXP-003 interpretation under P1 = (a).** Under the Zipf catalog the random arm's H_exp falls to about 0.863 while similarity stays about 0.965 (2 seeds), so the contrast changes sign because the dislike-dominated profile pushes away from the abundant topic. The registered invalidation criterion still applies, but the protocol should state in advance how a sign reversal is reported.
+- **P5, compute budget.** Projected full-matrix wall clock (single process) is about 16 minutes against the 4-hour budget; no change needed.

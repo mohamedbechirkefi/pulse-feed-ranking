@@ -1,0 +1,80 @@
+{
+ "arm": "popularity",
+ "block": "main",
+ "cell": {
+  "alpha0": 0.1,
+  "gamma": 0.05
+ },
+ "config": {
+  "alpha0": 0.1,
+  "alpha_ucb": 1.0,
+  "beta": 0.85,
+  "calib_alpha": 0.01,
+  "drift_form": "convex",
+  "eta": 0.1,
+  "gamma": 0.05,
+  "item_noise": 0.3,
+  "item_signal": 1.0,
+  "lambda_mmr": 0.5,
+  "n_items": 1000,
+  "n_steps": 200,
+  "n_topics": 10,
+  "n_users": 200,
+  "pool_size": 50,
+  "pool_skew": "uniform",
+  "preference_model": "drifting",
+  "ranker": "popularity",
+  "ridge_lambda": 1.0,
+  "slate_size": 10,
+  "tau": 0.1,
+  "window": 50,
+  "zipf_s": 1.0
+ },
+ "config_hash": "72f4cbc47b05adce79a33ff17cfc5b48e4fe49bf8f0179e2baafb2c10f16de1e",
+ "diagnostics": {
+  "catalog_topic_entropy": 0.9977662865706056,
+  "design_topic_entropy": 0.9999999999999998,
+  "distinct_items_exposed_window": 579,
+  "final_pref_entropy": 0.5347679537373073,
+  "h_exp_user_sd": 0.005009104256714521,
+  "initial_pref_entropy": 0.37348471939151934,
+  "n_dislike_events": 184011,
+  "n_examined_window": 53313,
+  "n_likes_window": 7251,
+  "pool_topic_entropy_window": 0.9977668315109598
+ },
+ "error": null,
+ "experiment_id": "XPL-EXP-002-SWEEP",
+ "label": "exploratory",
+ "manifest": {
+  "config_hash": "72f4cbc47b05adce79a33ff17cfc5b48e4fe49bf8f0179e2baafb2c10f16de1e",
+  "cpu": "Apple M1 Pro",
+  "git": {
+   "commit": "b9048556a635760ea092c3f15e034b0406195491",
+   "dirty": false
+  },
+  "numpy": "2.3.5",
+  "os": "macOS-15.3.1-arm64-arm-64bit",
+  "peak_memory_note": "process-wide peak RSS at the end of this run (runs share one process), not a per-run peak",
+  "peak_rss_bytes_process": 136429568,
+  "pulse_version": "0.1.0",
+  "python": "3.12.1",
+  "runtime_s": 1.6382,
+  "seed": 930001,
+  "started_utc": "2026-11-24T16:04:40Z"
+ },
+ "metrics": {
+  "delta_h_pref": 0.16128323434578803,
+  "gini_exposure": 0.78607778,
+  "h_exp": 0.9824839754088714,
+  "like_rate": 0.1360081030893028,
+  "miscalibration_kl": 1.0017225031913304,
+  "relevance": 0.10513299416752407,
+  "user_control": -0.08586769269228463
+ },
+ "run_id": "XPL-EXP-002-SWEEP-main-gamma=0.05_alpha0=0.1-popularity-s930001",
+ "schema": "pulse.run_result",
+ "schema_version": "1.0.0",
+ "seed": 930001,
+ "status": "ok"
+}

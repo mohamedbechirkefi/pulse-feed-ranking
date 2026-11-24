@@ -1,0 +1,72 @@
+{
+ "environment": {
+  "cpu": "Apple M1 Pro",
+  "git": {
+   "commit": "b9048556a635760ea092c3f15e034b0406195491",
+   "dirty": false
+  },
+  "numpy": "2.3.5",
+  "os": "macOS-15.3.1-arm64-arm-64bit",
+  "pulse_version": "0.1.0",
+  "python": "3.12.1"
+ },
+ "experiment_config": {
+  "base": {
+   "alpha0": 1.0,
+   "eta": 0.0,
+   "n_items": 1000,
+   "n_steps": 200,
+   "n_topics": 10,
+   "n_users": 200,
+   "pool_size": 50,
+   "preference_model": "static",
+   "slate_size": 10,
+   "window": 50
+  },
+  "blocks": [
+   {
+    "arms": [
+     {
+      "arm": "random",
+      "ranker": "random"
+     },
+     {
+      "arm": "popularity",
+      "ranker": "popularity"
+     },
+     {
+      "arm": "similarity",
+      "ranker": "similarity"
+     },
+     {
+      "alpha_ucb": 1.0,
+      "arm": "bandit",
+      "ranker": "linucb"
+     },
+     {
+      "arm": "mmr",
+      "lambda_mmr": 0.5,
+      "ranker": "mmr"
+     }
+    ],
+    "name": "main"
+   }
+  ],
+  "description": "Exploratory seed-spread probe at full size in the EXP-001 primary cell (static, eta 0.0, alpha0 1.0), exploratory seeds 910001+ disjoint from confirmatory seeds. Purpose: SD of paired differences for the protocol section 6 seed rule; runtime per run.",
+  "experiment_id": "XPL-VAR",
+  "label": "exploratory",
+  "output_dir": "results/exploratory/var-probe",
+  "seeds": {
+   "count": 10,
+   "first": 910001
+  }
+ },
+ "experiment_config_hash": "86124cdec2a740a13b4bc9d4f8ef41d52ee2fbf61c00ffdf401caa98225add78",
+ "experiment_id": "XPL-VAR",
+ "finished_utc": "2026-11-24T16:03:08Z",
+ "label": "exploratory",
+ "n_failed": 0,
+ "n_runs": 50,
+ "started_utc": "2026-11-24T16:02:11Z",
+ "wall_clock_s": 56.301
+}

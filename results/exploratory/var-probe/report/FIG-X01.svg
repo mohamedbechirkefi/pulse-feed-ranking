@@ -1,0 +1,77 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="900" height="190" viewBox="0 0 900 190" font-family="Helvetica, Arial, sans-serif" font-size="11">
+<rect width="900" height="190" fill="white"/>
+<text x="330" y="22" font-size="13" font-weight="bold">h_exp per seed, by cell and arm (exploratory)</text>
+<line x1="330.0" y1="44" x2="330.0" y2="140" stroke="#ddd"/>
+<text x="330.0" y="156" text-anchor="middle">0.781</text>
+<line x1="436.0" y1="44" x2="436.0" y2="140" stroke="#ddd"/>
+<text x="436.0" y="156" text-anchor="middle">0.826</text>
+<line x1="542.0" y1="44" x2="542.0" y2="140" stroke="#ddd"/>
+<text x="542.0" y="156" text-anchor="middle">0.871</text>
+<line x1="648.0" y1="44" x2="648.0" y2="140" stroke="#ddd"/>
+<text x="648.0" y="156" text-anchor="middle">0.916</text>
+<line x1="754.0" y1="44" x2="754.0" y2="140" stroke="#ddd"/>
+<text x="754.0" y="156" text-anchor="middle">0.961</text>
+<line x1="860.0" y1="44" x2="860.0" y2="140" stroke="#ddd"/>
+<text x="860.0" y="156" text-anchor="middle">1.006</text>
+<text x="595.0" y="180" text-anchor="middle">h_exp (per seed; bar = mean)</text>
+<text x="322" y="63.0" text-anchor="end">main:base | bandit</text>
+<circle cx="367.9" cy="59.0" r="3" fill="#1f5f8b" fill-opacity="0.6"/>
+<circle cx="359.9" cy="59.0" r="3" fill="#1f5f8b" fill-opacity="0.6"/>
+<circle cx="408.0" cy="59.0" r="3" fill="#1f5f8b" fill-opacity="0.6"/>
+<circle cx="359.8" cy="59.0" r="3" fill="#1f5f8b" fill-opacity="0.6"/>
+<circle cx="368.6" cy="59.0" r="3" fill="#1f5f8b" fill-opacity="0.6"/>
+<circle cx="354.1" cy="59.0" r="3" fill="#1f5f8b" fill-opacity="0.6"/>
+<circle cx="369.8" cy="59.0" r="3" fill="#1f5f8b" fill-opacity="0.6"/>
+<circle cx="388.9" cy="59.0" r="3" fill="#1f5f8b" fill-opacity="0.6"/>
+<circle cx="383.5" cy="59.0" r="3" fill="#1f5f8b" fill-opacity="0.6"/>
+<circle cx="363.5" cy="59.0" r="3" fill="#1f5f8b" fill-opacity="0.6"/>
+<line x1="372.4" y1="53.0" x2="372.4" y2="65.0" stroke="#b33" stroke-width="2"/>
+<text x="322" y="81.0" text-anchor="end">main:base | mmr</text>
+<circle cx="829.8" cy="77.0" r="3" fill="#1f5f8b" fill-opacity="0.6"/>
+<circle cx="830.2" cy="77.0" r="3" fill="#1f5f8b" fill-opacity="0.6"/>
+<circle cx="827.9" cy="77.0" r="3" fill="#1f5f8b" fill-opacity="0.6"/>
+<circle cx="832.1" cy="77.0" r="3" fill="#1f5f8b" fill-opacity="0.6"/>
+<circle cx="834.8" cy="77.0" r="3" fill="#1f5f8b" fill-opacity="0.6"/>
+<circle cx="832.8" cy="77.0" r="3" fill="#1f5f8b" fill-opacity="0.6"/>
+<circle cx="829.6" cy="77.0" r="3" fill="#1f5f8b" fill-opacity="0.6"/>
+<circle cx="834.2" cy="77.0" r="3" fill="#1f5f8b" fill-opacity="0.6"/>
+<circle cx="833.4" cy="77.0" r="3" fill="#1f5f8b" fill-opacity="0.6"/>
+<circle cx="835.9" cy="77.0" r="3" fill="#1f5f8b" fill-opacity="0.6"/>
+<line x1="832.1" y1="71.0" x2="832.1" y2="83.0" stroke="#b33" stroke-width="2"/>
+<text x="322" y="99.0" text-anchor="end">main:base | popularity</text>
+<circle cx="781.3" cy="95.0" r="3" fill="#1f5f8b" fill-opacity="0.6"/>
+<circle cx="771.1" cy="95.0" r="3" fill="#1f5f8b" fill-opacity="0.6"/>
+<circle cx="781.0" cy="95.0" r="3" fill="#1f5f8b" fill-opacity="0.6"/>
+<circle cx="819.8" cy="95.0" r="3" fill="#1f5f8b" fill-opacity="0.6"/>
+<circle cx="809.2" cy="95.0" r="3" fill="#1f5f8b" fill-opacity="0.6"/>
+<circle cx="789.7" cy="95.0" r="3" fill="#1f5f8b" fill-opacity="0.6"/>
+<circle cx="806.5" cy="95.0" r="3" fill="#1f5f8b" fill-opacity="0.6"/>
+<circle cx="815.9" cy="95.0" r="3" fill="#1f5f8b" fill-opacity="0.6"/>
+<circle cx="812.9" cy="95.0" r="3" fill="#1f5f8b" fill-opacity="0.6"/>
+<circle cx="814.2" cy="95.0" r="3" fill="#1f5f8b" fill-opacity="0.6"/>
+<line x1="800.2" y1="89.0" x2="800.2" y2="101.0" stroke="#b33" stroke-width="2"/>
+<text x="322" y="117.0" text-anchor="end">main:base | random</text>
+<circle cx="826.5" cy="113.0" r="3" fill="#1f5f8b" fill-opacity="0.6"/>
+<circle cx="831.0" cy="113.0" r="3" fill="#1f5f8b" fill-opacity="0.6"/>
+<circle cx="828.3" cy="113.0" r="3" fill="#1f5f8b" fill-opacity="0.6"/>
+<circle cx="830.7" cy="113.0" r="3" fill="#1f5f8b" fill-opacity="0.6"/>
+<circle cx="829.0" cy="113.0" r="3" fill="#1f5f8b" fill-opacity="0.6"/>
+<circle cx="832.2" cy="113.0" r="3" fill="#1f5f8b" fill-opacity="0.6"/>
+<circle cx="831.8" cy="113.0" r="3" fill="#1f5f8b" fill-opacity="0.6"/>
+<circle cx="832.4" cy="113.0" r="3" fill="#1f5f8b" fill-opacity="0.6"/>
+<circle cx="831.9" cy="113.0" r="3" fill="#1f5f8b" fill-opacity="0.6"/>
+<circle cx="823.6" cy="113.0" r="3" fill="#1f5f8b" fill-opacity="0.6"/>
+<line x1="829.7" y1="107.0" x2="829.7" y2="119.0" stroke="#b33" stroke-width="2"/>
+<text x="322" y="135.0" text-anchor="end">main:base | similarity</text>
+<circle cx="825.9" cy="131.0" r="3" fill="#1f5f8b" fill-opacity="0.6"/>
+<circle cx="825.3" cy="131.0" r="3" fill="#1f5f8b" fill-opacity="0.6"/>
+<circle cx="821.2" cy="131.0" r="3" fill="#1f5f8b" fill-opacity="0.6"/>
+<circle cx="829.3" cy="131.0" r="3" fill="#1f5f8b" fill-opacity="0.6"/>
+<circle cx="831.6" cy="131.0" r="3" fill="#1f5f8b" fill-opacity="0.6"/>
+<circle cx="830.1" cy="131.0" r="3" fill="#1f5f8b" fill-opacity="0.6"/>
+<circle cx="824.2" cy="131.0" r="3" fill="#1f5f8b" fill-opacity="0.6"/>
+<circle cx="831.0" cy="131.0" r="3" fill="#1f5f8b" fill-opacity="0.6"/>
+<circle cx="829.2" cy="131.0" r="3" fill="#1f5f8b" fill-opacity="0.6"/>
+<circle cx="833.4" cy="131.0" r="3" fill="#1f5f8b" fill-opacity="0.6"/>
+<line x1="828.1" y1="125.0" x2="828.1" y2="137.0" stroke="#b33" stroke-width="2"/>
+</svg>

@@ -1,0 +1,79 @@
+{
+ "arm": "random",
+ "block": "driftform",
+ "cell": {
+  "alpha0": 1.0
+ },
+ "config": {
+  "alpha0": 1.0,
+  "alpha_ucb": 1.0,
+  "beta": 0.85,
+  "calib_alpha": 0.01,
+  "drift_form": "additive_clip",
+  "eta": 0.1,
+  "gamma": 0.05,
+  "item_noise": 0.3,
+  "item_signal": 1.0,
+  "lambda_mmr": 0.5,
+  "n_items": 1000,
+  "n_steps": 200,
+  "n_topics": 10,
+  "n_users": 200,
+  "pool_size": 50,
+  "pool_skew": "uniform",
+  "preference_model": "drifting",
+  "ranker": "random",
+  "ridge_lambda": 1.0,
+  "slate_size": 10,
+  "tau": 0.1,
+  "window": 50,
+  "zipf_s": 1.0
+ },
+ "config_hash": "005a189504ee892fdd10513d1f104ca5530fbecbc0a0e705db429e832becd4c6",
+ "diagnostics": {
+  "catalog_topic_entropy": 0.9987702436771162,
+  "design_topic_entropy": 0.9999999999999998,
+  "distinct_items_exposed_window": 1000,
+  "final_pref_entropy": 0.8731504022870931,
+  "h_exp_user_sd": 0.0026126630878122873,
+  "initial_pref_entropy": 0.8310834104996699,
+  "n_dislike_events": 188271,
+  "n_examined_window": 53462,
+  "n_likes_window": 6151,
+  "pool_topic_entropy_window": 0.9987376952480074
+ },
+ "error": null,
+ "experiment_id": "XPL-EXP-002-SWEEP",
+ "label": "exploratory",
+ "manifest": {
+  "config_hash": "005a189504ee892fdd10513d1f104ca5530fbecbc0a0e705db429e832becd4c6",
+  "cpu": "Apple M1 Pro",
+  "git": {
+   "commit": "b9048556a635760ea092c3f15e034b0406195491",
+   "dirty": false
+  },
+  "numpy": "2.3.5",
+  "os": "macOS-15.3.1-arm64-arm-64bit",
+  "peak_memory_note": "process-wide peak RSS at the end of this run (runs share one process), not a per-run peak",
+  "peak_rss_bytes_process": 140492800,
+  "pulse_version": "0.1.0",
+  "python": "3.12.1",
+  "runtime_s": 0.8612,
+  "seed": 930002,
+  "started_utc": "2026-11-24T16:04:56Z"
+ },
+ "metrics": {
+  "delta_h_pref": 0.04206699178742312,
+  "gini_exposure": 0.05487198,
+  "h_exp": 0.9943138222997893,
+  "like_rate": 0.11505368298978713,
+  "miscalibration_kl": 0.2919619736890222,
+  "relevance": 0.10012817805528806,
+  "user_control": -0.08947209076278341
+ },
+ "run_id": "XPL-EXP-002-SWEEP-driftform-alpha0=1.0-random-s930002",
+ "schema": "pulse.run_result",
+ "schema_version": "1.0.0",
+ "seed": 930002,
+ "status": "ok"
+}

@@ -1,0 +1,79 @@
+{
+ "arm": "similarity",
+ "block": "driftform",
+ "cell": {
+  "alpha0": 1.0
+ },
+ "config": {
+  "alpha0": 1.0,
+  "alpha_ucb": 1.0,
+  "beta": 0.85,
+  "calib_alpha": 0.01,
+  "drift_form": "additive_clip",
+  "eta": 0.1,
+  "gamma": 0.05,
+  "item_noise": 0.3,
+  "item_signal": 1.0,
+  "lambda_mmr": 0.5,
+  "n_items": 1000,
+  "n_steps": 200,
+  "n_topics": 10,
+  "n_users": 200,
+  "pool_size": 50,
+  "pool_skew": "uniform",
+  "preference_model": "drifting",
+  "ranker": "similarity",
+  "ridge_lambda": 1.0,
+  "slate_size": 10,
+  "tau": 0.1,
+  "window": 50,
+  "zipf_s": 1.0
+ },
+ "config_hash": "a0399c81baca5104bf1f596eb46cb4fc1d799f48d1aee25d75b10bd32c3d6cd4",
+ "diagnostics": {
+  "catalog_topic_entropy": 0.9987702436771162,
+  "design_topic_entropy": 0.9999999999999998,
+  "distinct_items_exposed_window": 980,
+  "final_pref_entropy": 0.7861415721744776,
+  "h_exp_user_sd": 0.05770252995139949,
+  "initial_pref_entropy": 0.8310834104996699,
+  "n_dislike_events": 186142,
+  "n_examined_window": 53462,
+  "n_likes_window": 7077,
+  "pool_topic_entropy_window": 0.9987376952480074
+ },
+ "error": null,
+ "experiment_id": "XPL-EXP-002-SWEEP",
+ "label": "exploratory",
+ "manifest": {
+  "config_hash": "a0399c81baca5104bf1f596eb46cb4fc1d799f48d1aee25d75b10bd32c3d6cd4",
+  "cpu": "Apple M1 Pro",
+  "git": {
+   "commit": "b9048556a635760ea092c3f15e034b0406195491",
+   "dirty": false
+  },
+  "numpy": "2.3.5",
+  "os": "macOS-15.3.1-arm64-arm-64bit",
+  "peak_memory_note": "process-wide peak RSS at the end of this run (runs share one process), not a per-run peak",
+  "peak_rss_bytes_process": 140492800,
+  "pulse_version": "0.1.0",
+  "python": "3.12.1",
+  "runtime_s": 0.8509,
+  "seed": 930002,
+  "started_utc": "2026-11-24T16:04:58Z"
+ },
+ "metrics": {
+  "delta_h_pref": -0.04494183832519236,
+  "gini_exposure": 0.54239878,
+  "h_exp": 0.9774084680758659,
+  "like_rate": 0.1323743967677977,
+  "miscalibration_kl": 0.35552111712341783,
+  "relevance": 0.11723507350342284,
+  "user_control": -0.17874472177155076
+ },
+ "run_id": "XPL-EXP-002-SWEEP-driftform-alpha0=1.0-similarity-s930002",
+ "schema": "pulse.run_result",
+ "schema_version": "1.0.0",
+ "seed": 930002,
+ "status": "ok"
+}

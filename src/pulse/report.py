@@ -10,6 +10,7 @@ from __future__ import annotations
 import csv
 import json
 import math
+import os
 import shutil
 import subprocess
 from collections import defaultdict
@@ -20,8 +21,11 @@ import numpy as np
 from .schema import METRICS, load_results
 from .stats import holm, paired_summary
 
-PANDOC = Path("/Users/bechir/research/labs/.tools/pandoc")
-TYPST_PY = Path("/Users/bechir/research/labs/.tools/py/bin/python")
+from .manifest import REPO_ROOT
+
+# Shared zero-cost toolchain next to the repository (D-002); overridable by environment variables.
+PANDOC = Path(os.environ.get("PULSE_PANDOC", REPO_ROOT.parent / ".tools" / "pandoc"))
+TYPST_PY = Path(os.environ.get("PULSE_TYPST_PYTHON", REPO_ROOT.parent / ".tools" / "py" / "bin" / "python"))
 CONTROL = "random"
 EXTRA_CONTRASTS = (("mmr", "similarity"),)
 

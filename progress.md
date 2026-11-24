@@ -46,3 +46,56 @@ CLAUDE.md, roadmap.md, progress.md, README.md, CITATION.cff, pyproject.toml, uv.
 
 ### Next action
 Owner: review protocol draft and decisions D-003, D-004. Session: implement the M2 core (random baseline first), then run the exploratory smoke matrix to settle the seed count before the owner freezes.
+
+## 2026-11-24: M2 session (core implementation, exploratory smoke runs)
+
+**Milestone:** M2 (protocol still DRAFT v0.1; no freeze, no confirmatory run). **Next bounded task at start:** implement the random baseline and the four rankers with schema, manifests, runner, report generator and CLI; then run the exploratory smoke matrix.
+
+### Starting state
+`git status`: branch main, clean, HEAD 36c143c.
+
+### Implemented (commit b904855, plus records commit)
+- `src/pulse/`: `config.py` (validated, hashable SimConfig), `model.py` (synthetic catalog, Dirichlet users, pools, choice, drift; SeedSequence streams per component, common random numbers across arms), `rankers.py` (random baseline, popularity, content similarity, LinUCB with Sherman-Morrison, MMR; one seeded tie rule), `simulate.py` (loop with built-in invariant checks), `metrics.py`, `stats.py` (paired t, bootstrap, d_z, Holm; t quantiles from the incomplete beta function, no scipy), `schema.py` (result schema 1.0.0, validated at export and import), `manifest.py` (config hash, seed, git revision and dirty flag, Python, numpy, OS, CPU, runtime, process peak RSS), `runner.py` (matrix expansion, failure recording, refusal of confirmatory configs unless the registry hash matches a frozen protocol, refusal to overwrite results), `report.py` (CSV, SVG, Markdown, pandoc to Typst PDF with `-V mainfont="Libertinus Serif"`), `cli.py` (`smoke`, `run`, `report`, `test`).
+- `experiments/EXP-00{1,2,3}.json` (confirmatory, 240/240/120 runs, refused while unfrozen) and `experiments/exploratory/*.json`.
+- Tests: `tests/test_config_metrics_stats.py`, `test_model_rankers.py`, `test_simulate.py`, `test_schema_runner_report.py` cover invalid inputs, golden values (entropy, Gini, KL, t quantiles, paired summary, Holm, drift, MMR hand example), properties (Gini bounds and invariances, simplex preservation), differential checks (Gini against O(N^2) definition, LinUCB against direct inverse, MMR with lambda 1 against similarity, H_exp against a naive loop), and the section 10 checks: ranking ties, feedback updates, seed determinism, topic distributions, zero-feedback behaviour.
+
+### Commands and actual outputs
+- First test run: `uv run pytest -q`: "5 failed, 104 passed". Causes: a test passed `None` where LinUCB read the slate shape (code fixed to use the embedding shape); two test thresholds were wrong (primary-topic argmax share is 0.944, not above 0.95; random-topic drift does not concentrate); and one real defect: LinUCB cold-start ties were decided by round-off (D-006, fixed by rounding scores to 12 decimals).
+- After fixes: `uv run pytest -q`: "110 passed in 1.63s". Final run before the records commit: "110 passed in 5.65s".
+- `uv lock`: "Updated pulse-feed-ranking v0.0.0 -> v0.1.0" (no dependency added; numpy 2.3.5, pytest 8.4.2).
+- `PYTHONPATH=src uv run python -m pulse.cli run --experiment EXP-001`: "REFUSED: refusing confirmatory run of EXP-001: research/protocol.md is marked DRAFT" (exit code 3, also asserted in tests).
+- Exploratory sets, all at clean revision b904855, every run status ok (0 failed), seeds disjoint from confirmatory seeds (`/usr/bin/time -l` wall clock including interpreter start):
+
+| Set | Runs | Set wall clock (s) | Max RSS (bytes) |
+| --- | --- | --- | --- |
+| smoke (U 50, N 300, T 60, 2 seeds) | 10 | 0.51 | 46399488 |
+| var-probe (EXP-001 primary cell, full size, 10 seeds) | 50 | 56.30 | 144457728 |
+| sweep-EXP-001 (all 24 cells, 2 seeds) | 48 | 57.34 | 146276352 |
+| sweep-EXP-002 (all 24 cells, 2 seeds) | 48 | 61.43 | 140492800 |
+| sweep-EXP-003 (all 12 cells, 2 seeds) | 24 | 74.78 | 132775936 |
+
+  sweep-EXP-003 used 25.2 s user CPU for 75.0 s real, so the machine was probably busy with other work during that set; its per-run times (mean 2.4 to 4.4 s by arm) are pessimistic.
+- Reports: `pulse.cli report --results results/exploratory/<set>` for all five sets; PDFs built (2, 2, 4, 4, 2 pages), text extracted with pypdf, two pages inspected as rendered images.
+
+### Exploratory measurements (planning values only, not findings)
+- Runtime per full-size run (var-probe means by arm): random 0.76 s, popularity 0.73 s, similarity 0.78 s, LinUCB 1.18 s, MMR 2.18 s; 1.13 s per run overall.
+- Projected full matrices at 10 seeds, from the sweep wall clocks: EXP-001 287 s, EXP-002 307 s, EXP-003 374 s; about 16 minutes in total (about 32 minutes at 20 seeds), against the 4-hour budget.
+- Seed spread: in the primary contrast (similarity minus random, H_exp, primary cell) the SD of paired differences over 10 seeds is 0.0022 (rule threshold 0.07), so n = 10 meets protocol section 6. Largest H_exp contrast SD: 0.0075 (popularity minus random).
+- Degenerate cases: (1) at alpha_0 = 1.0, eta = 0 the observed like rate is about 0.02 for every arm and relevance about 0.10, so feedback is almost all dislikes; at eta = 0.2 the like rate is about 0.21, mostly flips. (2) The random arm's user-control value is about -0.089, not 0. (3) Under the Zipf catalog the random arm's H_exp (about 0.863) is below the similarity arm's (about 0.965). No NaN, no invariant failure, no failed run. Proposed amendments P1 to P5 are in `research/decision_log.md` D-008; the protocol files were not changed.
+
+### Decisions
+D-006 (tie rounding), D-007 (operational clarifications, owner review), D-008 (proposed amendments, owner decision).
+
+### Files changed
+New: `src/pulse/{config,model,rankers,simulate,metrics,stats,schema,manifest,runner,report,cli}.py`, four test files, `experiments/EXP-00{1,2,3}.json`, `experiments/exploratory/*.json`, `results/exploratory/**`. Modified: `src/pulse/__init__.py` (0.1.0), `pyproject.toml` (version, pytest pythonpath), `uv.lock`, `tests/test_toolchain_smoke.py`, `CONTRIBUTING.md` (commands), `experiments/README.md`, `results/README.md`, `roadmap.md`, `research/{decision_log.md, experiment_journal.jsonl, experiment_registry.csv}`.
+
+### Not done
+- No confirmatory run and no protocol freeze (G-FREEZE). No experiment report.md (no experiment has run confirmatorily). No demo (M5). Nothing pushed.
+- Manuscript untouched: no result to report.
+
+### Outstanding risks
+- P1: under the draft calibration the primary contrast is likely to be near zero in the primary cell for reasons of model calibration; the owner should decide before freezing, knowing the exploratory value was seen.
+- Peak memory is process-wide, not per run.
+
+### Next action
+Owner: decide on D-007 and D-008 (P1 first), then freeze. Session after the freeze: M3 confirmatory runs with `pulse.cli run --experiment EXP-00N`.

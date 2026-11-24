@@ -1,0 +1,84 @@
+{
+ "environment": {
+  "cpu": "Apple M1 Pro",
+  "git": {
+   "commit": "b9048556a635760ea092c3f15e034b0406195491",
+   "dirty": false
+  },
+  "numpy": "2.3.5",
+  "os": "macOS-15.3.1-arm64-arm-64bit",
+  "pulse_version": "0.1.0",
+  "python": "3.12.1"
+ },
+ "experiment_config": {
+  "base": {
+   "alpha0": 1.0,
+   "eta": 0.1,
+   "n_items": 1000,
+   "n_steps": 200,
+   "n_topics": 10,
+   "n_users": 200,
+   "pool_size": 50,
+   "preference_model": "static",
+   "slate_size": 10,
+   "window": 50,
+   "zipf_s": 1.0
+  },
+  "blocks": [
+   {
+    "arms": [
+     {
+      "arm": "random",
+      "ranker": "random"
+     },
+     {
+      "arm": "similarity",
+      "ranker": "similarity"
+     },
+     {
+      "arm": "mmr",
+      "lambda_mmr": 0.5,
+      "ranker": "mmr"
+     }
+    ],
+    "factors": {
+     "pool_skew": [
+      "uniform",
+      "zipf"
+     ],
+     "tau": [
+      0.1,
+      0.3
+     ]
+    },
+    "name": "main"
+   }
+  ],
+  "description": "Exploratory degenerate-case and runtime sweep: every cell of the draft EXP-003 matrix at full size with 2 exploratory seeds (940001+), disjoint from confirmatory seeds.",
+  "experiment_id": "XPL-EXP-003-SWEEP",
+  "label": "exploratory",
+  "output_dir": "results/exploratory/sweep-EXP-003",
+  "primary": {
+   "block": "main",
+   "cell": {
+    "pool_skew": "zipf",
+    "tau": 0.1
+   },
+   "control": "random",
+   "metric": "h_exp",
+   "treatment": "similarity"
+  },
+  "seeds": {
+   "count": 2,
+   "first": 940001
+  }
+ },
+ "experiment_config_hash": "248893479d3a26ac4b2a0f381e0c6ea47e3f33b279c463abf6db5889ddfc7487",
+ "experiment_id": "XPL-EXP-003-SWEEP",
+ "finished_utc": "2026-11-24T16:06:22Z",
+ "label": "exploratory",
+ "n_failed": 0,
+ "n_runs": 24,
+ "started_utc": "2026-11-24T16:05:07Z",
+ "wall_clock_s": 74.777
+}
