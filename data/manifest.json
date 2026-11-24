@@ -1,11 +1,11 @@
 {
-  "schema_version": "0.1",
+  "schema_version": "0.2",
   "updated": "2026-11-24",
-  "policy": "PULSE uses synthetic data only. No external dataset is downloaded or bundled. Candidates below were checked for licence only, for the record; none is used by a registered experiment.",
+  "policy": "PULSE adopts MovieLens 1M (owner approval 2026-11-24, D-009) for calibration of the choice curve and the EXP-004 second test (research/protocol.md section 15). The raw and processed files are never committed (licence forbids redistribution); this manifest records URL, licence, size and SHA-256. The synthetic generator remains the controlled part of every experiment.",
   "synthetic_generators": [
     {
       "id": "pulse-synthetic-v0",
-      "status": "specified in research/protocol.md section 2; not implemented yet (M2)",
+      "status": "implemented in src/pulse/model.py",
       "seeding": "numpy.random.SeedSequence per master seed, spawned streams per component",
       "redistributable": true,
       "licence": "LicenseRef-PULSE-NC-Research-1.0 (generated outputs)"
@@ -18,7 +18,7 @@
       "accessed": "2026-11-24",
       "licence": "GroupLens usage licence: research use; redistribution allowed only under the same licence conditions; no commercial or revenue-bearing use without permission; must cite Harper and Konstan 2015 (doi:10.1145/2827872); no implied endorsement",
       "redistributable": "only under its own terms, not under the PULSE licence",
-      "decision": "not used; not downloaded",
+      "decision": "superseded: MovieLens 1M adopted instead (see real_datasets)",
       "sha256": null
     },
     {
@@ -38,6 +38,40 @@
       "redistributable": "unverified",
       "decision": "not used; not downloaded",
       "sha256": null
+    }
+  ],
+  "real_datasets": [
+    {
+      "id": "movielens-1m",
+      "name": "MovieLens 1M (GroupLens)",
+      "url": "https://files.grouplens.org/datasets/movielens/ml-1m.zip",
+      "readme_url": "https://files.grouplens.org/datasets/movielens/ml-1m-README.txt",
+      "accessed": "2026-11-24",
+      "downloaded_utc": "2026-11-24T18:31:56Z",
+      "download_script": "scripts/download_movielens.py",
+      "local_path": "data/raw/movielens-1m/ (git-ignored)",
+      "files": [
+        {
+          "name": "ml-1m.zip",
+          "bytes": 5917549,
+          "sha256": "a6898adb50b9ca05aa231689da44c217cb524e7ebd39d264c56e2832f2c54e20"
+        },
+        {
+          "name": "ml-1m-README.txt",
+          "bytes": 5576,
+          "sha256": "908ee4aa21a8d37aec0cb6c1cdcc41f9bba3c5d2fef3d9250a8073b8e460027e"
+        }
+      ],
+      "licence": "GroupLens MovieLens 1M usage licence (README, read 2026-11-24): any research purpose; no stated or implied endorsement by the University of Minnesota or GroupLens; acknowledge use in publications (Harper and Konstan 2015, doi:10.1145/2827872); no redistribution without separate permission; no commercial or revenue-bearing use without permission.",
+      "redistributable": false,
+      "committed": false,
+      "personal_data": "pseudonymous integer user ids in ratings.dat; users.dat holds age, gender, occupation and zip code and is never read. No row-level data is committed.",
+      "members_used": [
+        "ml-1m/movies.dat",
+        "ml-1m/ratings.dat"
+      ],
+      "role": "calibration of the choice-curve midpoint (target like rate) and EXP-004 second test (research/protocol.md section 15)",
+      "decision": "adopted (D-009)"
     }
   ]
 }
