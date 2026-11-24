@@ -1,8 +1,8 @@
 # SPDX-License-Identifier: LicenseRef-PULSE-NC-Research-1.0
 [project]
 name = "pulse-feed-ranking"
-version = "0.0.0"
-description = "PULSE: simulated recommendation feedback loops and exposure diversity (research code, M0 scaffold)"
+version = "0.1.0"
+description = "PULSE: simulated recommendation feedback loops and exposure diversity (research code)"
 readme = "README.md"
 requires-python = ">=3.12,<3.13"
 # Custom licence; see LICENSE and NOTICE.md. Not an OSI licence, so no SPDX expression is given here.
@@ -24,3 +24,4 @@ package = false
 
 [tool.pytest.ini_options]
 testpaths = ["tests"]
+pythonpath = ["src"]

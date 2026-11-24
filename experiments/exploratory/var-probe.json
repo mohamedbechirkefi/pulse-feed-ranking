@@ -1,0 +1,51 @@
+{
+ "experiment_id": "XPL-VAR",
+ "label": "exploratory",
+ "description": "Exploratory seed-spread probe at full size in the EXP-001 primary cell (static, eta 0.0, alpha0 1.0), exploratory seeds 910001+ disjoint from confirmatory seeds. Purpose: SD of paired differences for the protocol section 6 seed rule; runtime per run.",
+ "output_dir": "results/exploratory/var-probe",
+ "base": {
+  "n_users": 200,
+  "n_items": 1000,
+  "n_topics": 10,
+  "pool_size": 50,
+  "slate_size": 10,
+  "n_steps": 200,
+  "window": 50,
+  "preference_model": "static",
+  "eta": 0.0,
+  "alpha0": 1.0
+ },
+ "seeds": {
+  "first": 910001,
+  "count": 10
+ },
+ "blocks": [
+  {
+   "name": "main",
+   "arms": [
+    {
+     "arm": "random",
+     "ranker": "random"
+    },
+    {
+     "arm": "popularity",
+     "ranker": "popularity"
+    },
+    {
+     "arm": "similarity",
+     "ranker": "similarity"
+    },
+    {
+     "arm": "bandit",
+     "ranker": "linucb",
+     "alpha_ucb": 1.0
+    },
+    {
+     "arm": "mmr",
+     "ranker": "mmr",
+     "lambda_mmr": 0.5
+    }
+   ]
+  }
+ ]
+}

@@ -1,0 +1,51 @@
+{
+ "experiment_id": "SMOKE",
+ "label": "exploratory",
+ "description": "Protocol section 9 smoke matrix. Exploratory; exploratory seed range 900001+ is disjoint from every confirmatory seed range.",
+ "output_dir": "results/exploratory/smoke",
+ "base": {
+  "n_users": 50,
+  "n_items": 300,
+  "n_topics": 10,
+  "pool_size": 50,
+  "slate_size": 10,
+  "n_steps": 60,
+  "window": 20,
+  "preference_model": "static",
+  "eta": 0.1,
+  "alpha0": 1.0
+ },
+ "seeds": {
+  "first": 900001,
+  "count": 2
+ },
+ "blocks": [
+  {
+   "name": "main",
+   "arms": [
+    {
+     "arm": "random",
+     "ranker": "random"
+    },
+    {
+     "arm": "popularity",
+     "ranker": "popularity"
+    },
+    {
+     "arm": "similarity",
+     "ranker": "similarity"
+    },
+    {
+     "arm": "bandit",
+     "ranker": "linucb",
+     "alpha_ucb": 1.0
+    },
+    {
+     "arm": "mmr",
+     "ranker": "mmr",
+     "lambda_mmr": 0.5
+    }
+   ]
+  }
+ ]
+}

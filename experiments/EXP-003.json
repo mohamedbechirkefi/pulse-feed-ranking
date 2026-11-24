@@ -1,0 +1,63 @@
+{
+ "experiment_id": "EXP-003",
+ "label": "confirmatory",
+ "protocol_path": "research/experiments/EXP-003/protocol.md",
+ "output_dir": "results/raw/EXP-003",
+ "base": {
+  "n_users": 200,
+  "n_items": 1000,
+  "n_topics": 10,
+  "pool_size": 50,
+  "slate_size": 10,
+  "n_steps": 200,
+  "window": 50,
+  "preference_model": "static",
+  "eta": 0.1,
+  "alpha0": 1.0,
+  "zipf_s": 1.0
+ },
+ "seeds": {
+  "first": 103001,
+  "count": 10
+ },
+ "blocks": [
+  {
+   "name": "main",
+   "factors": {
+    "pool_skew": [
+     "uniform",
+     "zipf"
+    ],
+    "tau": [
+     0.1,
+     0.3
+    ]
+   },
+   "arms": [
+    {
+     "arm": "random",
+     "ranker": "random"
+    },
+    {
+     "arm": "similarity",
+     "ranker": "similarity"
+    },
+    {
+     "arm": "mmr",
+     "ranker": "mmr",
+     "lambda_mmr": 0.5
+    }
+   ]
+  }
+ ],
+ "primary": {
+  "metric": "h_exp",
+  "treatment": "similarity",
+  "control": "random",
+  "block": "main",
+  "cell": {
+   "pool_skew": "zipf",
+   "tau": 0.1
+  }
+ }
+}

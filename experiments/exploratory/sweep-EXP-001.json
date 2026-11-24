@@ -1,0 +1,89 @@
+{
+ "experiment_id": "XPL-EXP-001-SWEEP",
+ "label": "exploratory",
+ "output_dir": "results/exploratory/sweep-EXP-001",
+ "base": {
+  "n_users": 200,
+  "n_items": 1000,
+  "n_topics": 10,
+  "pool_size": 50,
+  "slate_size": 10,
+  "n_steps": 200,
+  "window": 50,
+  "preference_model": "static"
+ },
+ "seeds": {
+  "first": 920001,
+  "count": 2
+ },
+ "blocks": [
+  {
+   "name": "main",
+   "factors": {
+    "eta": [
+     0.0,
+     0.2
+    ],
+    "alpha0": [
+     1.0,
+     0.1
+    ]
+   },
+   "arms": [
+    {
+     "arm": "random",
+     "ranker": "random"
+    },
+    {
+     "arm": "popularity",
+     "ranker": "popularity"
+    },
+    {
+     "arm": "similarity",
+     "ranker": "similarity"
+    },
+    {
+     "arm": "bandit",
+     "ranker": "linucb",
+     "alpha_ucb": 1.0
+    },
+    {
+     "arm": "mmr",
+     "ranker": "mmr",
+     "lambda_mmr": 0.5
+    }
+   ]
+  },
+  {
+   "name": "ucb",
+   "factors": {
+    "eta": [
+     0.0,
+     0.2
+    ],
+    "alpha0": [
+     1.0,
+     0.1
+    ]
+   },
+   "arms": [
+    {
+     "arm": "bandit_a0.1",
+     "ranker": "linucb",
+     "alpha_ucb": 0.1
+    }
+   ]
+  }
+ ],
+ "primary": {
+  "metric": "h_exp",
+  "treatment": "similarity",
+  "control": "random",
+  "block": "main",
+  "cell": {
+   "eta": 0.0,
+   "alpha0": 1.0
+  }
+ },
+ "description": "Exploratory degenerate-case and runtime sweep: every cell of the draft EXP-001 matrix at full size with 2 exploratory seeds (920001+), disjoint from confirmatory seeds."
+}

@@ -41,4 +41,10 @@ Never commit an e-mail address, a name or any other personal identifier in code,
     /Users/bechir/research/labs/.tools/py/bin/uv sync --frozen   # install locked dependencies
     /Users/bechir/research/labs/.tools/py/bin/uv run pytest -q   # run the test suite
 
-Experiment and report commands are added when they exist (M2).
+Experiment and report commands (M2). The package is not installed; set `PYTHONPATH=src`:
+
+    PYTHONPATH=src uv run python -m pulse.cli smoke                              # exploratory smoke matrix
+    PYTHONPATH=src uv run python -m pulse.cli run --config experiments/exploratory/var-probe.json
+    PYTHONPATH=src uv run python -m pulse.cli run --experiment EXP-001           # refused until the owner freezes the protocol
+    PYTHONPATH=src uv run python -m pulse.cli report --results results/exploratory/smoke
+    PYTHONPATH=src uv run python -m pulse.cli test

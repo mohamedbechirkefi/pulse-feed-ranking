@@ -11,7 +11,7 @@ sys.path.insert(0, str(Path(__file__).resolve().parents[1] / "src"))
 def test_package_imports():
     import pulse
 
-    assert pulse.__version__ == "0.0.0"
+    assert pulse.__version__ == "0.1.0"
 
 
 def test_seeded_rng_is_deterministic():
