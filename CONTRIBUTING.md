@@ -35,3 +35,10 @@ Mohamed Bechir Kefi is the project owner and lead maintainer, and the only perso
 ## 5. Privacy and disclosure
 
 Never commit an e-mail address, a name or any other personal identifier in code, logs, fixtures or results. Report security issues privately through GitHub's private vulnerability reporting.
+
+## 6. Development commands
+
+    /Users/bechir/research/labs/.tools/py/bin/uv sync --frozen   # install locked dependencies
+    /Users/bechir/research/labs/.tools/py/bin/uv run pytest -q   # run the test suite
+
+Experiment and report commands are added when they exist (M2).

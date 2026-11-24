@@ -1,0 +1,16 @@
+# SPDX-License-Identifier: LicenseRef-PULSE-NC-Research-1.0
+# Licence: PULSE Source-Available Non-Commercial Research License v1.0 (custom; see LICENSE and NOTICE.md).
+cff-version: 1.2.0
+message: "If you use this work, please cite it as below. Research software in progress; not peer-reviewed."
+title: "PULSE: recommendation feedback and attention (simulation study)"
+type: software
+version: 0.0.0
+date-released: 2026-11-24
+authors:
+  - family-names: Kefi
+    given-names: Mohamed Bechir
+keywords:
+  - recommender systems
+  - feedback loops
+  - exposure diversity
+  - simulation

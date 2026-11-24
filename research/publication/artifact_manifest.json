@@ -1,0 +1,7 @@
+{
+  "schema_version": "0.1",
+  "updated": "2026-11-24",
+  "status": "empty: no result, figure, table or claim exists yet",
+  "fields_required_per_entry": ["artifact_id", "kind", "exp_id", "run_ids", "metric_definition", "result_path", "generator_script", "config_or_protocol_hash", "code_revision"],
+  "artifacts": []
+}

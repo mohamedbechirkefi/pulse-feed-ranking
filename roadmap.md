@@ -1,0 +1,25 @@
+<!-- SPDX-License-Identifier: LicenseRef-PULSE-NC-Research-1.0 -->
+# PULSE roadmap
+
+Target: five focused development days (planning estimate, never a reason to weaken evidence). Updated 2026-11-24.
+
+| ID | Milestone | Depends on | Acceptance criteria (gate) | Priority | Effort | Status | Blockers |
+| --- | --- | --- | --- | --- | --- | --- | --- |
+| M0 | Bootstrap and feasibility | none | Control files; feasibility audit with measured hardware and tools; source and licence audit; budget, scope, exclusions, fallback; registry, manuscript skeleton and EXP protocols initialised; zero-cost toolchain confirmed (11.6). Gate: the owner can understand question, cost and exclusions. | P0 | 0.5 day | done, pending owner review | none |
+| M1 | Research and preregistration | M0 | Fuller literature search (open items in literature_review.md); formal model final; exploratory smoke run sets the seed count; protocols EXP-001 to EXP-003 frozen by the owner with SHA-256 recorded in registry and decision log; fixture manifest. Gate: protocol frozen before any confirmatory run; exploratory results visibly separate. | P0 | 0.5 day | in progress (drafts written) | owner freeze (G-FREEZE); smoke run needs M2 core |
+| M2 | Core implementation | M1 drafts | Random baseline first, then four rankers; simulator, metrics, runner, CLI (smoke, run, report, test); versioned JSON result schema and run manifests; report generator (pandoc to Typst); unit, invariant, golden and integration tests including ranking ties, feedback updates, seed determinism, topic distributions and zero-feedback behaviour. Gate: correctness before UI. | P0 | 1.5 days | not started | none |
+| M3 | Experiments | M1 freeze, M2 | Smoke run, metric validation, full frozen matrices EXP-001 to EXP-003; raw results retained; each experiment report written as it finishes; failures and deviations recorded immediately. Gate: complete matrix or documented failure; no silently dropped runs. | P0 | 0.5 day | not started | M1 freeze |
+| M4 | Interpretation | M3 | Confounder inspection; EXP-003 sensitivity evaluated against its invalidation criterion; claims register; finished reports; evidence audit; manuscript synthesis including contradictory results. Gate: every numerical claim maps to result id, config and figure; unsupported claims removed. | P0 | 0.5 day | not started | M3 |
+| M5 | Interactive experience | M4 | Static offline page: side-by-side simulated feeds, topic cards, preference timeline, exposure heatmap, reset and seed controls; measured results separated from sandbox results; accessibility checks; uses identical verified results to paper and reports. | P1 (cut first if time is short) | 1 day | not started | Node toolchain is read-only from helix; demo dependencies to be locked at M5 |
+| M6 | Release candidate | M5 | Clean clone, locked install, tests, smoke reproduction, demo build, manifest and link checks, secret and licence scan; PDFs compiled and inspected; owner review checklist. Gate: verified facts only; the owner approves any publication. | P0 | 0.5 day | not started | owner approval (G-PUBLIC) |
+
+## Registered experiments
+
+See `research/experiment_registry.csv`: EXP-001 (static, exposure entropy), EXP-002 (drifting, preference reinforcement), EXP-003 (sensitivity: pool skew and choice sharpness). All "planned (protocol draft, awaiting owner freeze)".
+
+## Scope cuts if the five-day target is threatened (in order)
+
+1. Demo reduced to a minimal static page with precomputed results.
+2. EXP-003 tau factor dropped (pool-skew factor kept: it is the invalidation test).
+3. EXP-002 drift-form check reduced to one alpha_0 level.
+Controls, reports and evidence checks are never cut.

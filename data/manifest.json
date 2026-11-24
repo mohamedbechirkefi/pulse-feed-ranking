@@ -1,0 +1,43 @@
+{
+  "schema_version": "0.1",
+  "updated": "2026-11-24",
+  "policy": "PULSE uses synthetic data only. No external dataset is downloaded or bundled. Candidates below were checked for licence only, for the record; none is used by a registered experiment.",
+  "synthetic_generators": [
+    {
+      "id": "pulse-synthetic-v0",
+      "status": "specified in research/protocol.md section 2; not implemented yet (M2)",
+      "seeding": "numpy.random.SeedSequence per master seed, spawned streams per component",
+      "redistributable": true,
+      "licence": "LicenseRef-PULSE-NC-Research-1.0 (generated outputs)"
+    }
+  ],
+  "external_candidates": [
+    {
+      "name": "MovieLens latest-small (GroupLens)",
+      "url": "https://files.grouplens.org/datasets/movielens/ml-latest-small-README.html",
+      "accessed": "2026-11-24",
+      "licence": "GroupLens usage licence: research use; redistribution allowed only under the same licence conditions; no commercial or revenue-bearing use without permission; must cite Harper and Konstan 2015 (doi:10.1145/2827872); no implied endorsement",
+      "redistributable": "only under its own terms, not under the PULSE licence",
+      "decision": "not used; not downloaded",
+      "sha256": null
+    },
+    {
+      "name": "KuaiRec",
+      "url": "https://kuairec.com/",
+      "accessed": "2026-11-24",
+      "licence": "stated on the project page as CC BY-SA 4.0; derived from logs of a commercial app; ShareAlike would bind any redistributed derivative",
+      "redistributable": "under CC BY-SA 4.0 only; rights in the underlying logs not verified",
+      "decision": "not used; not downloaded; would need owner review (G-RIGHTS) before any use",
+      "sha256": null
+    },
+    {
+      "name": "MIND (Microsoft News Dataset)",
+      "url": "https://learn.microsoft.com/en-us/azure/open-datasets/dataset-microsoft-news",
+      "accessed": "2026-11-24 (search result summaries only; licence text not opened)",
+      "licence": "UNVERIFIED: reported as Microsoft Research License Terms, non-commercial research only",
+      "redistributable": "unverified",
+      "decision": "not used; not downloaded",
+      "sha256": null
+    }
+  ]
+}
