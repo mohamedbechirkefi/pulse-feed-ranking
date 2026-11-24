@@ -61,7 +61,7 @@ wheels = [
 ]
 
 [[package]]
-name = "pulse-research"
+name = "pulse-feed-ranking"
 version = "0.0.0"
 source = { virtual = "." }
 dependencies = [

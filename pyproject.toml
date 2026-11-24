@@ -1,6 +1,6 @@
 # SPDX-License-Identifier: LicenseRef-PULSE-NC-Research-1.0
 [project]
-name = "pulse-research"
+name = "pulse-feed-ranking"
 version = "0.0.0"
 description = "PULSE: simulated recommendation feedback loops and exposure diversity (research code, M0 scaffold)"
 readme = "README.md"

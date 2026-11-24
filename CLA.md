@@ -14,9 +14,9 @@ and
 **Contributor:** The individual accepting this Agreement.
 
 The Agreement concerns contributions intentionally submitted
-for inclusion in PULSE (research repository), planned at:
+for inclusion in PULSE (research repository), at:
 
-https://github.com/mohamedbechirkefi/pulse-research
+https://github.com/mohamedbechirkefi/pulse-feed-ranking
 
 ## 1. Ownership of contributions
 
