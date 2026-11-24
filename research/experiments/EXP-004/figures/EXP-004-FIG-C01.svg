@@ -1,0 +1,17 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="900" height="134" viewBox="0 0 900 134" font-family="Helvetica, Arial, sans-serif" font-size="11">
+<rect width="900" height="134" fill="white"/>
+<text x="330" y="22" font-size="13" font-weight="bold">EXP-004: frozen contrasts (confirmatory)</text>
+<text x="330.0" y="90" text-anchor="middle">-0.455</text>
+<text x="436.0" y="90" text-anchor="middle">-0.357</text>
+<text x="542.0" y="90" text-anchor="middle">-0.259</text>
+<text x="648.0" y="90" text-anchor="middle">-0.162</text>
+<text x="754.0" y="90" text-anchor="middle">-0.064</text>
+<text x="860.0" y="90" text-anchor="middle">0.034</text>
+<line x1="823.4" y1="42" x2="823.4" y2="74" stroke="#444" stroke-width="1"/>
+<line x1="769.2" y1="42" x2="769.2" y2="74" stroke="#b33" stroke-dasharray="4 3"/>
+<text x="769.2" y="38" text-anchor="middle" fill="#b33">-0.05</text>
+<text x="322" y="66.0" text-anchor="end">main:base | similarity - random</text>
+<line x1="366.6" y1="62.0" x2="391.5" y2="62.0" stroke="#1f5f8b" stroke-width="2"/>
+<circle cx="379.0" cy="62.0" r="4" fill="#1f5f8b"/>
+<text x="595.0" y="122" text-anchor="middle">H_exp(similarity) - H_exp(random), mean over 20 seeds with 95% t-interval</text>
+</svg>

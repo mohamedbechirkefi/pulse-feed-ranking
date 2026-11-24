@@ -1,0 +1,112 @@
+{
+ "environment": {
+  "cpu": "Apple M1 Pro",
+  "git": {
+   "commit": "f1838f3e8451c8c4275579a5736fe488354a8f3a",
+   "dirty": false
+  },
+  "numpy": "2.3.5",
+  "os": "macOS-15.3.1-arm64-arm-64bit",
+  "pulse_version": "0.1.0",
+  "python": "3.12.1"
+ },
+ "experiment_config": {
+  "base": {
+   "like_midpoint": 0.06642147188540548,
+   "n_items": 1000,
+   "n_steps": 200,
+   "n_topics": 10,
+   "n_users": 200,
+   "pool_size": 50,
+   "preference_model": "static",
+   "slate_size": 10,
+   "tau": 0.1,
+   "window": 50
+  },
+  "blocks": [
+   {
+    "arms": [
+     {
+      "arm": "random",
+      "ranker": "random"
+     },
+     {
+      "arm": "popularity",
+      "ranker": "popularity"
+     },
+     {
+      "arm": "similarity",
+      "ranker": "similarity"
+     },
+     {
+      "alpha_ucb": 1.0,
+      "arm": "bandit",
+      "ranker": "linucb"
+     },
+     {
+      "arm": "mmr",
+      "lambda_mmr": 0.5,
+      "ranker": "mmr"
+     }
+    ],
+    "factors": {
+     "alpha0": [
+      1.0,
+      0.1
+     ],
+     "eta": [
+      0.0,
+      0.2
+     ]
+    },
+    "name": "main"
+   },
+   {
+    "arms": [
+     {
+      "alpha_ucb": 0.1,
+      "arm": "bandit_a0.1",
+      "ranker": "linucb"
+     }
+    ],
+    "factors": {
+     "alpha0": [
+      1.0,
+      0.1
+     ],
+     "eta": [
+      0.0,
+      0.2
+     ]
+    },
+    "name": "ucb"
+   }
+  ],
+  "experiment_id": "EXP-001",
+  "label": "confirmatory",
+  "output_dir": "results/raw/EXP-001",
+  "primary": {
+   "block": "main",
+   "cell": {
+    "alpha0": 1.0,
+    "eta": 0.0
+   },
+   "control": "random",
+   "metric": "h_exp",
+   "treatment": "similarity"
+  },
+  "protocol_path": "research/experiments/EXP-001/protocol.md",
+  "seeds": {
+   "count": 20,
+   "first": 101001
+  }
+ },
+ "experiment_config_hash": "e51281119eed3c3bcd8ce8042cadc37b104c9b670d4992574e1d2b1095b7afcc",
+ "experiment_id": "EXP-001",
+ "finished_utc": "2026-11-24T23:49:00Z",
+ "label": "confirmatory",
+ "n_failed": 0,
+ "n_runs": 480,
+ "started_utc": "2026-11-24T23:33:55Z",
+ "wall_clock_s": 904.635
+}

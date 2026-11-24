@@ -1,0 +1,86 @@
+launch_utc 2026-11-24T23:49:13Z
+revision f1838f3e8451c8c4275579a5736fe488354a8f3a dirty=0
+data_manifest_sha256 296b1edc9522d06275b20fc29fae08b0fc0405f880cf81fc9174ee26699a9fc0
+heldout_sha256 75f9fb8ffa2a7e6eb14058b69d8d1722862591fd2447065de078415899f8c505
+command nice -n 10 env PYTHONPATH=src .venv/bin/python -m pulse.cli run --experiment EXP-004
+[1/60] EXP-004-main-base-random-s104001 ok 0.87s
+[2/60] EXP-004-main-base-random-s104002 ok 0.83s
+[3/60] EXP-004-main-base-random-s104003 ok 0.85s
+[4/60] EXP-004-main-base-random-s104004 ok 0.81s
+[5/60] EXP-004-main-base-random-s104005 ok 0.82s
+[6/60] EXP-004-main-base-random-s104006 ok 0.88s
+[7/60] EXP-004-main-base-random-s104007 ok 0.86s
+[8/60] EXP-004-main-base-random-s104008 ok 1.00s
+[9/60] EXP-004-main-base-random-s104009 ok 0.86s
+[10/60] EXP-004-main-base-random-s104010 ok 0.85s
+[11/60] EXP-004-main-base-random-s104011 ok 0.86s
+[12/60] EXP-004-main-base-random-s104012 ok 0.92s
+[13/60] EXP-004-main-base-random-s104013 ok 0.91s
+[14/60] EXP-004-main-base-random-s104014 ok 0.93s
+[15/60] EXP-004-main-base-random-s104015 ok 0.93s
+[16/60] EXP-004-main-base-random-s104016 ok 0.93s
+[17/60] EXP-004-main-base-random-s104017 ok 0.90s
+[18/60] EXP-004-main-base-random-s104018 ok 0.86s
+[19/60] EXP-004-main-base-random-s104019 ok 0.87s
+[20/60] EXP-004-main-base-random-s104020 ok 0.88s
+[21/60] EXP-004-main-base-similarity-s104001 ok 1.01s
+[22/60] EXP-004-main-base-similarity-s104002 ok 0.99s
+[23/60] EXP-004-main-base-similarity-s104003 ok 1.03s
+[24/60] EXP-004-main-base-similarity-s104004 ok 0.98s
+[25/60] EXP-004-main-base-similarity-s104005 ok 0.95s
+[26/60] EXP-004-main-base-similarity-s104006 ok 0.92s
+[27/60] EXP-004-main-base-similarity-s104007 ok 0.88s
+[28/60] EXP-004-main-base-similarity-s104008 ok 0.84s
+[29/60] EXP-004-main-base-similarity-s104009 ok 0.93s
+[30/60] EXP-004-main-base-similarity-s104010 ok 0.93s
+[31/60] EXP-004-main-base-similarity-s104011 ok 1.05s
+[32/60] EXP-004-main-base-similarity-s104012 ok 1.10s
+[33/60] EXP-004-main-base-similarity-s104013 ok 1.19s
+[34/60] EXP-004-main-base-similarity-s104014 ok 1.12s
+[35/60] EXP-004-main-base-similarity-s104015 ok 1.06s
+[36/60] EXP-004-main-base-similarity-s104016 ok 0.97s
+[37/60] EXP-004-main-base-similarity-s104017 ok 0.89s
+[38/60] EXP-004-main-base-similarity-s104018 ok 0.93s
+[39/60] EXP-004-main-base-similarity-s104019 ok 0.93s
+[40/60] EXP-004-main-base-similarity-s104020 ok 0.97s
+[41/60] EXP-004-main-base-mmr-s104001 ok 1.84s
+[42/60] EXP-004-main-base-mmr-s104002 ok 1.77s
+[43/60] EXP-004-main-base-mmr-s104003 ok 1.77s
+[44/60] EXP-004-main-base-mmr-s104004 ok 1.78s
+[45/60] EXP-004-main-base-mmr-s104005 ok 1.80s
+[46/60] EXP-004-main-base-mmr-s104006 ok 1.78s
+[47/60] EXP-004-main-base-mmr-s104007 ok 1.78s
+[48/60] EXP-004-main-base-mmr-s104008 ok 1.82s
+[49/60] EXP-004-main-base-mmr-s104009 ok 1.80s
+[50/60] EXP-004-main-base-mmr-s104010 ok 1.73s
+[51/60] EXP-004-main-base-mmr-s104011 ok 1.49s
+[52/60] EXP-004-main-base-mmr-s104012 ok 1.59s
+[53/60] EXP-004-main-base-mmr-s104013 ok 1.67s
+[54/60] EXP-004-main-base-mmr-s104014 ok 1.60s
+[55/60] EXP-004-main-base-mmr-s104015 ok 1.48s
+[56/60] EXP-004-main-base-mmr-s104016 ok 1.66s
+[57/60] EXP-004-main-base-mmr-s104017 ok 1.52s
+[58/60] EXP-004-main-base-mmr-s104018 ok 1.76s
+[59/60] EXP-004-main-base-mmr-s104019 ok 1.75s
+[60/60] EXP-004-main-base-mmr-s104020 ok 1.77s
+results: /Users/bechir/research/labs/pulse-feed-ranking/results/raw/EXP-004
+       72.60 real        61.37 user         4.96 sys
+           151748608  maximum resident set size
+                   0  average shared memory size
+                   0  average unshared data size
+                   0  average unshared stack size
+               19526  page reclaims
+                  19  page faults
+                   0  swaps
+                   0  block input operations
+                   0  block output operations
+                   0  messages sent
+                   0  messages received
+                   0  signals received
+                  14  voluntary context switches
+               16597  involuntary context switches
+        491259339725  instructions retired
+        191788469305  cycles elapsed
+            32065024  peak memory footprint
+exit_status 0
+end_utc 2026-11-24T23:50:26Z

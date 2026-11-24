@@ -1,0 +1,116 @@
+{
+ "environment": {
+  "cpu": "Apple M1 Pro",
+  "git": {
+   "commit": "f1838f3e8451c8c4275579a5736fe488354a8f3a",
+   "dirty": false
+  },
+  "numpy": "2.3.5",
+  "os": "macOS-15.3.1-arm64-arm-64bit",
+  "pulse_version": "0.1.0",
+  "python": "3.12.1"
+ },
+ "experiment_config": {
+  "base": {
+   "eta": 0.1,
+   "like_midpoint": 0.06642147188540548,
+   "n_items": 1000,
+   "n_steps": 200,
+   "n_topics": 10,
+   "n_users": 200,
+   "pool_size": 50,
+   "preference_model": "drifting",
+   "slate_size": 10,
+   "tau": 0.1,
+   "window": 50
+  },
+  "blocks": [
+   {
+    "arms": [
+     {
+      "arm": "random",
+      "ranker": "random"
+     },
+     {
+      "arm": "popularity",
+      "ranker": "popularity"
+     },
+     {
+      "arm": "similarity",
+      "ranker": "similarity"
+     },
+     {
+      "alpha_ucb": 1.0,
+      "arm": "bandit",
+      "ranker": "linucb"
+     },
+     {
+      "arm": "mmr",
+      "lambda_mmr": 0.5,
+      "ranker": "mmr"
+     }
+    ],
+    "factors": {
+     "alpha0": [
+      1.0,
+      0.1
+     ],
+     "gamma": [
+      0.01,
+      0.05
+     ]
+    },
+    "name": "main"
+   },
+   {
+    "arms": [
+     {
+      "arm": "random",
+      "ranker": "random"
+     },
+     {
+      "arm": "similarity",
+      "ranker": "similarity"
+     }
+    ],
+    "factors": {
+     "alpha0": [
+      1.0,
+      0.1
+     ]
+    },
+    "name": "driftform",
+    "overrides": {
+     "drift_form": "additive_clip",
+     "gamma": 0.05
+    }
+   }
+  ],
+  "experiment_id": "EXP-002",
+  "label": "confirmatory",
+  "output_dir": "results/raw/EXP-002",
+  "primary": {
+   "block": "main",
+   "cell": {
+    "alpha0": 1.0,
+    "gamma": 0.05
+   },
+   "control": "random",
+   "metric": "delta_h_pref",
+   "treatment": "similarity"
+  },
+  "protocol_path": "research/experiments/EXP-002/protocol.md",
+  "seeds": {
+   "count": 20,
+   "first": 102001
+  }
+ },
+ "experiment_config_hash": "2c3b1816328f95d487bd83c1002a6db3970881a0eed91a2677569c3f2cfeed59",
+ "experiment_id": "EXP-002",
+ "finished_utc": "2026-11-24T23:47:44Z",
+ "label": "confirmatory",
+ "n_failed": 0,
+ "n_runs": 480,
+ "started_utc": "2026-11-24T23:33:55Z",
+ "wall_clock_s": 828.232
+}

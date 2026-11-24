@@ -1,0 +1,95 @@
+{
+ "experiment_id": "EXP-002",
+ "label": "confirmatory",
+ "protocol_path": "research/experiments/EXP-002/protocol.md",
+ "output_dir": "results/raw/EXP-002",
+ "base": {
+  "n_users": 200,
+  "n_items": 1000,
+  "n_topics": 10,
+  "pool_size": 50,
+  "slate_size": 10,
+  "n_steps": 200,
+  "window": 50,
+  "preference_model": "drifting",
+  "eta": 0.1,
+  "tau": 0.1,
+  "like_midpoint": 0.06642147188540548
+ },
+ "seeds": {
+  "first": 102001,
+  "count": 20
+ },
+ "blocks": [
+  {
+   "name": "main",
+   "factors": {
+    "gamma": [
+     0.01,
+     0.05
+    ],
+    "alpha0": [
+     1.0,
+     0.1
+    ]
+   },
+   "arms": [
+    {
+     "arm": "random",
+     "ranker": "random"
+    },
+    {
+     "arm": "popularity",
+     "ranker": "popularity"
+    },
+    {
+     "arm": "similarity",
+     "ranker": "similarity"
+    },
+    {
+     "arm": "bandit",
+     "ranker": "linucb",
+     "alpha_ucb": 1.0
+    },
+    {
+     "arm": "mmr",
+     "ranker": "mmr",
+     "lambda_mmr": 0.5
+    }
+   ]
+  },
+  {
+   "name": "driftform",
+   "overrides": {
+    "gamma": 0.05,
+    "drift_form": "additive_clip"
+   },
+   "factors": {
+    "alpha0": [
+     1.0,
+     0.1
+    ]
+   },
+   "arms": [
+    {
+     "arm": "random",
+     "ranker": "random"
+    },
+    {
+     "arm": "similarity",
+     "ranker": "similarity"
+    }
+   ]
+  }
+ ],
+ "primary": {
+  "metric": "delta_h_pref",
+  "treatment": "similarity",
+  "control": "random",
+  "block": "main",
+  "cell": {
+   "gamma": 0.05,
+   "alpha0": 1.0
+  }
+ }
+}

@@ -1,0 +1,111 @@
+{
+ "environment": {
+  "cpu": "Apple M1 Pro",
+  "git": {
+   "commit": "f1838f3e8451c8c4275579a5736fe488354a8f3a",
+   "dirty": false
+  },
+  "numpy": "2.3.5",
+  "os": "macOS-15.3.1-arm64-arm-64bit",
+  "pulse_version": "0.1.0",
+  "python": "3.12.1"
+ },
+ "experiment_config": {
+  "base": {
+   "alpha0": 1.0,
+   "eta": 0.1,
+   "n_items": 1000,
+   "n_steps": 200,
+   "n_topics": 10,
+   "n_users": 200,
+   "pool_size": 50,
+   "preference_model": "static",
+   "slate_size": 10,
+   "window": 50,
+   "zipf_s": 1.0
+  },
+  "blocks": [
+   {
+    "arms": [
+     {
+      "arm": "random",
+      "ranker": "random"
+     },
+     {
+      "arm": "similarity",
+      "ranker": "similarity"
+     },
+     {
+      "arm": "mmr",
+      "lambda_mmr": 0.5,
+      "ranker": "mmr"
+     }
+    ],
+    "factors": {
+     "pool_skew": [
+      "uniform",
+      "zipf"
+     ]
+    },
+    "name": "tau0.1",
+    "overrides": {
+     "like_midpoint": 0.06642147188540548,
+     "tau": 0.1
+    }
+   },
+   {
+    "arms": [
+     {
+      "arm": "random",
+      "ranker": "random"
+     },
+     {
+      "arm": "similarity",
+      "ranker": "similarity"
+     },
+     {
+      "arm": "mmr",
+      "lambda_mmr": 0.5,
+      "ranker": "mmr"
+     }
+    ],
+    "factors": {
+     "pool_skew": [
+      "uniform",
+      "zipf"
+     ]
+    },
+    "name": "tau0.3",
+    "overrides": {
+     "like_midpoint": 0.005990049685351551,
+     "tau": 0.3
+    }
+   }
+  ],
+  "experiment_id": "EXP-003",
+  "label": "confirmatory",
+  "output_dir": "results/raw/EXP-003",
+  "primary": {
+   "block": "tau0.1",
+   "cell": {
+    "pool_skew": "zipf"
+   },
+   "control": "random",
+   "metric": "h_exp",
+   "treatment": "similarity"
+  },
+  "protocol_path": "research/experiments/EXP-003/protocol.md",
+  "seeds": {
+   "count": 20,
+   "first": 103001
+  }
+ },
+ "experiment_config_hash": "4aafb0446e763a37fe78cf83e00d94bdfc65fd5282579e82e5bd2cd1474b934f",
+ "experiment_id": "EXP-003",
+ "finished_utc": "2026-11-24T23:53:26Z",
+ "label": "confirmatory",
+ "n_failed": 0,
+ "n_runs": 240,
+ "started_utc": "2026-11-24T23:49:14Z",
+ "wall_clock_s": 252.186
+}

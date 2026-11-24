@@ -1,0 +1,29 @@
+{
+ "schema": "pulse.run_result",
+ "version": "1.0.0",
+ "required": {
+  "schema": "string, equal to pulse.run_result",
+  "schema_version": "string, equal to 1.0.0",
+  "label": "one of ['exploratory', 'confirmatory']",
+  "experiment_id": "string",
+  "run_id": "string, unique within the result set",
+  "cell": "object of factor name to value",
+  "arm": "string",
+  "seed": "non-negative integer (master seed)",
+  "config": "object (pulse.config.SimConfig fields)",
+  "config_hash": "64-character hex SHA-256 of the canonical config JSON",
+  "status": "one of ['ok', 'failed']",
+  "error": "null when status is ok, otherwise a string",
+  "metrics": {
+   "h_exp": "number in [0.0, 1.0] or null",
+   "gini_exposure": "number in [0.0, 1.0] or null",
+   "relevance": "number in [0.0, 1.0] or null",
+   "miscalibration_kl": "number in [0.0, inf] or null",
+   "user_control": "number in [-1.0, 1.0] or null",
+   "like_rate": "number in [0.0, 1.0] or null",
+   "delta_h_pref": "number in [-1.0, 1.0] or null"
+  },
+  "diagnostics": "object of numbers",
+  "manifest": "object (run manifest: git revision, versions, platform, runtime, peak memory)"
+ }
+}

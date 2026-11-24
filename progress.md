@@ -132,3 +132,47 @@ D-009 (MovieLens adopted), D-010 (method before fit), D-011 (fitted values), D-0
 
 ### Next action
 Coordinator: schedule M3 (`PYTHONPATH=src .venv/bin/python -m pulse.cli run --experiment EXP-00N`).
+
+## 2026-11-25: M3 session (confirmatory runs of the frozen matrices)
+
+**Milestone:** M3. **Authority:** the owner's "Start next" (2026-11-25) and the coordinator's M3 brief. **Next bounded task at start:** verify the freeze, environment and data, smoke-run, then run EXP-001 to EXP-004 in full.
+
+### Starting state
+`git status`: branch main, clean, HEAD 7e4aeba. Every SHA-256 in `research/freeze.json` matched the files on disk.
+
+### Commands and actual outputs
+- `../.tools/py/bin/uv sync --frozen --all-groups --all-extras`: "Audited 6 packages". `.venv/bin/python -m pytest -q`: "135 passed". The package is not installed in the venv; every run uses `PYTHONPATH=src` at the checked-out revision.
+- `.venv/bin/python scripts/download_movielens.py`: existing zip verified (SHA-256 a6898adb...), no download. `shasum -a 256 data/processed/ml1m_prefs_heldout.json`: 75f9fb8f... (matches the EXP-004 config).
+- Analysis code for the frozen decision rules, the EXP-003 Welch interaction, the EXP-002 drift-form rule and per-run provenance (`src/pulse/analysis.py`, `scripts/analyse_experiment.py`, `tests/test_analysis.py`, D-013), tested end to end on stub results: "153 passed". Committed as f1838f3 before any confirmatory run; this is the provenance revision.
+- Smoke (exploratory seeds 900001 to 900002): `pulse.cli smoke --out results/exploratory/m3-smoke`: 10 runs ok; metric values identical to the M2 smoke set. Metric validation on known cases: 43 selected golden and property tests passed. Journal XPL-M3-SMOKE and XPL-M3-METRICS.
+- Guard: `protocol_frozen` returned (True, "frozen") for all four configs.
+- Confirmatory runs, `nice -n 10 env PYTHONPATH=src .venv/bin/python -m pulse.cli run --experiment EXP-00N`, two at a time, logs in `results/raw/logs/`:
+
+| Experiment | Runs ok / planned | Failed | Wall clock (s) | Peak RSS (bytes) | Primary contrast, mean [95% t] | Frozen rule |
+| --- | --- | --- | --- | --- | --- | --- |
+| EXP-001 | 480/480 | 0 | 904.6 | 132562944 | H_exp similarity - random -0.4000 [-0.4028, -0.3972] | H1 supported |
+| EXP-002 | 480/480 | 0 | 828.2 | 140099584 | Delta H_pref similarity - random -0.4350 [-0.4387, -0.4313] | H1 supported; drift-form rule not met |
+| EXP-003 | 240/240 | 0 | 252.2 | 151076864 | Zipf, tau 0.1: -0.5060 [-0.5169, -0.4951] | H1 supported in all 4 cells; invalidation criteria not met; no sign reversal |
+| EXP-004 | 60/60 | 0 | 72.4 | 151748608 | H_exp similarity - random -0.4095 [-0.4210, -0.3980] | H1 supported; no sign reversal |
+
+  All runs at f1838f3, clean tree. Total confirmatory wall clock 2026-11-24T23:33:55Z to 23:53:26Z (about 19.5 minutes, budget 4 hours).
+- `PYTHONPATH=src .venv/bin/python scripts/analyse_experiment.py EXP-00N` and `scripts/report_tables.py EXP-00N` for each experiment: verdict, contrasts, provenance, tables and figures written to `research/experiments/EXP-00N/`.
+- Final suite: "153 passed".
+
+### Decisions
+D-013 (analysis code before data), D-014 (execution record).
+
+### Failures and deviations
+- No run failed; no deviation from the frozen protocols.
+- The four standalone experiment reports (`research/experiments/EXP-00N/report.md`) were not written: the file tool refused to create them, and the coordinator instructed not to work around it. M3 is not marked done.
+- Found after the results: the EXP-002 drift-form check is close to a reparametrisation of gamma (limitations 12).
+
+### Files changed
+New: `src/pulse/analysis.py`, `scripts/analyse_experiment.py`, `scripts/report_tables.py`, `tests/test_analysis.py`, `results/raw/EXP-00{1,2,3,4}/` and `results/raw/logs/` (force-added, 4.0 MB), `results/exploratory/m3-smoke/`, `research/experiments/EXP-00N/{verdict.json, metrics.csv, summary.csv, contrasts.csv, run_manifest.json, runs.csv, config.json, tables.md, figures/}`. Modified: `research/{experiment_journal.jsonl, experiment_registry.csv, claims_register.csv (CLM-001 to CLM-008), limitations.md (items 12 to 16), decision_log.md}`, `roadmap.md`.
+
+### Risks
+- The primary results were expected by construction; their value is the effect sizes and the sensitivity results.
+- The confirmatory Zipf result differs in sign from the pre-freeze exploratory sweep (different calibration); this must be reported prominently in M4 (limitations 15).
+
+### Next action
+The owner or the coordinator: decide how the 11.3 experiment reports get written (the file tool refused them in this session). Then M4: evidence audit, second review pass against the preferred hypothesis, manuscript synthesis.

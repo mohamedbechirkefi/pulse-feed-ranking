@@ -1,0 +1,44 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="900" height="350" viewBox="0 0 900 350" font-family="Helvetica, Arial, sans-serif" font-size="11">
+<rect width="900" height="350" fill="white"/>
+<text x="330" y="22" font-size="13" font-weight="bold">EXP-003: frozen contrasts (confirmatory)</text>
+<text x="330.0" y="306" text-anchor="middle">-0.626</text>
+<text x="436.0" y="306" text-anchor="middle">-0.397</text>
+<text x="542.0" y="306" text-anchor="middle">-0.169</text>
+<text x="648.0" y="306" text-anchor="middle">0.059</text>
+<text x="754.0" y="306" text-anchor="middle">0.287</text>
+<text x="860.0" y="306" text-anchor="middle">0.515</text>
+<line x1="620.7" y1="42" x2="620.7" y2="290" stroke="#444" stroke-width="1"/>
+<line x1="597.5" y1="42" x2="597.5" y2="290" stroke="#b33" stroke-dasharray="4 3"/>
+<text x="597.5" y="38" text-anchor="middle" fill="#b33">-0.05</text>
+<text x="322" y="66.0" text-anchor="end">tau0.1:pool_skew=uniform | similarity - random</text>
+<line x1="433.5" y1="62.0" x2="436.0" y2="62.0" stroke="#1f5f8b" stroke-width="2"/>
+<circle cx="434.7" cy="62.0" r="4" fill="#1f5f8b"/>
+<text x="322" y="90.0" text-anchor="end">tau0.1:pool_skew=zipf | similarity - random</text>
+<line x1="380.5" y1="86.0" x2="390.6" y2="86.0" stroke="#1f5f8b" stroke-width="2"/>
+<circle cx="385.5" cy="86.0" r="4" fill="#1f5f8b"/>
+<text x="322" y="114.0" text-anchor="end">tau0.3:pool_skew=uniform | similarity - random</text>
+<line x1="439.8" y1="110.0" x2="442.7" y2="110.0" stroke="#1f5f8b" stroke-width="2"/>
+<circle cx="441.3" cy="110.0" r="4" fill="#1f5f8b"/>
+<text x="322" y="138.0" text-anchor="end">tau0.3:pool_skew=zipf | similarity - random</text>
+<line x1="366.6" y1="134.0" x2="376.2" y2="134.0" stroke="#1f5f8b" stroke-width="2"/>
+<circle cx="371.4" cy="134.0" r="4" fill="#1f5f8b"/>
+<text x="322" y="162.0" text-anchor="end">tau0.1:pool_skew=uniform | mmr - similarity</text>
+<line x1="719.6" y1="158.0" x2="721.8" y2="158.0" stroke="#1f5f8b" stroke-width="2"/>
+<circle cx="720.7" cy="158.0" r="4" fill="#1f5f8b"/>
+<text x="322" y="186.0" text-anchor="end">tau0.1:pool_skew=zipf | mmr - similarity</text>
+<line x1="787.9" y1="182.0" x2="794.6" y2="182.0" stroke="#1f5f8b" stroke-width="2"/>
+<circle cx="791.3" cy="182.0" r="4" fill="#1f5f8b"/>
+<text x="322" y="210.0" text-anchor="end">tau0.3:pool_skew=uniform | mmr - similarity</text>
+<line x1="726.4" y1="206.0" x2="729.4" y2="206.0" stroke="#1f5f8b" stroke-width="2"/>
+<circle cx="727.9" cy="206.0" r="4" fill="#1f5f8b"/>
+<text x="322" y="234.0" text-anchor="end">tau0.3:pool_skew=zipf | mmr - similarity</text>
+<line x1="813.7" y1="230.0" x2="823.4" y2="230.0" stroke="#1f5f8b" stroke-width="2"/>
+<circle cx="818.6" cy="230.0" r="4" fill="#1f5f8b"/>
+<text x="322" y="258.0" text-anchor="end">tau0.1 | interaction zipf - uniform (Welch)</text>
+<line x1="566.3" y1="254.0" x2="576.7" y2="254.0" stroke="#1f5f8b" stroke-width="2"/>
+<circle cx="571.5" cy="254.0" r="4" fill="#1f5f8b"/>
+<text x="322" y="282.0" text-anchor="end">tau0.3 | interaction zipf - uniform (Welch)</text>
+<line x1="545.8" y1="278.0" x2="555.9" y2="278.0" stroke="#1f5f8b" stroke-width="2"/>
+<circle cx="550.9" cy="278.0" r="4" fill="#1f5f8b"/>
+<text x="595.0" y="338" text-anchor="middle">difference in H_exp, mean over 20 seeds with 95% interval</text>
+</svg>

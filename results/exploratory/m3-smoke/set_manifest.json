@@ -1,0 +1,72 @@
+{
+ "environment": {
+  "cpu": "Apple M1 Pro",
+  "git": {
+   "commit": "f1838f3e8451c8c4275579a5736fe488354a8f3a",
+   "dirty": false
+  },
+  "numpy": "2.3.5",
+  "os": "macOS-15.3.1-arm64-arm-64bit",
+  "pulse_version": "0.1.0",
+  "python": "3.12.1"
+ },
+ "experiment_config": {
+  "base": {
+   "alpha0": 1.0,
+   "eta": 0.1,
+   "n_items": 300,
+   "n_steps": 60,
+   "n_topics": 10,
+   "n_users": 50,
+   "pool_size": 50,
+   "preference_model": "static",
+   "slate_size": 10,
+   "window": 20
+  },
+  "blocks": [
+   {
+    "arms": [
+     {
+      "arm": "random",
+      "ranker": "random"
+     },
+     {
+      "arm": "popularity",
+      "ranker": "popularity"
+     },
+     {
+      "arm": "similarity",
+      "ranker": "similarity"
+     },
+     {
+      "alpha_ucb": 1.0,
+      "arm": "bandit",
+      "ranker": "linucb"
+     },
+     {
+      "arm": "mmr",
+      "lambda_mmr": 0.5,
+      "ranker": "mmr"
+     }
+    ],
+    "name": "main"
+   }
+  ],
+  "description": "Protocol section 9 smoke matrix. Exploratory; exploratory seed range 900001+ is disjoint from every confirmatory seed range.",
+  "experiment_id": "SMOKE",
+  "label": "exploratory",
+  "output_dir": "results/exploratory/smoke",
+  "seeds": {
+   "count": 2,
+   "first": 900001
+  }
+ },
+ "experiment_config_hash": "0dab3326ace2bc9f748d0ddc36b6adab8a86361622af39be91889cca86210a35",
+ "experiment_id": "SMOKE",
+ "finished_utc": "2026-11-24T23:33:38Z",
+ "label": "exploratory",
+ "n_failed": 0,
+ "n_runs": 10,
+ "started_utc": "2026-11-24T23:33:37Z",
+ "wall_clock_s": 0.511
+}
