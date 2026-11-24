@@ -99,3 +99,36 @@ New: `src/pulse/{config,model,rankers,simulate,metrics,stats,schema,manifest,run
 
 ### Next action
 Owner: decide on D-007 and D-008 (P1 first), then freeze. Session after the freeze: M3 confirmatory runs with `pulse.cli run --experiment EXP-00N`.
+
+## 2026-11-24: data and freeze session, round 2 (MovieLens 1M, amendments, G-FREEZE)
+
+**Milestone:** M1 freeze. **Authority:** owner approvals 2026-11-24 (second round, sections 1 and 7) and the shared DATA-FREEZE and FREEZE briefs.
+
+### Starting state
+`git status`: branch main, clean, HEAD df010cd.
+
+### Commands and actual outputs
+- Licence check: `curl https://files.grouplens.org/datasets/movielens/ml-1m-README.txt` (research use; no endorsement; cite Harper and Konstan 2015; no redistribution without permission; no commercial use). Matches the approval; adopted (D-009). `curl -I .../ml-1m.zip`: Content-Length 5917549.
+- `python scripts/download_movielens.py`: ml-1m.zip 5,917,549 bytes, SHA-256 a6898adb...2c54e20; README 5,576 bytes, 908ee4aa...460027e; hashes pinned; rerun "verified".
+- Protocol section 15 (method) written and committed as a15ec6d before any rating was read.
+- Code and tests committed as 718e995. First suite run with the new tests: "1 failed, 123 passed" (a test config had pool_size > n_items; test fixed); then "124 passed".
+- `.venv/bin/python scripts/prepare_movielens.py` (twice, identical output hashes): 3,883 movies, 0 bad rows, 212 excluded (no top-10 genre); 1,000,209 ratings, 0 bad rows, 22,128 excluded; 3,020 users per half; L* = 0.577143.
+- `.venv/bin/python scripts/calibrate_choice_curve.py` at clean 718e995: c(0.1) = 0.066421, c(0.3) = 0.005990, c_ML(0.1) = 0.061067 (2.5 s). A first run at a dirty tree gave identical values. Journal CAL-ML1M.
+- Content commit a25d409, then `research/freeze.json`, registry and records.
+- `../.tools/py/bin/uv sync --frozen --all-groups --all-extras`: "Audited 6 packages". `.venv/bin/python -m pytest -q`: "135 passed" (no skips; the EXP-004 world test used the local processed file).
+- Guard check: `protocol_frozen` returns (True, "frozen") for EXP-001 to EXP-004 with the frozen configs, and refuses each when the seed count is changed.
+
+### Decisions
+D-009 (MovieLens adopted), D-010 (method before fit), D-011 (fitted values), D-012 (freeze).
+
+### Not done
+- No confirmatory run, no simulation of any arm under the new calibration, no push.
+- EXP-001 to EXP-003 reproduction-command text left as frozen (not in the approved list); working commands in EXP-004 section 15 and in the freeze record.
+- Exploratory configs keep the planning midpoint; their recorded config hashes no longer match the current SimConfig hash (new fields), values unchanged.
+
+### Risks
+- EXP-004 depends on git-ignored files; the run machine must run the download and prepare scripts (hash-checked).
+- The SD of paired differences under the new calibration is unknown; 20 seeds fixed by the owner.
+
+### Next action
+Coordinator: schedule M3 (`PYTHONPATH=src .venv/bin/python -m pulse.cli run --experiment EXP-00N`).

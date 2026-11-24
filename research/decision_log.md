@@ -85,3 +85,13 @@ Each entry: id, date, decision, decided by, context, alternatives, consequences.
 - **Decided by:** the method of D-010 (owner-approved); fit by the data-freeze session. Journal CAL-ML1M (exploratory), output `results/calibration/calibration.json`, code revision 718e995 (clean).
 - **Values:** L* = 0.577143 (calibration half, 491,374 ratings); c(0.1) = 0.066421; c(0.3) = 0.005990; c_ML(0.1) = 0.061067. pi_ML and topics in protocol section 15.11.
 - **Consequences:** `like_midpoint` set (unrounded) in all confirmatory configs; EXP-003 split into blocks `tau0.1` and `tau0.3`; EXP-004 added (60 runs). Resolves D-008 P1 (option: recalibrate to a target like rate, as approved). P2 resolved by protocol 15.7, P3 by 15.8 (20 seeds), P4 by 15.9; P5 needed no change.
+
+## D-012: Protocol v1.0 frozen (G-FREEZE, owner-approved 2026-11-24)
+
+- **Decided by:** the owner ("yes for all others"; "Approve all"; owner approvals 2026-11-24, both rounds).
+- **Frozen revision:** a25d4098afbd67413f17e9b98d5af15943b4169b. Freeze record: `research/freeze.json`.
+- **SHA-256:** `research/protocol.md` 87fbfae1016c543f9736828d8e17d7015d42b894e62886eb798f38e3d8fcb12c; `data/manifest.json` 296b1edc9522d06275b20fc29fae08b0fc0405f880cf81fc9174ee26699a9fc0; experiment protocols and configs (file and canonical hashes) in `research/freeze.json` and the registry (EXP-001 fbb70fc9..., EXP-002 e1f4d229..., EXP-003 07e68a73..., EXP-004 dc004421...).
+- **Common decisions:** C1 real data as approved (MovieLens 1M for calibration and EXP-004), synthetic otherwise; C2 pandoc and Typst PDFs; C3 authorship "Mohamed Bechir Kefi", no affiliation, AI disclosed as a research and development assistant; C4 exploratory primary-contrast values seen before the freeze listed in the freeze record (all under the planning midpoint 0.5).
+- **Guard:** `pulse.runner.freeze_check` accepts the four frozen configs and refuses a changed config file, a changed config dict, a changed protocol or a changed data manifest (tests in `tests/test_freeze_guard.py`).
+- **Not applied:** outdated reproduction-command text in EXP-001 to EXP-003 (not in the approved list).
+- **Next:** confirmatory runs (M3) are scheduled by the coordinator; none has run.

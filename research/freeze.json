@@ -1,0 +1,134 @@
+{
+ "freeze_schema": "pulse-freeze/1.0.0",
+ "project": "PULSE",
+ "spdx": "LicenseRef-PULSE-NC-Research-1.0",
+ "frozen_on": "2026-11-24",
+ "gate": "G-FREEZE",
+ "protocol_version": "1.0",
+ "git_revision": "a25d4098afbd67413f17e9b98d5af15943b4169b",
+ "git_revision_note": "the commit holding the frozen protocols and configs; this record is committed after it",
+ "approval": {
+  "by": "the owner",
+  "date": "2026-11-24",
+  "source": "labs/_shared/owner-approvals-2026-11-24b.md (sections 1 and 7, PULSE rows) and owner-approvals-2026-11-24.md, outside this repository",
+  "owner_answers_quoted": [
+   "yes for all others",
+   "Approve all"
+  ],
+  "real_data_quoted": "PULSE | MovieLens (research use, no redistribution) | Real user and item preferences for the feed simulation",
+  "approved_amendments_quoted": "A target like-rate fixed in advance (from MovieLens if available, otherwise stated now), with the choice curve recalibrated to it and the calibration disclosed. User control measured as the difference from random. 20 seeds. Pre-decide how a sign reversal under the Zipf catalog is reported."
+ },
+ "amendments_applied": {
+  "R1 real data": "MovieLens 1M adopted after a licence check (D-009); calibration and second test only (protocol 15.1).",
+  "R2 target like rate": "L* = 0.5771428687720555 from the calibration half (odd user ids), rating >= 4 (protocol 15.4).",
+  "R3 choice curve recalibrated": "sigmoid((r - c)/tau); c(0.1) = 0.06642147188540548, c(0.3) = 0.005990049685351551, c_ML(0.1) = 0.06106666720006615; method written before the fit (commit a15ec6d), fit journaled as CAL-ML1M; disclosed in protocol 15.5 and 15.11.",
+  "R4 user control": "interpreted only as arm minus random; Holm family = the four arm-minus-random contrasts (protocol 15.7; report generator changed and tested).",
+  "R5 seeds": "20 per cell in all experiments (protocol 15.8).",
+  "R6 sign reversal": "pre-decided reporting rule for the Zipf cells of EXP-003 and for EXP-004 (protocol 15.9).",
+  "R7 second test": "EXP-004 (60 runs): primary contrast on held-out-half MovieLens preference vectors and the MovieLens catalog topic weights (protocol 15.6)."
+ },
+ "not_applied": [
+  "The reproduction-command text in EXP-001 to EXP-003 protocol section 15 is outdated (the working form is `PYTHONPATH=src .venv/bin/python -m pulse.cli run --experiment EXP-00N`, as in EXP-004 section 15); fixing it was not in the approved list, so the frozen text is unchanged."
+ ],
+ "common_decisions": {
+  "C1": "Data: real data as approved (MovieLens 1M, for calibration of the choice curve and the EXP-004 second test), synthetic otherwise. The synthetic generator remains the controlled part of EXP-001 to EXP-003.",
+  "C2": "PDFs: built with pandoc and Typst (-V mainfont=\"Libertinus Serif\"); there is no LaTeX on the machine.",
+  "C3": "Authorship: \"Mohamed Bechir Kefi\", no affiliation. The AI is disclosed as a research and development assistant, not as an author.",
+  "C4": "Disclosure: exploratory values of the primary contrasts seen before the freeze are listed in c4_disclosure."
+ },
+ "c4_disclosure": {
+  "statement": "Before the freeze the M2 session computed and saw exploratory values of the primary contrasts, all under the planning midpoint 0.5 (not the frozen calibration), on seeds disjoint from the confirmatory ones. The owner approved the recalibration with these values available (D-008). The round-2 session ran no simulation and saw no contrast under the frozen calibration; the SD of paired differences was not re-estimated.",
+  "values": [
+   {
+    "what": "EXP-001 primary (similarity minus random, H_exp, eta 0, alpha_0 1.0), 10 seeds 910001-910010",
+    "mean_diff": -0.000688,
+    "t95": [
+     -0.002227,
+     0.000851
+    ],
+    "sd_diff": 0.002151,
+    "path": "results/exploratory/var-probe/report/contrasts.csv"
+   },
+   {
+    "what": "EXP-001 primary cell, 2 seeds",
+    "mean_diff": -0.000982,
+    "path": "results/exploratory/sweep-EXP-001/report/contrasts.csv"
+   },
+   {
+    "what": "EXP-001 other cells, 2 seeds",
+    "values": {
+     "alpha0=1.0,eta=0.2": -0.009174,
+     "alpha0=0.1,eta=0.0": -0.057397,
+     "alpha0=0.1,eta=0.2": -0.060645
+    },
+    "path": "results/exploratory/sweep-EXP-001/report/contrasts.csv"
+   },
+   {
+    "what": "EXP-002 primary (similarity minus random, delta_h_pref, gamma 0.05, alpha_0 1.0), 2 seeds",
+    "mean_diff": -0.079307,
+    "path": "results/exploratory/sweep-EXP-002/report/contrasts.csv"
+   },
+   {
+    "what": "EXP-003 similarity minus random H_exp, 2 seeds",
+    "values": {
+     "uniform,tau0.1": -0.003224,
+     "uniform,tau0.3": -0.017157,
+     "zipf,tau0.1": 0.102649,
+     "zipf,tau0.3": 0.090614
+    },
+    "path": "results/exploratory/sweep-EXP-003/report/contrasts.csv"
+   },
+   {
+    "what": "smoke matrix (U 50, N 300, T 60), 2 seeds",
+    "mean_diff": -0.012679,
+    "path": "results/exploratory/smoke/report/contrasts.csv"
+   }
+  ]
+ },
+ "sha256": {
+  "research/protocol.md": "87fbfae1016c543f9736828d8e17d7015d42b894e62886eb798f38e3d8fcb12c",
+  "data/manifest.json": "296b1edc9522d06275b20fc29fae08b0fc0405f880cf81fc9174ee26699a9fc0",
+  "results/calibration/calibration.json": "aaf806d4a4a27108edc5538f7efd04f57395f7621a251ea97801a07235d5dff5"
+ },
+ "experiments": {
+  "EXP-001": {
+   "protocol_path": "research/experiments/EXP-001/protocol.md",
+   "protocol_sha256": "fbb70fc9d461e339f731ed3b928d024586d460a82543dec287edfbb7e7a38b20",
+   "config_path": "experiments/EXP-001.json",
+   "config_sha256": "510dcc30b6b955ad4aaf8b262d8936a5b419d125b540293c8319f212cddc6fc4",
+   "config_canonical_sha256": "e51281119eed3c3bcd8ce8042cadc37b104c9b670d4992574e1d2b1095b7afcc",
+   "runs": 480
+  },
+  "EXP-002": {
+   "protocol_path": "research/experiments/EXP-002/protocol.md",
+   "protocol_sha256": "e1f4d229803ee9684a12cb2c22ad5b217d8075d0f852ffc33f87604cb1b12b56",
+   "config_path": "experiments/EXP-002.json",
+   "config_sha256": "d8311e7a67936b6019041c6ccf0eb593791431082c76b5957b10ac81ac2c71a2",
+   "config_canonical_sha256": "2c3b1816328f95d487bd83c1002a6db3970881a0eed91a2677569c3f2cfeed59",
+   "runs": 480
+  },
+  "EXP-003": {
+   "protocol_path": "research/experiments/EXP-003/protocol.md",
+   "protocol_sha256": "07e68a736cfa05850970859b0ac14e5c8a19e4ce241fe48940dcc83be3b672eb",
+   "config_path": "experiments/EXP-003.json",
+   "config_sha256": "418e85636e4120bcc2b74dab6a1385cf7421beeeb1874ccb39bcd96cc58d2081",
+   "config_canonical_sha256": "4aafb0446e763a37fe78cf83e00d94bdfc65fd5282579e82e5bd2cd1474b934f",
+   "runs": 240
+  },
+  "EXP-004": {
+   "protocol_path": "research/experiments/EXP-004/protocol.md",
+   "protocol_sha256": "dc004421d10eb9ff3b9b6f31b826de6db7863198db5e6b3784726f605b3bcb13",
+   "config_path": "experiments/EXP-004.json",
+   "config_sha256": "a3d1016854a67866ac1891b20769948cfe62a24e18a555c3186da94dba9719c2",
+   "config_canonical_sha256": "43afda057c89f26add143561edbc0b0033de19675b8b5ef1626103518cdba9b2",
+   "runs": 60
+  }
+ },
+ "data": {
+  "movielens_zip_sha256": "a6898adb50b9ca05aa231689da44c217cb524e7ebd39d264c56e2832f2c54e20",
+  "heldout_preference_file": "data/processed/ml1m_prefs_heldout.json",
+  "heldout_preference_sha256": "75f9fb8ffa2a7e6eb14058b69d8d1722862591fd2447065de078415899f8c505",
+  "committed": false
+ },
+ "guard": "src/pulse/runner.py freeze_check: refuses a confirmatory run unless research/protocol.md, data/manifest.json, the experiment protocol and config files match these hashes and the config passed matches config_canonical_sha256 (tests/test_freeze_guard.py)."
+}
