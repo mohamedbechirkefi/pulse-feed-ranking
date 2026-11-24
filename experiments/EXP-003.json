@@ -18,20 +18,48 @@
  },
  "seeds": {
   "first": 103001,
-  "count": 10
+  "count": 20
  },
  "blocks": [
   {
-   "name": "main",
+   "name": "tau0.1",
    "factors": {
     "pool_skew": [
      "uniform",
      "zipf"
-    ],
-    "tau": [
-     0.1,
-     0.3
     ]
+   },
+   "overrides": {
+    "tau": 0.1,
+    "like_midpoint": 0.06642147188540548
+   },
+   "arms": [
+    {
+     "arm": "random",
+     "ranker": "random"
+    },
+    {
+     "arm": "similarity",
+     "ranker": "similarity"
+    },
+    {
+     "arm": "mmr",
+     "ranker": "mmr",
+     "lambda_mmr": 0.5
+    }
+   ]
+  },
+  {
+   "name": "tau0.3",
+   "factors": {
+    "pool_skew": [
+     "uniform",
+     "zipf"
+    ]
+   },
+   "overrides": {
+    "tau": 0.3,
+    "like_midpoint": 0.005990049685351551
    },
    "arms": [
     {
@@ -54,10 +82,9 @@
   "metric": "h_exp",
   "treatment": "similarity",
   "control": "random",
-  "block": "main",
+  "block": "tau0.1",
   "cell": {
-   "pool_skew": "zipf",
-   "tau": 0.1
+   "pool_skew": "zipf"
   }
  }
 }

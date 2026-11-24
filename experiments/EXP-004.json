@@ -1,0 +1,67 @@
+{
+ "experiment_id": "EXP-004",
+ "label": "confirmatory",
+ "protocol_path": "research/experiments/EXP-004/protocol.md",
+ "output_dir": "results/raw/EXP-004",
+ "base": {
+  "n_users": 200,
+  "n_items": 1000,
+  "n_topics": 10,
+  "pool_size": 50,
+  "slate_size": 10,
+  "n_steps": 200,
+  "window": 50,
+  "preference_model": "static",
+  "tau": 0.1,
+  "like_midpoint": 0.06106666720006615,
+  "eta": 0.0,
+  "alpha0": 1.0,
+  "pool_skew": "custom",
+  "topic_weights": [
+   0.2536093707436666,
+   0.20266957232361754,
+   0.04630890765459003,
+   0.07545627894306728,
+   0.11549986379733043,
+   0.07409425224734405,
+   0.03677472078452738,
+   0.0697357668210297,
+   0.06837374012530646,
+   0.05747752655952057
+  ],
+  "user_source": "file",
+  "user_pref_path": "data/processed/ml1m_prefs_heldout.json",
+  "user_pref_sha256": "75f9fb8ffa2a7e6eb14058b69d8d1722862591fd2447065de078415899f8c505"
+ },
+ "seeds": {
+  "first": 104001,
+  "count": 20
+ },
+ "blocks": [
+  {
+   "name": "main",
+   "arms": [
+    {
+     "arm": "random",
+     "ranker": "random"
+    },
+    {
+     "arm": "similarity",
+     "ranker": "similarity"
+    },
+    {
+     "arm": "mmr",
+     "ranker": "mmr",
+     "lambda_mmr": 0.5
+    }
+   ]
+  }
+ ],
+ "primary": {
+  "metric": "h_exp",
+  "treatment": "similarity",
+  "control": "random",
+  "block": "main",
+  "cell": {}
+ }
+}

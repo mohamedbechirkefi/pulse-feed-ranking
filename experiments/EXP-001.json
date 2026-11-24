@@ -11,11 +11,13 @@
   "slate_size": 10,
   "n_steps": 200,
   "window": 50,
-  "preference_model": "static"
+  "preference_model": "static",
+  "tau": 0.1,
+  "like_midpoint": 0.06642147188540548
  },
  "seeds": {
   "first": 101001,
-  "count": 10
+  "count": 20
  },
  "blocks": [
   {

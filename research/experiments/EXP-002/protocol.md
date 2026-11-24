@@ -1,7 +1,7 @@
 <!-- SPDX-License-Identifier: LicenseRef-PULSE-NC-Research-1.0 -->
 # EXP-002 protocol: ranking objective and simulated preference reinforcement under drifting preferences
 
-**Status: DRAFT v0.1, 2026-11-24. Planned (protocol draft, awaiting owner freeze). Not frozen; protocol hash not yet recorded.** Shared definitions: `research/protocol.md` sections 2 to 8.
+**Status: FROZEN v1.0 (2026-11-24), owner-approved (G-FREEZE). SHA-256 in `research/freeze.json` and the registry.** Shared definitions: `research/protocol.md` sections 2 to 8 and 15. Section 16 below amends this file and wins where they differ.
 
 ## 1. Precise question
 When simulated preferences drift toward liked topics, does the ranking objective change how much each user's preference distribution concentrates over T steps, relative to random ranking?
@@ -57,3 +57,10 @@ Drift functional form: additive-then-clip p_u <- clip(p_u + gamma onehot(z_i)) t
 uv run python -m pulse.cli run --experiment EXP-002
 uv run python -m pulse.cli report --experiment EXP-002
 ```
+
+## 16. Amendments before freeze (owner-approved 2026-11-24, round 2)
+
+- Choice curve: tau = 0.1, c = 0.066421 (fitted at alpha_0 = 1.0 without drift, protocol section 15.5 and 15.11; replaces 0.5), used in every cell including the drift-form check.
+- Seeds: 20 per cell (102001 to 102020). Runs: 5 x 2 x 2 x 20 = 400, plus 80 drift-form runs: 480.
+- User control: arm minus random only (protocol section 15.7).
+- Compute budget unchanged.

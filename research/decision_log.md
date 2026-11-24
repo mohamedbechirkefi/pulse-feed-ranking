@@ -79,3 +79,9 @@ Each entry: id, date, decision, decided by, context, alternatives, consequences.
 - **Decision:** `research/protocol.md` section 15: ingestion and topic rules, user split by UserID parity, target like rate L* from the calibration half, choice-curve midpoint c(tau) fitted by bisection on the generative model alone (no ranker, no metric), EXP-004 second test on held-out-half preference vectors, user control as arm minus random, 20 seeds, pre-decided sign-reversal reporting.
 - **Order:** the method was committed before any rating was read or any value fitted (see git history). Fitted values follow in D-011.
 - **Agent choices within the approval (owner may review):** using MovieLens for both calibration and a second test (the brief asks for "what is calibrated ... and what the second test is"); the parity split; the top-10-genre topic rule; fitting c per tau; leaving alpha_0 levels unchanged.
+
+## D-011: Fitted calibration values replace the planning midpoint (2026-11-24)
+
+- **Decided by:** the method of D-010 (owner-approved); fit by the data-freeze session. Journal CAL-ML1M (exploratory), output `results/calibration/calibration.json`, code revision 718e995 (clean).
+- **Values:** L* = 0.577143 (calibration half, 491,374 ratings); c(0.1) = 0.066421; c(0.3) = 0.005990; c_ML(0.1) = 0.061067. pi_ML and topics in protocol section 15.11.
+- **Consequences:** `like_midpoint` set (unrounded) in all confirmatory configs; EXP-003 split into blocks `tau0.1` and `tau0.3`; EXP-004 added (60 runs). Resolves D-008 P1 (option: recalibrate to a target like rate, as approved). P2 resolved by protocol 15.7, P3 by 15.8 (20 seeds), P4 by 15.9; P5 needed no change.

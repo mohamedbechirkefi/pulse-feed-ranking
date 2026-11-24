@@ -193,3 +193,20 @@ def test_user_control_only_against_random():
     assert uc == {("similarity", "random"), ("mmr", "random")}
     hx = {(r["treatment"], r["control"]) for r in out if r["metric"] == "h_exp"}
     assert ("mmr", "similarity") in hx
+
+
+def test_exp004_config_builds_a_world_when_data_present():
+    """Uses the git-ignored processed file if present; checks only the world, never runs a ranker."""
+    from pulse.config import from_dict
+    from pulse.runner import load_experiment
+    from pulse.manifest import REPO_ROOT
+    from pulse.model import make_catalog, spawn_streams
+
+    exp = load_experiment(REPO_ROOT / "experiments" / "EXP-004.json")
+    if not (REPO_ROOT / exp["base"]["user_pref_path"]).exists():
+        pytest.skip("MovieLens not prepared (scripts/download_movielens.py, scripts/prepare_movielens.py)")
+    cfg = from_dict(exp["base"])
+    rng = spawn_streams(1)  # not an EXP-004 seed
+    p = initial_preferences(cfg, rng["users"])
+    assert p.shape == (200, 10) and np.allclose(p.sum(axis=1), 1.0)
+    assert make_catalog(cfg, rng["catalog"]).topics.shape == (1000,)

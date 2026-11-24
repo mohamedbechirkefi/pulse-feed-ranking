@@ -71,7 +71,21 @@
         "ml-1m/ratings.dat"
       ],
       "role": "calibration of the choice-curve midpoint (target like rate) and EXP-004 second test (research/protocol.md section 15)",
-      "decision": "adopted (D-009)"
+      "decision": "adopted (D-009)",
+      "processed": {
+        "script": "scripts/prepare_movielens.py (deterministic)",
+        "local_path": "data/processed/ (git-ignored)",
+        "files_sha256": {
+          "ml1m_prefs_calibration.json": "c4b007d7751b1d4d4efc55f490fcba243d25a240233bf26a2b87051fa465c6e3",
+          "ml1m_prefs_heldout.json": "75f9fb8ffa2a7e6eb14058b69d8d1722862591fd2447065de078415899f8c505"
+        },
+        "aggregates_committed_in": "results/calibration/calibration.json and research/protocol.md section 15.11"
+      },
+      "calibration": {
+        "script": "scripts/calibrate_choice_curve.py",
+        "journal": "CAL-ML1M",
+        "output": "results/calibration/calibration.json"
+      }
     }
   ]
 }

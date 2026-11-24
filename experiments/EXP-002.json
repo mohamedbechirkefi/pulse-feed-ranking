@@ -12,11 +12,13 @@
   "n_steps": 200,
   "window": 50,
   "preference_model": "drifting",
-  "eta": 0.1
+  "eta": 0.1,
+  "tau": 0.1,
+  "like_midpoint": 0.06642147188540548
  },
  "seeds": {
   "first": 102001,
-  "count": 10
+  "count": 20
  },
  "blocks": [
   {

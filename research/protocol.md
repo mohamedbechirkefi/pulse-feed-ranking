@@ -1,9 +1,9 @@
 <!-- SPDX-License-Identifier: LicenseRef-PULSE-NC-Research-1.0 -->
 # PULSE research protocol
 
-**Status: DRAFT v0.1 (2026-11-24). Not frozen. Awaiting owner review and freeze (G-FREEZE).** No confirmatory run may start until the owner freezes a version, its SHA-256 is recorded in `research/decision_log.md` and `research/experiment_registry.csv`, and the owner's approval is recorded. Until then, every run is exploratory and labelled as such.
+**Status: FROZEN v1.0 (2026-11-24), owner-approved (G-FREEZE).** Frozen with the amendments of section 15. The SHA-256 of this file, of every experiment protocol and of every confirmatory config is recorded in `research/freeze.json`, `research/experiment_registry.csv` and `research/decision_log.md` (D-012). The runner refuses any confirmatory config whose files or values differ from the freeze record. Draft history: v0.1 (2026-11-24, M0).
 
-Feasibility audit: section 12 below.
+Feasibility audit: section 12 below. Sections 1 to 13 are the v0.1 text; section 15 amends them and wins where they differ.
 
 ## 1. Research question
 
@@ -210,3 +210,18 @@ If the interval includes 0, the existing invalidation rule of EXP-003 section 5 
 
 Unchanged: 4 hours wall clock for all matrices. Planning projection from the M2 sweeps: about 32 minutes at 20 seeds for EXP-001 to EXP-003, plus about 1 minute for EXP-004.
 
+
+### 15.11 Fitted values (added after the fit, 2026-11-24; the method above is unchanged)
+
+The fit ran at code revision 718e995 (clean tree), recorded as exploratory journal entry CAL-ML1M (`research/experiment_journal.jsonl`), output `results/calibration/calibration.json`. Ingestion counts: 3,883 movies (0 schema failures), 212 excluded for having no top-10 genre, 3,671 included; 1,000,209 ratings (0 schema failures), 22,128 excluded with those movies, 978,081 included (491,374 calibration half, 486,707 held-out half); 6,040 users, none excluded (3,020 per half).
+
+| Quantity | Value | Replaces |
+| --- | --- | --- |
+| Topics (index 0 to 9) | Drama, Comedy, Action, Thriller, Romance, Horror, Adventure, Sci-Fi, Children's, Crime | (EXP-004 only) |
+| pi_ML | 0.2536, 0.2027, 0.0463, 0.0755, 0.1155, 0.0741, 0.0368, 0.0697, 0.0684, 0.0575 | (EXP-004 only) |
+| L* (calibration half) | 0.577143 | none (new target) |
+| c(0.1), synthetic users | 0.066421 | 0.5 (like rate at 0.5 was 0.0206) |
+| c(0.3), synthetic users | 0.005990 | 0.5 (like rate at 0.5 was 0.2099) |
+| c_ML(0.1), EXP-004 | 0.061067 | 0.5 (like rate at 0.5 was 0.0187) |
+
+The configs carry the unrounded values (`like_midpoint` in `experiments/EXP-00N.json`). The EXP-004 config pins the held-out preference file by SHA-256 (`75f9fb8f...`, full value in the config and in `research/freeze.json`); that file is regenerated deterministically by `scripts/prepare_movielens.py` from the pinned zip and is never committed.

@@ -3,7 +3,10 @@
 
 Confirmatory configs are refused unless the protocol is frozen (G-FREEZE): the registry row
 must carry a 64-hex SHA-256 that matches the experiment protocol file byte for byte, its
-status must no longer say "draft", and research/protocol.md must not be marked DRAFT.
+status must no longer say "draft", research/protocol.md must not be marked DRAFT, and the
+freeze record research/freeze.json must list the experiment with SHA-256 values that match the
+main protocol, the experiment protocol, the config file, the canonical config passed to the
+runner, and data/manifest.json.
 """
 from __future__ import annotations
 
@@ -83,7 +86,37 @@ def sha256_file(path: Path) -> str:
     return hashlib.sha256(Path(path).read_bytes()).hexdigest()
 
 
-def protocol_frozen(experiment_id: str, root: Path = REPO_ROOT) -> tuple[bool, str]:
+FREEZE_RECORD = Path("research") / "freeze.json"
+
+
+def freeze_check(experiment_id: str, root: Path = REPO_ROOT, exp: dict | None = None) -> tuple[bool, str]:
+    """Compare the freeze record's hashes with the files (and the config dict, when given)."""
+    rec_path = root / FREEZE_RECORD
+    if not rec_path.exists():
+        return False, "no freeze record research/freeze.json"
+    rec = json.loads(rec_path.read_text(encoding="utf-8"))
+    hashes = rec.get("sha256", {})
+    entry = rec.get("experiments", {}).get(experiment_id)
+    if entry is None:
+        return False, f"{experiment_id} is not in the freeze record"
+    checks = [("research/protocol.md", hashes.get("research/protocol.md")),
+              ("data/manifest.json", hashes.get("data/manifest.json")),
+              (entry["protocol_path"], entry.get("protocol_sha256")),
+              (entry["config_path"], entry.get("config_sha256"))]
+    for rel, h in checks:
+        f = root / rel
+        if not h or not f.exists():
+            return False, f"freeze record lacks a hash or file for {rel}"
+        actual = sha256_file(f)
+        if actual != h:
+            return False, f"{rel} changed after the freeze (SHA-256 {actual} != frozen {h})"
+    if exp is not None and hash_dict(exp) != entry.get("config_canonical_sha256"):
+        return False, f"{experiment_id} config differs from the frozen config"
+    return True, "frozen"
+
+
+def protocol_frozen(experiment_id: str, root: Path = REPO_ROOT, exp: dict | None = None,
+                    require_record: bool = True) -> tuple[bool, str]:
     main = root / "research" / "protocol.md"
     if not main.exists() or "Status: DRAFT" in main.read_text(encoding="utf-8"):
         return False, "research/protocol.md is marked DRAFT"
@@ -101,6 +134,8 @@ def protocol_frozen(experiment_id: str, root: Path = REPO_ROOT) -> tuple[bool, s
     actual = sha256_file(root / row["protocol_path"])
     if actual != h:
         return False, f"{experiment_id} protocol file hash {actual} does not match the registry"
+    if require_record:
+        return freeze_check(experiment_id, root, exp)
     return True, "frozen"
 
 
@@ -113,7 +148,7 @@ def execute(exp: dict, root: Path = REPO_ROOT, out_dir: Path | None = None,
             progress: Callable[[str], None] | None = None) -> Path:
     """Run every spec, write one validated JSON per run plus a set manifest. Returns the output dir."""
     if exp["label"] == "confirmatory":
-        ok, why = protocol_frozen(exp["experiment_id"], root)
+        ok, why = protocol_frozen(exp["experiment_id"], root, exp)
         if not ok:
             raise ProtocolNotFrozen(f"refusing confirmatory run of {exp['experiment_id']}: {why}")
     out = Path(out_dir) if out_dir is not None else root / exp["output_dir"]

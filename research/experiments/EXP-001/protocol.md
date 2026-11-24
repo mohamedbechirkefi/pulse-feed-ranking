@@ -1,7 +1,7 @@
 <!-- SPDX-License-Identifier: LicenseRef-PULSE-NC-Research-1.0 -->
 # EXP-001 protocol: ranking objective and exposure diversity under static preferences
 
-**Status: DRAFT v0.1, 2026-11-24. Planned (protocol draft, awaiting owner freeze). Not frozen; protocol hash not yet recorded.** Shared definitions: `research/protocol.md` sections 2 to 8.
+**Status: FROZEN v1.0 (2026-11-24), owner-approved (G-FREEZE). SHA-256 in `research/freeze.json` and the registry.** Shared definitions: `research/protocol.md` sections 2 to 8 and 15. Section 16 below amends this file and wins where they differ.
 
 ## 1. Precise question
 With static simulated preferences and identical candidate pools, how much does each ranking objective (popularity, content similarity, LinUCB bandit, MMR diversity-aware) change final-window exposure topic entropy relative to random ranking?
@@ -64,3 +64,11 @@ uv run python -m pulse.cli smoke
 uv run python -m pulse.cli run --experiment EXP-001
 uv run python -m pulse.cli report --experiment EXP-001
 ```
+
+## 16. Amendments before freeze (owner-approved 2026-11-24, round 2)
+
+- Choice curve: like probability sigmoid((r - c) / tau) with tau = 0.1 and c = 0.066421 (fitted, protocol section 15.5 and 15.11; replaces 0.5). The same c is used in all four (eta, alpha_0) cells.
+- Seeds: 20 per cell (101001 to 101020). Runs: 5 x 2 x 2 x 20 = 400, plus 80 bandit runs at alpha_ucb = 0.1: 480. The conditional rule of section 8 is superseded.
+- User control: interpreted only as arm minus random; its Holm family is the four arm-minus-random contrasts (protocol section 15.7).
+- Second test: EXP-004 repeats the primary contrast on MovieLens-derived preferences and catalog topic weights (protocol section 15.6).
+- Compute budget unchanged.

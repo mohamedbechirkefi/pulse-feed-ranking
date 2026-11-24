@@ -1,10 +1,10 @@
 # SPDX-License-Identifier: LicenseRef-PULSE-NC-Research-1.0
 # Licence: PULSE Source-Available Non-Commercial Research License v1.0 (custom; see LICENSE and NOTICE.md).
 cff-version: 1.2.0
-message: "If you use this work, please cite it as below. Research software in progress; not peer-reviewed."
+message: "If you use this work, please cite it as below. Research software in progress; not peer-reviewed. Protocol frozen 2026-11-24 (v1.0). An AI system was used as a research and development assistant; it is not an author. Uses MovieLens 1M (GroupLens, Harper and Konstan 2015) under its research licence; the data is not redistributed."
 title: "PULSE: recommendation feedback and attention (simulation study)"
 type: software
-version: 0.0.0
+version: 0.2.0
 date-released: 2026-11-24
 authors:
   - family-names: Kefi
@@ -14,3 +14,14 @@ keywords:
   - feedback loops
   - exposure diversity
   - simulation
+references:
+  - type: article
+    title: "The MovieLens Datasets: History and Context"
+    authors:
+      - family-names: Harper
+        given-names: F. Maxwell
+      - family-names: Konstan
+        given-names: Joseph A.
+    journal: "ACM Transactions on Interactive Intelligent Systems"
+    year: 2015
+    doi: 10.1145/2827872

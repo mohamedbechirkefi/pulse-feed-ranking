@@ -31,7 +31,7 @@ def test_expand_counts_and_unique_ids():
     assert len(specs) == 2 * 3 * 3 and len({s.run_id for s in specs}) == 18
 
 
-@pytest.mark.parametrize("name,runs", [("EXP-001", 240), ("EXP-002", 240), ("EXP-003", 120)])
+@pytest.mark.parametrize("name,runs", [("EXP-001", 480), ("EXP-002", 480), ("EXP-003", 240), ("EXP-004", 60)])
 def test_registered_configs_expand_to_protocol_run_counts(name, runs):
     exp = load_experiment(REPO_ROOT / "experiments" / f"{name}.json")
     assert exp["label"] == "confirmatory" and len(expand(exp)) == runs
@@ -90,16 +90,6 @@ def test_failed_runs_are_recorded_not_dropped(tmp_path):
     generate(out, pdf=False)  # the report must handle failed runs
 
 
-def test_confirmatory_refused_while_protocol_unfrozen(tmp_path):
-    ok, why = protocol_frozen("EXP-001")
-    assert not ok and "DRAFT" in why
-    exp = load_experiment(REPO_ROOT / "experiments" / "EXP-001.json")
-    with pytest.raises(ProtocolNotFrozen):
-        execute(exp, out_dir=tmp_path / "c")
-    assert not (tmp_path / "c").exists()
-    assert cli.main(["run", "--experiment", "EXP-001", "--out", str(tmp_path / "d")]) == 3
-
-
 def fake_repo(tmp_path, status="frozen v1.0", draft=False, tamper=False):
     (tmp_path / "research" / "experiments" / "EXP-009").mkdir(parents=True)
     proto = tmp_path / "research" / "experiments" / "EXP-009" / "protocol.md"
@@ -116,7 +106,8 @@ def fake_repo(tmp_path, status="frozen v1.0", draft=False, tamper=False):
 
 
 def test_protocol_gate_logic(tmp_path):
-    assert protocol_frozen("EXP-009", fake_repo(tmp_path / "a"))[0]
+    assert protocol_frozen("EXP-009", fake_repo(tmp_path / "a"), require_record=False)[0]
+    assert not protocol_frozen("EXP-009", fake_repo(tmp_path / "f"))[0]  # no freeze record
     assert not protocol_frozen("EXP-009", fake_repo(tmp_path / "b", draft=True))[0]
     assert not protocol_frozen("EXP-009", fake_repo(tmp_path / "c", tamper=True))[0]
     assert not protocol_frozen("EXP-009", fake_repo(tmp_path / "d", status="planned (protocol draft)"))[0]

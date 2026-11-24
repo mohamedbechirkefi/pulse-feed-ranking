@@ -1,7 +1,7 @@
 <!-- SPDX-License-Identifier: LicenseRef-PULSE-NC-Research-1.0 -->
 # EXP-003 protocol: sensitivity of the primary contrast to candidate-pool skew and choice-model sharpness
 
-**Status: DRAFT v0.1, 2026-11-24. Planned (protocol draft, awaiting owner freeze). Not frozen; protocol hash not yet recorded.** Shared definitions: `research/protocol.md` sections 2 to 8 and 10.
+**Status: FROZEN v1.0 (2026-11-24), owner-approved (G-FREEZE). SHA-256 in `research/freeze.json` and the registry.** Shared definitions: `research/protocol.md` sections 2 to 8 and 15. Section 16 below amends this file and wins where they differ.
 
 ## 1. Precise question
 Does the EXP-001 primary contrast (content similarity minus random in final-window exposure entropy) and the MMR recovery effect persist when the catalog topic distribution is skewed and when the like-probability curve is flatter?
@@ -54,3 +54,10 @@ This experiment is the sensitivity analysis registered in protocol.md section 10
 uv run python -m pulse.cli run --experiment EXP-003
 uv run python -m pulse.cli report --experiment EXP-003
 ```
+
+## 16. Amendments before freeze (owner-approved 2026-11-24, round 2)
+
+- Choice curve: each tau level has its own fitted midpoint, so that sharpness varies at a matched target like rate: tau = 0.1 with c = 0.066421, tau = 0.3 with c = 0.005990 (protocol section 15.5 and 15.11; replaces 0.5). In the config the two tau levels are two blocks, `tau0.1` and `tau0.3`, each with the factor pool skew {uniform, Zipf}; the cells are the same 12 as section 8. The primary cell is block `tau0.1`, pool skew Zipf.
+- Seeds: 20 per cell (103001 to 103020). Runs: 12 x 20 = 240.
+- Sign reversal under the Zipf catalog: reported by the pre-decided rule of protocol section 15.9.
+- Compute budget unchanged.

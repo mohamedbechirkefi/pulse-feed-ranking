@@ -7,6 +7,10 @@ Status: skeleton, 2026-11-24. Working title from the master prompt: *What happen
 
 ## Author and affiliation metadata (owner-approved only)
 
+Mohamed Bechir Kefi (no affiliation). Approved authorship, owner decision C3 (2026-11-24). An AI system was used as a research and development assistant and is not an author; its role is disclosed in the methods and acknowledgements.
+
+Data acknowledgement (required by the GroupLens licence): this work uses the MovieLens 1M dataset (Harper and Konstan 2015, doi:10.1145/2827872). No endorsement by the University of Minnesota or GroupLens is stated or implied. The data is not redistributed.
+
 ## Abstract
 
 ## Keywords
