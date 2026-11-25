@@ -176,3 +176,12 @@ New: `src/pulse/analysis.py`, `scripts/analyse_experiment.py`, `scripts/report_t
 
 ### Next action
 The owner or the coordinator: decide how the 11.3 experiment reports get written (the file tool refused them in this session). Then M4: evidence audit, second review pass against the preferred hypothesis, manuscript synthesis.
+
+## 2026-11-25: M3 close session (owner decisions of 2026-11-25)
+
+- Owner decision recorded as D-015 (item 4 of the 2026-11-25 approvals: write the missing reports from committed results only).
+- Attempted to write `research/experiments/EXP-001/report.md` with the Write tool, as the close brief directs: refused again ("Subagents should return findings as text, not write report files"). Per the brief, report writing stopped; no shell or other workaround was used. No report.md or reproduction.md exists for EXP-001 to EXP-004.
+- `.venv/bin/python -m pytest -q`: "153 passed".
+- **M3 status: not done.** The matrices are complete (1,260 of 1,260 runs, 0 failed; D-014), but the gate also requires the reports.
+- **Next action:** the owner or the coordinator: have the reports written by a session whose file tool permits it (the content must come from the committed `tables.md`, `verdict.json`, `contrasts.csv`, `summary.csv` and figures only).
+

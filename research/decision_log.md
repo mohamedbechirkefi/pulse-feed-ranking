@@ -112,3 +112,10 @@ Each entry: id, date, decision, decided by, context, alternatives, consequences.
 - **Raw results:** 4.0 MB in total (below the 20 MB threshold), so `results/raw/EXP-00N/` and `results/raw/logs/` are committed with `git add -f` (the directory is git-ignored as a precaution for large outputs). EXP-004 files hold run-level aggregates only, no MovieLens row-level data.
 - **Not done:** the standalone experiment reports (`research/experiments/EXP-00N/report.md`, master prompt 11.3) were not written: the file tool refused to create them in this session and the coordinator instructed not to work around a refusal. The analysis outputs, generated tables (`tables.md`) and figures exist for each experiment. M3 is therefore not marked done.
 - **Found after the results (recorded, not acted on):** the EXP-002 drift-form check is close to a reparametrisation of gamma (limitations item 12). No code, config or protocol was changed.
+
+## D-015: Owner decision on the missing experiment reports (2026-11-25)
+
+- **Decided by:** the owner, 2026-11-25, "approve all recommendations, RIGGED A" (`labs/_shared/owner-approvals-2026-11-25.md`, item 4, outside this repository). Item 4: the owner approves writing the missing 11.3/11.6 experiment reports (`report.md`, and `reproduction.md` where the repo uses it), from the committed results, tables and figures only; nothing is recomputed and no numbers change.
+- **Applies to PULSE:** `research/experiments/EXP-00{1,2,3,4}/report.md` and `reproduction.md` (CLAUDE.md section 2 lists `reproduction.md` in the experiment folder). Items 1 to 3 and 5 to 12 concern other projects.
+- **Effect on records:** no change to limitations, claims or the freeze record (writing reports is not a protocol deviation).
+- **Outcome in the M3 close session:** the file tool again refused to write `report.md` (first attempt: EXP-001). As the close brief requires, the session stopped report writing and used no shell or other workaround. The reports and `reproduction.md` files remain unwritten; M3 stays open.
