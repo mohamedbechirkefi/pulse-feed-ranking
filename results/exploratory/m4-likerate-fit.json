@@ -1,0 +1,51 @@
+{
+ "label": "exploratory (XPL-M4-LIKERATE midpoint fits; frozen method of protocol section 15.5)",
+ "tau": 0.1,
+ "calibration_seeds": [
+  700001,
+  700020
+ ],
+ "world": "uniform catalog, Dirichlet(1.0) users, section 2 defaults",
+ "levels": [
+  {
+   "target": 0.05,
+   "like_midpoint": 0.40676871582400054,
+   "achieved": 0.049999999951804694
+  },
+  {
+   "target": 0.15,
+   "like_midpoint": 0.28171166765969247,
+   "achieved": 0.15000000001403124
+  },
+  {
+   "target": 0.3,
+   "like_midpoint": 0.18852302606683224,
+   "achieved": 0.2999999996743704
+  },
+  {
+   "target": 0.45,
+   "like_midpoint": 0.12026614660862833,
+   "achieved": 0.45000000061325124
+  },
+  {
+   "target": 0.5771428687720555,
+   "like_midpoint": 0.06642147188540548,
+   "achieved": 0.5771428692690544
+  },
+  {
+   "target": 0.7,
+   "like_midpoint": 0.01042797404807061,
+   "achieved": 0.7000000004877047
+  },
+  {
+   "target": 0.85,
+   "like_midpoint": -0.08099950884934515,
+   "achieved": 0.8499999999706096
+  },
+  {
+   "target": null,
+   "like_midpoint": 0.5,
+   "achieved": 0.02062522456149448
+  }
+ ]
+}

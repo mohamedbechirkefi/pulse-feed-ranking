@@ -1,0 +1,30 @@
+== Part A: recomputation from raw outputs ==
+EXP-001: raw files 480, hashes checked 480, manifest n_runs 480, n_failed 0, status {'ok': 480}, revisions [('f1838f3e8451c8c4275579a5736fe488354a8f3a', False)]
+EXP-001: contrasts recomputed 116, summary rows recomputed 24
+EXP-002: raw files 480, hashes checked 480, manifest n_runs 480, n_failed 0, status {'ok': 480}, revisions [('f1838f3e8451c8c4275579a5736fe488354a8f3a', False)]
+EXP-002: contrasts recomputed 150, summary rows recomputed 24
+EXP-002 drift form alpha0 1.0: D additive-clip recomputed -0.436266
+EXP-002 drift form alpha0 0.1: D additive-clip recomputed -0.435082
+EXP-003: raw files 240, hashes checked 240, manifest n_runs 240, n_failed 0, status {'ok': 240}, revisions [('f1838f3e8451c8c4275579a5736fe488354a8f3a', False)]
+EXP-003: contrasts recomputed 68, summary rows recomputed 12
+EXP-003 Welch tau0.1: diff -0.105896 [-0.117031, -0.094761] df 21.196
+EXP-003 Welch tau0.3: diff -0.150342 [-0.161115, -0.139569] df 22.441
+EXP-004: raw files 60, hashes checked 60, manifest n_runs 60, n_failed 0, status {'ok': 60}, revisions [('f1838f3e8451c8c4275579a5736fe488354a8f3a', False)]
+EXP-004: contrasts recomputed 17, summary rows recomputed 3
+Part A problems: 0
+== Part B: decimal numbers without a matching evidence value (manual review) ==
+research/experiments/EXP-001/report.md: 0 unmatched
+research/experiments/EXP-002/report.md: 0 unmatched
+research/experiments/EXP-003/report.md: 0 unmatched
+research/experiments/EXP-004/report.md: 0 unmatched
+research/paper/manuscript.md: 1 unmatched: 1003.0146
+research/paper/supplementary.md: 0 unmatched
+research/claims_register.csv: 0 unmatched
+== Part C: section-scoped manuscript trace and row-wise derived tables ==
+manuscript section 5.1 vs EXP-001: 0 unmatched
+manuscript section 5.2 vs EXP-002: 0 unmatched
+manuscript section 5.3 vs EXP-003: 0 unmatched
+manuscript section 5.4 vs EXP-004, EXP-001: 0 unmatched
+row-wise errors: 0
+Part D: 23 table rows checked
+Part D errors: 0

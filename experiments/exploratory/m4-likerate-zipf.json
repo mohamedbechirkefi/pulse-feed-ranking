@@ -1,0 +1,52 @@
+{
+ "experiment_id": "XPL-M4-LIKERATE-ZIPF",
+ "label": "exploratory",
+ "description": "M4 exploratory like-rate sensitivity of the primary contrast (not a confirmatory experiment; never pooled; never changes a frozen verdict). Settings of the EXP-003 tau0.1 block, midpoint crossed as a factor, 5 seeds 960001+.",
+ "output_dir": "results/exploratory/m4-likerate-zipf",
+ "base": {
+  "n_users": 200,
+  "n_items": 1000,
+  "n_topics": 10,
+  "pool_size": 50,
+  "slate_size": 10,
+  "n_steps": 200,
+  "window": 50,
+  "preference_model": "static",
+  "eta": 0.1,
+  "alpha0": 1.0,
+  "zipf_s": 1.0,
+  "pool_skew": "zipf",
+  "tau": 0.1
+ },
+ "seeds": {
+  "first": 960001,
+  "count": 5
+ },
+ "blocks": [
+  {
+   "name": "likerate",
+   "factors": {
+    "like_midpoint": [
+     0.40676871582400054,
+     0.28171166765969247,
+     0.18852302606683224,
+     0.12026614660862833,
+     0.06642147188540548,
+     0.01042797404807061,
+     -0.08099950884934515,
+     0.5
+    ]
+   },
+   "arms": [
+    {
+     "arm": "random",
+     "ranker": "random"
+    },
+    {
+     "arm": "similarity",
+     "ranker": "similarity"
+    }
+   ]
+  }
+ ]
+}

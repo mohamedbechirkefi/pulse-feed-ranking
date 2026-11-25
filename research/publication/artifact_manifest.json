@@ -1,7 +1,732 @@
 {
-  "schema_version": "0.1",
-  "updated": "2026-11-24",
-  "status": "empty: no result, figure, table or claim exists yet",
-  "fields_required_per_entry": ["artifact_id", "kind", "exp_id", "run_ids", "metric_definition", "result_path", "generator_script", "config_or_protocol_hash", "code_revision"],
-  "artifacts": []
+ "schema_version": "1.0",
+ "updated": "2026-11-25",
+ "status": "M4 evidence audit: every manuscript and report number traced (research/publication/evidence_audit.md)",
+ "fields_required_per_entry": [
+  "artifact_id",
+  "kind",
+  "exp_id",
+  "run_ids",
+  "metric_definition",
+  "result_path",
+  "generator_script",
+  "config_or_protocol_hash",
+  "code_revision"
+ ],
+ "artifacts": [
+  {
+   "artifact_id": "EXP-001-FIG-C01",
+   "kind": "figure",
+   "label": "confirmatory",
+   "description": "generated figure",
+   "exp_id": "EXP-001",
+   "run_ids": "all runs of EXP-001",
+   "metric_definition": "H_exp(u) = -sum_z q_uz ln q_uz / ln K over the last W = 50 slates, position weights 0.85^(j-1); run value = mean over users (protocol section 4)",
+   "result_path": "research/experiments/EXP-001/figures/EXP-001-FIG-C01.svg",
+   "result_sha256": "69e449f1cb571121cea67de3c838e20d6010ca9c2a76b23acdc92c6a4b840fee",
+   "raw_results": "results/raw/EXP-001/runs/*.json (SHA-256 per file in research/experiments/EXP-001/run_manifest.json)",
+   "generator_script": "scripts/analyse_experiment.py (verdict.json, contrasts.csv, summary.csv, figures); scripts/report_tables.py (tables.md)",
+   "config_or_protocol_hash": {
+    "config_canonical": "e51281119eed3c3bcd8ce8042cadc37b104c9b670d4992574e1d2b1095b7afcc",
+    "protocol": "fbb70fc9d461e339f731ed3b928d024586d460a82543dec287edfbb7e7a38b20"
+   },
+   "code_revision": "f1838f3e8451c8c4275579a5736fe488354a8f3a"
+  },
+  {
+   "artifact_id": "EXP-001-FIG-X01",
+   "kind": "figure",
+   "label": "confirmatory",
+   "description": "generated figure",
+   "exp_id": "EXP-001",
+   "run_ids": "all runs of EXP-001",
+   "metric_definition": "H_exp(u) = -sum_z q_uz ln q_uz / ln K over the last W = 50 slates, position weights 0.85^(j-1); run value = mean over users (protocol section 4)",
+   "result_path": "research/experiments/EXP-001/figures/EXP-001-FIG-X01.svg",
+   "result_sha256": "e2f7382aedb1411016e56634dbd801b5a3a0ae5172786a3b33f2ee2b73840f23",
+   "raw_results": "results/raw/EXP-001/runs/*.json (SHA-256 per file in research/experiments/EXP-001/run_manifest.json)",
+   "generator_script": "scripts/analyse_experiment.py (verdict.json, contrasts.csv, summary.csv, figures); scripts/report_tables.py (tables.md)",
+   "config_or_protocol_hash": {
+    "config_canonical": "e51281119eed3c3bcd8ce8042cadc37b104c9b670d4992574e1d2b1095b7afcc",
+    "protocol": "fbb70fc9d461e339f731ed3b928d024586d460a82543dec287edfbb7e7a38b20"
+   },
+   "code_revision": "f1838f3e8451c8c4275579a5736fe488354a8f3a"
+  },
+  {
+   "artifact_id": "EXP-001-TABLES",
+   "kind": "table",
+   "label": "confirmatory",
+   "description": "Tables A to E of the experiment report",
+   "exp_id": "EXP-001",
+   "run_ids": "all runs of EXP-001",
+   "metric_definition": "H_exp(u) = -sum_z q_uz ln q_uz / ln K over the last W = 50 slates, position weights 0.85^(j-1); run value = mean over users (protocol section 4)",
+   "result_path": "research/experiments/EXP-001/tables.md",
+   "result_sha256": "02c1eeb91ade3eb8ba21ed5da21bd634522ce302f58b456ac974b2d6476b5f56",
+   "raw_results": "results/raw/EXP-001/runs/*.json (SHA-256 per file in research/experiments/EXP-001/run_manifest.json)",
+   "generator_script": "scripts/analyse_experiment.py (verdict.json, contrasts.csv, summary.csv, figures); scripts/report_tables.py (tables.md)",
+   "config_or_protocol_hash": {
+    "config_canonical": "e51281119eed3c3bcd8ce8042cadc37b104c9b670d4992574e1d2b1095b7afcc",
+    "protocol": "fbb70fc9d461e339f731ed3b928d024586d460a82543dec287edfbb7e7a38b20"
+   },
+   "code_revision": "f1838f3e8451c8c4275579a5736fe488354a8f3a"
+  },
+  {
+   "artifact_id": "EXP-001-VERDICT",
+   "kind": "result",
+   "label": "confirmatory",
+   "description": "analysis output verdict.json",
+   "exp_id": "EXP-001",
+   "run_ids": "all runs of EXP-001",
+   "metric_definition": "H_exp(u) = -sum_z q_uz ln q_uz / ln K over the last W = 50 slates, position weights 0.85^(j-1); run value = mean over users (protocol section 4)",
+   "result_path": "research/experiments/EXP-001/verdict.json",
+   "result_sha256": "ffef0722b13651211420ef772950a559ce454a2af35c9b6efcbfdd7addb06984",
+   "raw_results": "results/raw/EXP-001/runs/*.json (SHA-256 per file in research/experiments/EXP-001/run_manifest.json)",
+   "generator_script": "scripts/analyse_experiment.py (verdict.json, contrasts.csv, summary.csv, figures); scripts/report_tables.py (tables.md)",
+   "config_or_protocol_hash": {
+    "config_canonical": "e51281119eed3c3bcd8ce8042cadc37b104c9b670d4992574e1d2b1095b7afcc",
+    "protocol": "fbb70fc9d461e339f731ed3b928d024586d460a82543dec287edfbb7e7a38b20"
+   },
+   "code_revision": "f1838f3e8451c8c4275579a5736fe488354a8f3a"
+  },
+  {
+   "artifact_id": "EXP-001-CONTRASTS",
+   "kind": "result",
+   "label": "confirmatory",
+   "description": "analysis output contrasts.csv",
+   "exp_id": "EXP-001",
+   "run_ids": "all runs of EXP-001",
+   "metric_definition": "H_exp(u) = -sum_z q_uz ln q_uz / ln K over the last W = 50 slates, position weights 0.85^(j-1); run value = mean over users (protocol section 4)",
+   "result_path": "research/experiments/EXP-001/contrasts.csv",
+   "result_sha256": "9de63e179624a186499b5505ea92f32b6bb73fc5ab06cef11675d42116fe7a63",
+   "raw_results": "results/raw/EXP-001/runs/*.json (SHA-256 per file in research/experiments/EXP-001/run_manifest.json)",
+   "generator_script": "scripts/analyse_experiment.py (verdict.json, contrasts.csv, summary.csv, figures); scripts/report_tables.py (tables.md)",
+   "config_or_protocol_hash": {
+    "config_canonical": "e51281119eed3c3bcd8ce8042cadc37b104c9b670d4992574e1d2b1095b7afcc",
+    "protocol": "fbb70fc9d461e339f731ed3b928d024586d460a82543dec287edfbb7e7a38b20"
+   },
+   "code_revision": "f1838f3e8451c8c4275579a5736fe488354a8f3a"
+  },
+  {
+   "artifact_id": "EXP-001-SUMMARY",
+   "kind": "result",
+   "label": "confirmatory",
+   "description": "analysis output summary.csv",
+   "exp_id": "EXP-001",
+   "run_ids": "all runs of EXP-001",
+   "metric_definition": "H_exp(u) = -sum_z q_uz ln q_uz / ln K over the last W = 50 slates, position weights 0.85^(j-1); run value = mean over users (protocol section 4)",
+   "result_path": "research/experiments/EXP-001/summary.csv",
+   "result_sha256": "3b4e9eaf075793bd354021b3c4d658313eff4dd5dc578f534cce69a1a1873988",
+   "raw_results": "results/raw/EXP-001/runs/*.json (SHA-256 per file in research/experiments/EXP-001/run_manifest.json)",
+   "generator_script": "scripts/analyse_experiment.py (verdict.json, contrasts.csv, summary.csv, figures); scripts/report_tables.py (tables.md)",
+   "config_or_protocol_hash": {
+    "config_canonical": "e51281119eed3c3bcd8ce8042cadc37b104c9b670d4992574e1d2b1095b7afcc",
+    "protocol": "fbb70fc9d461e339f731ed3b928d024586d460a82543dec287edfbb7e7a38b20"
+   },
+   "code_revision": "f1838f3e8451c8c4275579a5736fe488354a8f3a"
+  },
+  {
+   "artifact_id": "EXP-002-FIG-C01",
+   "kind": "figure",
+   "label": "confirmatory",
+   "description": "generated figure",
+   "exp_id": "EXP-002",
+   "run_ids": "all runs of EXP-002",
+   "metric_definition": "(H(p_u(T)) - H(p_u(0))) / ln K, mean over users (EXP-002 protocol section 5)",
+   "result_path": "research/experiments/EXP-002/figures/EXP-002-FIG-C01.svg",
+   "result_sha256": "5f22e5e03c5dc1d20528a8e81fdec187bdbecd407533e99dfaa6cf3aca51fb34",
+   "raw_results": "results/raw/EXP-002/runs/*.json (SHA-256 per file in research/experiments/EXP-002/run_manifest.json)",
+   "generator_script": "scripts/analyse_experiment.py (verdict.json, contrasts.csv, summary.csv, figures); scripts/report_tables.py (tables.md)",
+   "config_or_protocol_hash": {
+    "config_canonical": "2c3b1816328f95d487bd83c1002a6db3970881a0eed91a2677569c3f2cfeed59",
+    "protocol": "e1f4d229803ee9684a12cb2c22ad5b217d8075d0f852ffc33f87604cb1b12b56"
+   },
+   "code_revision": "f1838f3e8451c8c4275579a5736fe488354a8f3a"
+  },
+  {
+   "artifact_id": "EXP-002-FIG-X01",
+   "kind": "figure",
+   "label": "confirmatory",
+   "description": "generated figure",
+   "exp_id": "EXP-002",
+   "run_ids": "all runs of EXP-002",
+   "metric_definition": "H_exp(u) = -sum_z q_uz ln q_uz / ln K over the last W = 50 slates, position weights 0.85^(j-1); run value = mean over users (protocol section 4)",
+   "result_path": "research/experiments/EXP-002/figures/EXP-002-FIG-X01.svg",
+   "result_sha256": "7c5a8a0be3de939b9bf040163f5b2d72d73e68e8a348727374ec8907a03f7214",
+   "raw_results": "results/raw/EXP-002/runs/*.json (SHA-256 per file in research/experiments/EXP-002/run_manifest.json)",
+   "generator_script": "scripts/analyse_experiment.py (verdict.json, contrasts.csv, summary.csv, figures); scripts/report_tables.py (tables.md)",
+   "config_or_protocol_hash": {
+    "config_canonical": "2c3b1816328f95d487bd83c1002a6db3970881a0eed91a2677569c3f2cfeed59",
+    "protocol": "e1f4d229803ee9684a12cb2c22ad5b217d8075d0f852ffc33f87604cb1b12b56"
+   },
+   "code_revision": "f1838f3e8451c8c4275579a5736fe488354a8f3a"
+  },
+  {
+   "artifact_id": "EXP-002-FIG-X02",
+   "kind": "figure",
+   "label": "confirmatory",
+   "description": "generated figure",
+   "exp_id": "EXP-002",
+   "run_ids": "all runs of EXP-002",
+   "metric_definition": "(H(p_u(T)) - H(p_u(0))) / ln K, mean over users (EXP-002 protocol section 5)",
+   "result_path": "research/experiments/EXP-002/figures/EXP-002-FIG-X02.svg",
+   "result_sha256": "b0d3788b4409841c4e70282f584d555b71723dbcfafed44568a8774bbdaacbc5",
+   "raw_results": "results/raw/EXP-002/runs/*.json (SHA-256 per file in research/experiments/EXP-002/run_manifest.json)",
+   "generator_script": "scripts/analyse_experiment.py (verdict.json, contrasts.csv, summary.csv, figures); scripts/report_tables.py (tables.md)",
+   "config_or_protocol_hash": {
+    "config_canonical": "2c3b1816328f95d487bd83c1002a6db3970881a0eed91a2677569c3f2cfeed59",
+    "protocol": "e1f4d229803ee9684a12cb2c22ad5b217d8075d0f852ffc33f87604cb1b12b56"
+   },
+   "code_revision": "f1838f3e8451c8c4275579a5736fe488354a8f3a"
+  },
+  {
+   "artifact_id": "EXP-002-TABLES",
+   "kind": "table",
+   "label": "confirmatory",
+   "description": "Tables A to E of the experiment report",
+   "exp_id": "EXP-002",
+   "run_ids": "all runs of EXP-002",
+   "metric_definition": "(H(p_u(T)) - H(p_u(0))) / ln K, mean over users (EXP-002 protocol section 5)",
+   "result_path": "research/experiments/EXP-002/tables.md",
+   "result_sha256": "c5cf1f2b60f5d775bf9a8e5162392a91c567c7334a63383c6e98d23ab050f063",
+   "raw_results": "results/raw/EXP-002/runs/*.json (SHA-256 per file in research/experiments/EXP-002/run_manifest.json)",
+   "generator_script": "scripts/analyse_experiment.py (verdict.json, contrasts.csv, summary.csv, figures); scripts/report_tables.py (tables.md)",
+   "config_or_protocol_hash": {
+    "config_canonical": "2c3b1816328f95d487bd83c1002a6db3970881a0eed91a2677569c3f2cfeed59",
+    "protocol": "e1f4d229803ee9684a12cb2c22ad5b217d8075d0f852ffc33f87604cb1b12b56"
+   },
+   "code_revision": "f1838f3e8451c8c4275579a5736fe488354a8f3a"
+  },
+  {
+   "artifact_id": "EXP-002-VERDICT",
+   "kind": "result",
+   "label": "confirmatory",
+   "description": "analysis output verdict.json",
+   "exp_id": "EXP-002",
+   "run_ids": "all runs of EXP-002",
+   "metric_definition": "(H(p_u(T)) - H(p_u(0))) / ln K, mean over users (EXP-002 protocol section 5)",
+   "result_path": "research/experiments/EXP-002/verdict.json",
+   "result_sha256": "bbd91bd7a5f51346ad5d794eee0d58a6cb90eda49e47cf243296be39df0ad946",
+   "raw_results": "results/raw/EXP-002/runs/*.json (SHA-256 per file in research/experiments/EXP-002/run_manifest.json)",
+   "generator_script": "scripts/analyse_experiment.py (verdict.json, contrasts.csv, summary.csv, figures); scripts/report_tables.py (tables.md)",
+   "config_or_protocol_hash": {
+    "config_canonical": "2c3b1816328f95d487bd83c1002a6db3970881a0eed91a2677569c3f2cfeed59",
+    "protocol": "e1f4d229803ee9684a12cb2c22ad5b217d8075d0f852ffc33f87604cb1b12b56"
+   },
+   "code_revision": "f1838f3e8451c8c4275579a5736fe488354a8f3a"
+  },
+  {
+   "artifact_id": "EXP-002-CONTRASTS",
+   "kind": "result",
+   "label": "confirmatory",
+   "description": "analysis output contrasts.csv",
+   "exp_id": "EXP-002",
+   "run_ids": "all runs of EXP-002",
+   "metric_definition": "(H(p_u(T)) - H(p_u(0))) / ln K, mean over users (EXP-002 protocol section 5)",
+   "result_path": "research/experiments/EXP-002/contrasts.csv",
+   "result_sha256": "e0f4fc5e4a27c5d1aa6f15df0768cb24e5143c515359c5420960232c4de268b0",
+   "raw_results": "results/raw/EXP-002/runs/*.json (SHA-256 per file in research/experiments/EXP-002/run_manifest.json)",
+   "generator_script": "scripts/analyse_experiment.py (verdict.json, contrasts.csv, summary.csv, figures); scripts/report_tables.py (tables.md)",
+   "config_or_protocol_hash": {
+    "config_canonical": "2c3b1816328f95d487bd83c1002a6db3970881a0eed91a2677569c3f2cfeed59",
+    "protocol": "e1f4d229803ee9684a12cb2c22ad5b217d8075d0f852ffc33f87604cb1b12b56"
+   },
+   "code_revision": "f1838f3e8451c8c4275579a5736fe488354a8f3a"
+  },
+  {
+   "artifact_id": "EXP-002-SUMMARY",
+   "kind": "result",
+   "label": "confirmatory",
+   "description": "analysis output summary.csv",
+   "exp_id": "EXP-002",
+   "run_ids": "all runs of EXP-002",
+   "metric_definition": "(H(p_u(T)) - H(p_u(0))) / ln K, mean over users (EXP-002 protocol section 5)",
+   "result_path": "research/experiments/EXP-002/summary.csv",
+   "result_sha256": "aeb373a57b299a86b586dc0c55b10ffd5335d721e49aa80dba2e7fc6d2218516",
+   "raw_results": "results/raw/EXP-002/runs/*.json (SHA-256 per file in research/experiments/EXP-002/run_manifest.json)",
+   "generator_script": "scripts/analyse_experiment.py (verdict.json, contrasts.csv, summary.csv, figures); scripts/report_tables.py (tables.md)",
+   "config_or_protocol_hash": {
+    "config_canonical": "2c3b1816328f95d487bd83c1002a6db3970881a0eed91a2677569c3f2cfeed59",
+    "protocol": "e1f4d229803ee9684a12cb2c22ad5b217d8075d0f852ffc33f87604cb1b12b56"
+   },
+   "code_revision": "f1838f3e8451c8c4275579a5736fe488354a8f3a"
+  },
+  {
+   "artifact_id": "EXP-003-FIG-C01",
+   "kind": "figure",
+   "label": "confirmatory",
+   "description": "generated figure",
+   "exp_id": "EXP-003",
+   "run_ids": "all runs of EXP-003",
+   "metric_definition": "H_exp(u) = -sum_z q_uz ln q_uz / ln K over the last W = 50 slates, position weights 0.85^(j-1); run value = mean over users (protocol section 4)",
+   "result_path": "research/experiments/EXP-003/figures/EXP-003-FIG-C01.svg",
+   "result_sha256": "693b9a3f1ec0d1e3f1feb0ad954a8516b905d084fe462b944e302c67924898fc",
+   "raw_results": "results/raw/EXP-003/runs/*.json (SHA-256 per file in research/experiments/EXP-003/run_manifest.json)",
+   "generator_script": "scripts/analyse_experiment.py (verdict.json, contrasts.csv, summary.csv, figures); scripts/report_tables.py (tables.md)",
+   "config_or_protocol_hash": {
+    "config_canonical": "4aafb0446e763a37fe78cf83e00d94bdfc65fd5282579e82e5bd2cd1474b934f",
+    "protocol": "07e68a736cfa05850970859b0ac14e5c8a19e4ce241fe48940dcc83be3b672eb"
+   },
+   "code_revision": "f1838f3e8451c8c4275579a5736fe488354a8f3a"
+  },
+  {
+   "artifact_id": "EXP-003-FIG-X01",
+   "kind": "figure",
+   "label": "confirmatory",
+   "description": "generated figure",
+   "exp_id": "EXP-003",
+   "run_ids": "all runs of EXP-003",
+   "metric_definition": "H_exp(u) = -sum_z q_uz ln q_uz / ln K over the last W = 50 slates, position weights 0.85^(j-1); run value = mean over users (protocol section 4)",
+   "result_path": "research/experiments/EXP-003/figures/EXP-003-FIG-X01.svg",
+   "result_sha256": "7589d9353ab44928937c56a89c517e4a8711e8b48a19518f0243ad179c003fa9",
+   "raw_results": "results/raw/EXP-003/runs/*.json (SHA-256 per file in research/experiments/EXP-003/run_manifest.json)",
+   "generator_script": "scripts/analyse_experiment.py (verdict.json, contrasts.csv, summary.csv, figures); scripts/report_tables.py (tables.md)",
+   "config_or_protocol_hash": {
+    "config_canonical": "4aafb0446e763a37fe78cf83e00d94bdfc65fd5282579e82e5bd2cd1474b934f",
+    "protocol": "07e68a736cfa05850970859b0ac14e5c8a19e4ce241fe48940dcc83be3b672eb"
+   },
+   "code_revision": "f1838f3e8451c8c4275579a5736fe488354a8f3a"
+  },
+  {
+   "artifact_id": "EXP-003-TABLES",
+   "kind": "table",
+   "label": "confirmatory",
+   "description": "Tables A to E of the experiment report",
+   "exp_id": "EXP-003",
+   "run_ids": "all runs of EXP-003",
+   "metric_definition": "H_exp(u) = -sum_z q_uz ln q_uz / ln K over the last W = 50 slates, position weights 0.85^(j-1); run value = mean over users (protocol section 4)",
+   "result_path": "research/experiments/EXP-003/tables.md",
+   "result_sha256": "84eef261a16012e4c5fb6800621c6b41a25f254b7806dfa68578d445a7b66ff6",
+   "raw_results": "results/raw/EXP-003/runs/*.json (SHA-256 per file in research/experiments/EXP-003/run_manifest.json)",
+   "generator_script": "scripts/analyse_experiment.py (verdict.json, contrasts.csv, summary.csv, figures); scripts/report_tables.py (tables.md)",
+   "config_or_protocol_hash": {
+    "config_canonical": "4aafb0446e763a37fe78cf83e00d94bdfc65fd5282579e82e5bd2cd1474b934f",
+    "protocol": "07e68a736cfa05850970859b0ac14e5c8a19e4ce241fe48940dcc83be3b672eb"
+   },
+   "code_revision": "f1838f3e8451c8c4275579a5736fe488354a8f3a"
+  },
+  {
+   "artifact_id": "EXP-003-VERDICT",
+   "kind": "result",
+   "label": "confirmatory",
+   "description": "analysis output verdict.json",
+   "exp_id": "EXP-003",
+   "run_ids": "all runs of EXP-003",
+   "metric_definition": "H_exp(u) = -sum_z q_uz ln q_uz / ln K over the last W = 50 slates, position weights 0.85^(j-1); run value = mean over users (protocol section 4)",
+   "result_path": "research/experiments/EXP-003/verdict.json",
+   "result_sha256": "03b2a1b4fad18f233dae01902443b30c5ccfc780d5f0f90de65b32cd24e8353a",
+   "raw_results": "results/raw/EXP-003/runs/*.json (SHA-256 per file in research/experiments/EXP-003/run_manifest.json)",
+   "generator_script": "scripts/analyse_experiment.py (verdict.json, contrasts.csv, summary.csv, figures); scripts/report_tables.py (tables.md)",
+   "config_or_protocol_hash": {
+    "config_canonical": "4aafb0446e763a37fe78cf83e00d94bdfc65fd5282579e82e5bd2cd1474b934f",
+    "protocol": "07e68a736cfa05850970859b0ac14e5c8a19e4ce241fe48940dcc83be3b672eb"
+   },
+   "code_revision": "f1838f3e8451c8c4275579a5736fe488354a8f3a"
+  },
+  {
+   "artifact_id": "EXP-003-CONTRASTS",
+   "kind": "result",
+   "label": "confirmatory",
+   "description": "analysis output contrasts.csv",
+   "exp_id": "EXP-003",
+   "run_ids": "all runs of EXP-003",
+   "metric_definition": "H_exp(u) = -sum_z q_uz ln q_uz / ln K over the last W = 50 slates, position weights 0.85^(j-1); run value = mean over users (protocol section 4)",
+   "result_path": "research/experiments/EXP-003/contrasts.csv",
+   "result_sha256": "d6fd3c55e4aac8349f2d3fb57147306fc4261c7ee1c95a1065fc26c7061da956",
+   "raw_results": "results/raw/EXP-003/runs/*.json (SHA-256 per file in research/experiments/EXP-003/run_manifest.json)",
+   "generator_script": "scripts/analyse_experiment.py (verdict.json, contrasts.csv, summary.csv, figures); scripts/report_tables.py (tables.md)",
+   "config_or_protocol_hash": {
+    "config_canonical": "4aafb0446e763a37fe78cf83e00d94bdfc65fd5282579e82e5bd2cd1474b934f",
+    "protocol": "07e68a736cfa05850970859b0ac14e5c8a19e4ce241fe48940dcc83be3b672eb"
+   },
+   "code_revision": "f1838f3e8451c8c4275579a5736fe488354a8f3a"
+  },
+  {
+   "artifact_id": "EXP-003-SUMMARY",
+   "kind": "result",
+   "label": "confirmatory",
+   "description": "analysis output summary.csv",
+   "exp_id": "EXP-003",
+   "run_ids": "all runs of EXP-003",
+   "metric_definition": "H_exp(u) = -sum_z q_uz ln q_uz / ln K over the last W = 50 slates, position weights 0.85^(j-1); run value = mean over users (protocol section 4)",
+   "result_path": "research/experiments/EXP-003/summary.csv",
+   "result_sha256": "2ebccf667927959345e45f59704d76ca5b2c960c9d484f24e81ada93e0da775c",
+   "raw_results": "results/raw/EXP-003/runs/*.json (SHA-256 per file in research/experiments/EXP-003/run_manifest.json)",
+   "generator_script": "scripts/analyse_experiment.py (verdict.json, contrasts.csv, summary.csv, figures); scripts/report_tables.py (tables.md)",
+   "config_or_protocol_hash": {
+    "config_canonical": "4aafb0446e763a37fe78cf83e00d94bdfc65fd5282579e82e5bd2cd1474b934f",
+    "protocol": "07e68a736cfa05850970859b0ac14e5c8a19e4ce241fe48940dcc83be3b672eb"
+   },
+   "code_revision": "f1838f3e8451c8c4275579a5736fe488354a8f3a"
+  },
+  {
+   "artifact_id": "EXP-004-FIG-C01",
+   "kind": "figure",
+   "label": "confirmatory",
+   "description": "generated figure",
+   "exp_id": "EXP-004",
+   "run_ids": "all runs of EXP-004",
+   "metric_definition": "H_exp(u) = -sum_z q_uz ln q_uz / ln K over the last W = 50 slates, position weights 0.85^(j-1); run value = mean over users (protocol section 4)",
+   "result_path": "research/experiments/EXP-004/figures/EXP-004-FIG-C01.svg",
+   "result_sha256": "e6bf560f54aa9eaf1bf6b3a47cb8ae48e8020ffaa70b5982aa64b0e5986b0e55",
+   "raw_results": "results/raw/EXP-004/runs/*.json (SHA-256 per file in research/experiments/EXP-004/run_manifest.json)",
+   "generator_script": "scripts/analyse_experiment.py (verdict.json, contrasts.csv, summary.csv, figures); scripts/report_tables.py (tables.md)",
+   "config_or_protocol_hash": {
+    "config_canonical": "43afda057c89f26add143561edbc0b0033de19675b8b5ef1626103518cdba9b2",
+    "protocol": "dc004421d10eb9ff3b9b6f31b826de6db7863198db5e6b3784726f605b3bcb13"
+   },
+   "code_revision": "f1838f3e8451c8c4275579a5736fe488354a8f3a"
+  },
+  {
+   "artifact_id": "EXP-004-FIG-X01",
+   "kind": "figure",
+   "label": "confirmatory",
+   "description": "generated figure",
+   "exp_id": "EXP-004",
+   "run_ids": "all runs of EXP-004",
+   "metric_definition": "H_exp(u) = -sum_z q_uz ln q_uz / ln K over the last W = 50 slates, position weights 0.85^(j-1); run value = mean over users (protocol section 4)",
+   "result_path": "research/experiments/EXP-004/figures/EXP-004-FIG-X01.svg",
+   "result_sha256": "b986b36810c2d80109563606c2d9a3171d4c11e59c2a142ac8f9bcc8e2001b3d",
+   "raw_results": "results/raw/EXP-004/runs/*.json (SHA-256 per file in research/experiments/EXP-004/run_manifest.json)",
+   "generator_script": "scripts/analyse_experiment.py (verdict.json, contrasts.csv, summary.csv, figures); scripts/report_tables.py (tables.md)",
+   "config_or_protocol_hash": {
+    "config_canonical": "43afda057c89f26add143561edbc0b0033de19675b8b5ef1626103518cdba9b2",
+    "protocol": "dc004421d10eb9ff3b9b6f31b826de6db7863198db5e6b3784726f605b3bcb13"
+   },
+   "code_revision": "f1838f3e8451c8c4275579a5736fe488354a8f3a"
+  },
+  {
+   "artifact_id": "EXP-004-TABLES",
+   "kind": "table",
+   "label": "confirmatory",
+   "description": "Tables A to E of the experiment report",
+   "exp_id": "EXP-004",
+   "run_ids": "all runs of EXP-004",
+   "metric_definition": "H_exp(u) = -sum_z q_uz ln q_uz / ln K over the last W = 50 slates, position weights 0.85^(j-1); run value = mean over users (protocol section 4)",
+   "result_path": "research/experiments/EXP-004/tables.md",
+   "result_sha256": "d08e286eba124b5a81624b238df432ce87686e1e84291661b593d359e1acf425",
+   "raw_results": "results/raw/EXP-004/runs/*.json (SHA-256 per file in research/experiments/EXP-004/run_manifest.json)",
+   "generator_script": "scripts/analyse_experiment.py (verdict.json, contrasts.csv, summary.csv, figures); scripts/report_tables.py (tables.md)",
+   "config_or_protocol_hash": {
+    "config_canonical": "43afda057c89f26add143561edbc0b0033de19675b8b5ef1626103518cdba9b2",
+    "protocol": "dc004421d10eb9ff3b9b6f31b826de6db7863198db5e6b3784726f605b3bcb13"
+   },
+   "code_revision": "f1838f3e8451c8c4275579a5736fe488354a8f3a"
+  },
+  {
+   "artifact_id": "EXP-004-VERDICT",
+   "kind": "result",
+   "label": "confirmatory",
+   "description": "analysis output verdict.json",
+   "exp_id": "EXP-004",
+   "run_ids": "all runs of EXP-004",
+   "metric_definition": "H_exp(u) = -sum_z q_uz ln q_uz / ln K over the last W = 50 slates, position weights 0.85^(j-1); run value = mean over users (protocol section 4)",
+   "result_path": "research/experiments/EXP-004/verdict.json",
+   "result_sha256": "1f44a0f91588028e7eadf1ef2db34183002797223e71c8e053a65de940eb74fe",
+   "raw_results": "results/raw/EXP-004/runs/*.json (SHA-256 per file in research/experiments/EXP-004/run_manifest.json)",
+   "generator_script": "scripts/analyse_experiment.py (verdict.json, contrasts.csv, summary.csv, figures); scripts/report_tables.py (tables.md)",
+   "config_or_protocol_hash": {
+    "config_canonical": "43afda057c89f26add143561edbc0b0033de19675b8b5ef1626103518cdba9b2",
+    "protocol": "dc004421d10eb9ff3b9b6f31b826de6db7863198db5e6b3784726f605b3bcb13"
+   },
+   "code_revision": "f1838f3e8451c8c4275579a5736fe488354a8f3a"
+  },
+  {
+   "artifact_id": "EXP-004-CONTRASTS",
+   "kind": "result",
+   "label": "confirmatory",
+   "description": "analysis output contrasts.csv",
+   "exp_id": "EXP-004",
+   "run_ids": "all runs of EXP-004",
+   "metric_definition": "H_exp(u) = -sum_z q_uz ln q_uz / ln K over the last W = 50 slates, position weights 0.85^(j-1); run value = mean over users (protocol section 4)",
+   "result_path": "research/experiments/EXP-004/contrasts.csv",
+   "result_sha256": "0e026eeb8e3f68db85bcbfa4785458f6994be470fb4d6d77b0cb7aa67d0044ee",
+   "raw_results": "results/raw/EXP-004/runs/*.json (SHA-256 per file in research/experiments/EXP-004/run_manifest.json)",
+   "generator_script": "scripts/analyse_experiment.py (verdict.json, contrasts.csv, summary.csv, figures); scripts/report_tables.py (tables.md)",
+   "config_or_protocol_hash": {
+    "config_canonical": "43afda057c89f26add143561edbc0b0033de19675b8b5ef1626103518cdba9b2",
+    "protocol": "dc004421d10eb9ff3b9b6f31b826de6db7863198db5e6b3784726f605b3bcb13"
+   },
+   "code_revision": "f1838f3e8451c8c4275579a5736fe488354a8f3a"
+  },
+  {
+   "artifact_id": "EXP-004-SUMMARY",
+   "kind": "result",
+   "label": "confirmatory",
+   "description": "analysis output summary.csv",
+   "exp_id": "EXP-004",
+   "run_ids": "all runs of EXP-004",
+   "metric_definition": "H_exp(u) = -sum_z q_uz ln q_uz / ln K over the last W = 50 slates, position weights 0.85^(j-1); run value = mean over users (protocol section 4)",
+   "result_path": "research/experiments/EXP-004/summary.csv",
+   "result_sha256": "7b4025835ee162271563488465db3665aa06008d3a944c381967c1e5949ea2a3",
+   "raw_results": "results/raw/EXP-004/runs/*.json (SHA-256 per file in research/experiments/EXP-004/run_manifest.json)",
+   "generator_script": "scripts/analyse_experiment.py (verdict.json, contrasts.csv, summary.csv, figures); scripts/report_tables.py (tables.md)",
+   "config_or_protocol_hash": {
+    "config_canonical": "43afda057c89f26add143561edbc0b0033de19675b8b5ef1626103518cdba9b2",
+    "protocol": "dc004421d10eb9ff3b9b6f31b826de6db7863198db5e6b3784726f605b3bcb13"
+   },
+   "code_revision": "f1838f3e8451c8c4275579a5736fe488354a8f3a"
+  },
+  {
+   "artifact_id": "FIG-M4-X01",
+   "kind": "figure",
+   "label": "exploratory",
+   "description": "exploratory like-rate figure",
+   "exp_id": "XPL-M4-LIKERATE",
+   "run_ids": "XPL-M4-LIKERATE-{UNIFORM,ZIPF}-likerate-* (160 runs, seeds 960001 to 960005)",
+   "metric_definition": "H_exp(u) = -sum_z q_uz ln q_uz / ln K over the last W = 50 slates, position weights 0.85^(j-1); run value = mean over users (protocol section 4)",
+   "result_path": "research/paper/figures/FIG-M4-X01.svg",
+   "result_sha256": "45a570aff4821554e0249c8ba968e03d77873498b3507731c764d59c7ddcce2f",
+   "raw_results": "results/exploratory/m4-likerate-{uniform,zipf}/runs/*.json",
+   "generator_script": "scripts/m4_likerate_configs.py; pulse.cli run and report --no-pdf; scripts/m4_likerate_summary.py",
+   "config_or_protocol_hash": {
+    "uniform": "e10e8f06c5994110fd6ea420c7e9afad3bdf666ed6d19718dd23972ed3194a04",
+    "zipf": "0408cce6bff840bbe3c3df2a64db27ae949c4c85c26b0b88cb309a4d2d81c0ee"
+   },
+   "code_revision": "17c2e5f3cd1f905c7914f4bc4d5ed4c70811f4e3 (src/ identical to f1838f3; M4 scripts uncommitted at run time, committed in the M4 commit)"
+  },
+  {
+   "artifact_id": "XPL-M4-LIKERATE-SUMMARY",
+   "kind": "result",
+   "label": "exploratory",
+   "description": "exploratory like-rate summary table (manuscript Table 7)",
+   "exp_id": "XPL-M4-LIKERATE",
+   "run_ids": "XPL-M4-LIKERATE-{UNIFORM,ZIPF}-likerate-* (160 runs, seeds 960001 to 960005)",
+   "metric_definition": "H_exp(u) = -sum_z q_uz ln q_uz / ln K over the last W = 50 slates, position weights 0.85^(j-1); run value = mean over users (protocol section 4)",
+   "result_path": "results/exploratory/m4-likerate-summary.csv",
+   "result_sha256": "6139535598e89452e16bdf07696678717706a10ed7928763d0e63bd17435aeeb",
+   "raw_results": "results/exploratory/m4-likerate-{uniform,zipf}/runs/*.json",
+   "generator_script": "scripts/m4_likerate_configs.py; pulse.cli run and report --no-pdf; scripts/m4_likerate_summary.py",
+   "config_or_protocol_hash": {
+    "uniform": "e10e8f06c5994110fd6ea420c7e9afad3bdf666ed6d19718dd23972ed3194a04",
+    "zipf": "0408cce6bff840bbe3c3df2a64db27ae949c4c85c26b0b88cb309a4d2d81c0ee"
+   },
+   "code_revision": "17c2e5f3cd1f905c7914f4bc4d5ed4c70811f4e3 (src/ identical to f1838f3; M4 scripts uncommitted at run time, committed in the M4 commit)"
+  },
+  {
+   "artifact_id": "XPL-M4-LIKERATE-FIT",
+   "kind": "result",
+   "label": "exploratory",
+   "description": "midpoints fitted by the frozen calibration method for each target like rate",
+   "exp_id": "XPL-M4-LIKERATE",
+   "run_ids": "XPL-M4-LIKERATE-{UNIFORM,ZIPF}-likerate-* (160 runs, seeds 960001 to 960005)",
+   "metric_definition": "H_exp(u) = -sum_z q_uz ln q_uz / ln K over the last W = 50 slates, position weights 0.85^(j-1); run value = mean over users (protocol section 4)",
+   "result_path": "results/exploratory/m4-likerate-fit.json",
+   "result_sha256": "d3adc3cbdd95cb26ae243824b68a8e8acaf2dcecce978faba85f2f07961df735",
+   "raw_results": "results/exploratory/m4-likerate-{uniform,zipf}/runs/*.json",
+   "generator_script": "scripts/m4_likerate_configs.py; pulse.cli run and report --no-pdf; scripts/m4_likerate_summary.py",
+   "config_or_protocol_hash": {
+    "uniform": "e10e8f06c5994110fd6ea420c7e9afad3bdf666ed6d19718dd23972ed3194a04",
+    "zipf": "0408cce6bff840bbe3c3df2a64db27ae949c4c85c26b0b88cb309a4d2d81c0ee"
+   },
+   "code_revision": "17c2e5f3cd1f905c7914f4bc4d5ed4c70811f4e3 (src/ identical to f1838f3; M4 scripts uncommitted at run time, committed in the M4 commit)"
+  },
+  {
+   "artifact_id": "CLM-001",
+   "kind": "claim",
+   "label": "confirmatory result",
+   "description": "In the simulation (static preferences, matched pools, eta 0, alpha_0 1.0, true like rate calibrated to 0.577), content-similarity ranking lowered final-window exposure topic entropy H_exp relative to random ranking by 0.4000 (95% paired t-interval [-0.4028, -0.3972], 20 seeds); H1 supported under the frozen rule.",
+   "exp_id": "EXP-001 verdict.json primary",
+   "run_ids": "EXP-001-main-eta=0.0_alpha0=1.0-{similarity,random}-s101001..s101020 (40 runs)",
+   "metric_definition": "H_exp(u) = -sum_z q_uz ln q_uz / ln K over the last W = 50 slates, position weights 0.85^(j-1); run value = mean over users (protocol section 4)",
+   "result_path": "research/experiments/EXP-001/verdict.json; results/raw/EXP-001; revision f1838f3",
+   "figure_or_table": "EXP-001-FIG-C01; manuscript Table 2",
+   "manuscript_section": "5.1",
+   "generator_script": "scripts/analyse_experiment.py (verdict.json, contrasts.csv, summary.csv, figures); scripts/report_tables.py (tables.md)",
+   "config_or_protocol_hash": "e51281119eed3c3bcd8ce8042cadc37b104c9b670d4992574e1d2b1095b7afcc",
+   "code_revision": "f1838f3e8451c8c4275579a5736fe488354a8f3a"
+  },
+  {
+   "artifact_id": "CLM-002",
+   "kind": "claim",
+   "label": "confirmatory result (secondary cells)",
+   "description": "The EXP-001 similarity-minus-random reduction in H_exp was between -0.3938 and -0.4000 in all four (eta, alpha_0) cells, each with H1 supported under the frozen rule.",
+   "exp_id": "EXP-001 verdict.json secondary_cells",
+   "run_ids": "EXP-001-main-*-{similarity,random}-s101001..s101020 (160 runs)",
+   "metric_definition": "H_exp(u) = -sum_z q_uz ln q_uz / ln K over the last W = 50 slates, position weights 0.85^(j-1); run value = mean over users (protocol section 4)",
+   "result_path": "research/experiments/EXP-001/verdict.json",
+   "figure_or_table": "EXP-001-FIG-C01; EXP-001 tables.md Table C; manuscript Table 2",
+   "manuscript_section": "5.1",
+   "generator_script": "scripts/analyse_experiment.py (verdict.json, contrasts.csv, summary.csv, figures); scripts/report_tables.py (tables.md)",
+   "config_or_protocol_hash": "e51281119eed3c3bcd8ce8042cadc37b104c9b670d4992574e1d2b1095b7afcc",
+   "code_revision": "f1838f3e8451c8c4275579a5736fe488354a8f3a"
+  },
+  {
+   "artifact_id": "CLM-003",
+   "kind": "claim",
+   "label": "confirmatory secondary result",
+   "description": "In EXP-001 (primary cell) MMR re-ranking recovered part of the entropy loss of similarity ranking (MMR minus similarity +0.2147, 95% t [0.2125, 0.2169]); the bandit lowered H_exp by 0.2920 and MMR by 0.1853 relative to random; popularity changed H_exp by only -0.0089 [-0.0115, -0.0064], below the smallest effect of interest, while raising item-exposure Gini by 0.7308.",
+   "exp_id": "EXP-001 contrasts.csv (cell main:alpha0=1.0;eta=0.0)",
+   "run_ids": "EXP-001-main-eta=0.0_alpha0=1.0-* (100 runs)",
+   "metric_definition": "H_exp(u) = -sum_z q_uz ln q_uz / ln K over the last W = 50 slates, position weights 0.85^(j-1); run value = mean over users (protocol section 4)",
+   "result_path": "research/experiments/EXP-001/contrasts.csv",
+   "figure_or_table": "EXP-001 tables.md Table B; manuscript Table 3",
+   "manuscript_section": "5.1",
+   "generator_script": "scripts/analyse_experiment.py (verdict.json, contrasts.csv, summary.csv, figures); scripts/report_tables.py (tables.md)",
+   "config_or_protocol_hash": "e51281119eed3c3bcd8ce8042cadc37b104c9b670d4992574e1d2b1095b7afcc",
+   "code_revision": "f1838f3e8451c8c4275579a5736fe488354a8f3a"
+  },
+  {
+   "artifact_id": "CLM-004",
+   "kind": "claim",
+   "label": "confirmatory result",
+   "description": "Under the drifting-preference model (gamma 0.05, alpha_0 1.0), similarity ranking changed normalised preference entropy by -0.4350 relative to random (95% t [-0.4387, -0.4313], 20 seeds); H1 supported. Under random ranking preference entropy rose (+0.0971), under similarity it fell (-0.3379); MMR recovered about 37% of the contrast (MMR minus similarity +0.1626).",
+   "exp_id": "EXP-002 verdict.json primary; summary.csv; contrasts.csv",
+   "run_ids": "EXP-002-main-gamma=0.05_alpha0=1.0-* (100 runs)",
+   "metric_definition": "(H(p_u(T)) - H(p_u(0))) / ln K, mean over users (EXP-002 protocol section 5)",
+   "result_path": "research/experiments/EXP-002/verdict.json",
+   "figure_or_table": "EXP-002-FIG-C01; EXP-002 tables.md Tables A to C; manuscript Table 4",
+   "manuscript_section": "5.2",
+   "generator_script": "scripts/analyse_experiment.py (verdict.json, contrasts.csv, summary.csv, figures); scripts/report_tables.py (tables.md)",
+   "config_or_protocol_hash": "2c3b1816328f95d487bd83c1002a6db3970881a0eed91a2677569c3f2cfeed59",
+   "code_revision": "f1838f3e8451c8c4275579a5736fe488354a8f3a"
+  },
+  {
+   "artifact_id": "CLM-005",
+   "kind": "claim",
+   "label": "confirmatory sensitivity result",
+   "description": "The EXP-002 drift-form rule was not met: D under additive-then-clip was -0.4363 (alpha_0 1.0) and -0.4351 (alpha_0 0.1), same sign and above 0.05 in size. The check is weak: for non-negative p, additive-then-clip followed by normalisation equals the multiplicative rule with gamma/(1+gamma) unless the clip binds.",
+   "exp_id": "EXP-002 verdict.json drift_form",
+   "run_ids": "EXP-002-driftform-* (80 runs) and EXP-002-main-gamma=0.05-* similarity and random",
+   "metric_definition": "Gini, relevance, miscalibration KL, user control, like rate (protocol section 5)",
+   "result_path": "research/experiments/EXP-002/verdict.json; src/pulse/model.py drift()",
+   "figure_or_table": "EXP-002-FIG-C01; EXP-002 tables.md Table D; manuscript Table 4",
+   "manuscript_section": "5.2",
+   "generator_script": "scripts/analyse_experiment.py (verdict.json, contrasts.csv, summary.csv, figures); scripts/report_tables.py (tables.md)",
+   "config_or_protocol_hash": "2c3b1816328f95d487bd83c1002a6db3970881a0eed91a2677569c3f2cfeed59",
+   "code_revision": "f1838f3e8451c8c4275579a5736fe488354a8f3a"
+  },
+  {
+   "artifact_id": "CLM-006",
+   "kind": "claim",
+   "label": "confirmatory sensitivity result",
+   "description": "With a Zipf-skewed catalog the similarity-minus-random H_exp contrast was -0.5060 (tau 0.1, 95% t [-0.5169, -0.4951]) and -0.5365 (tau 0.3, [-0.5469, -0.5260]); neither the skew nor the sharpness invalidation criterion of EXP-003 was met, and no sign reversal occurred at the frozen calibration.",
+   "exp_id": "EXP-003 verdict.json",
+   "run_ids": "EXP-003-* (240 runs)",
+   "metric_definition": "H_exp(u) = -sum_z q_uz ln q_uz / ln K over the last W = 50 slates, position weights 0.85^(j-1); run value = mean over users (protocol section 4)",
+   "result_path": "research/experiments/EXP-003/verdict.json",
+   "figure_or_table": "EXP-003-FIG-C01; EXP-003 tables.md Table C; manuscript Table 5",
+   "manuscript_section": "5.3",
+   "generator_script": "scripts/analyse_experiment.py (verdict.json, contrasts.csv, summary.csv, figures); scripts/report_tables.py (tables.md)",
+   "config_or_protocol_hash": "4aafb0446e763a37fe78cf83e00d94bdfc65fd5282579e82e5bd2cd1474b934f",
+   "code_revision": "f1838f3e8451c8c4275579a5736fe488354a8f3a"
+  },
+  {
+   "artifact_id": "CLM-007",
+   "kind": "claim",
+   "label": "confirmatory result (interaction)",
+   "description": "The similarity-minus-random H_exp reduction was larger under the Zipf catalog than under the uniform catalog: interaction -0.1059 (tau 0.1, Welch 95% [-0.1170, -0.0948]) and -0.1503 (tau 0.3, [-0.1611, -0.1396]).",
+   "exp_id": "EXP-003 verdict.json skew_interaction",
+   "run_ids": "EXP-003-*-{similarity,random}-* (160 runs)",
+   "metric_definition": "H_exp(u) = -sum_z q_uz ln q_uz / ln K over the last W = 50 slates, position weights 0.85^(j-1); run value = mean over users (protocol section 4)",
+   "result_path": "research/experiments/EXP-003/verdict.json",
+   "figure_or_table": "EXP-003-FIG-C01; EXP-003 tables.md Table D; manuscript Table 5",
+   "manuscript_section": "5.3",
+   "generator_script": "scripts/analyse_experiment.py (verdict.json, contrasts.csv, summary.csv, figures); scripts/report_tables.py (tables.md)",
+   "config_or_protocol_hash": "4aafb0446e763a37fe78cf83e00d94bdfc65fd5282579e82e5bd2cd1474b934f",
+   "code_revision": "f1838f3e8451c8c4275579a5736fe488354a8f3a"
+  },
+  {
+   "artifact_id": "CLM-008",
+   "kind": "claim",
+   "label": "confirmatory result (second test)",
+   "description": "With MovieLens 1M held-out-half preference vectors and catalog topic weights, similarity ranking lowered H_exp relative to random by 0.4095 (95% t [-0.4210, -0.3980], 20 seeds); H1 supported, contradiction rule not met, no sign reversal.",
+   "exp_id": "EXP-004 verdict.json",
+   "run_ids": "EXP-004-main-*-{similarity,random}-s104001..s104020 (40 runs)",
+   "metric_definition": "H_exp(u) = -sum_z q_uz ln q_uz / ln K over the last W = 50 slates, position weights 0.85^(j-1); run value = mean over users (protocol section 4)",
+   "result_path": "research/experiments/EXP-004/verdict.json; held-out file SHA-256 75f9fb8f...",
+   "figure_or_table": "EXP-004-FIG-C01; EXP-004 tables.md Table C; manuscript Table 6",
+   "manuscript_section": "5.4",
+   "generator_script": "scripts/analyse_experiment.py (verdict.json, contrasts.csv, summary.csv, figures); scripts/report_tables.py (tables.md)",
+   "config_or_protocol_hash": "43afda057c89f26add143561edbc0b0033de19675b8b5ef1626103518cdba9b2",
+   "code_revision": "f1838f3e8451c8c4275579a5736fe488354a8f3a"
+  },
+  {
+   "artifact_id": "CLM-009",
+   "kind": "claim",
+   "label": "confirmatory secondary result",
+   "description": "In EXP-001 (primary cell) similarity ranking gave the highest relevance and like rate of all arms (similarity minus random: relevance +0.0603, like rate +0.1283), while MMR lowered miscalibration relative to random (-0.1874 nats) at a small relevance cost relative to similarity (-0.0100).",
+   "exp_id": "EXP-001 contrasts.csv (cell main:alpha0=1.0;eta=0.0)",
+   "run_ids": "EXP-001-main-eta=0.0_alpha0=1.0-* (100 runs)",
+   "metric_definition": "Gini, relevance, miscalibration KL, user control, like rate (protocol section 5)",
+   "result_path": "research/experiments/EXP-001/contrasts.csv",
+   "figure_or_table": "EXP-001 tables.md Table B; manuscript Table 3",
+   "manuscript_section": "5.1",
+   "generator_script": "scripts/analyse_experiment.py (verdict.json, contrasts.csv, summary.csv, figures); scripts/report_tables.py (tables.md)",
+   "config_or_protocol_hash": "e51281119eed3c3bcd8ce8042cadc37b104c9b670d4992574e1d2b1095b7afcc",
+   "code_revision": "f1838f3e8451c8c4275579a5736fe488354a8f3a"
+  },
+  {
+   "artifact_id": "CLM-010",
+   "kind": "claim",
+   "label": "confirmatory secondary result",
+   "description": "In EXP-004 MMR stayed close to random in topic entropy (MMR minus random -0.0864, 95% t [-0.0911, -0.0817]) while losing little relevance relative to similarity (-0.0013 [-0.0019, -0.0007]).",
+   "exp_id": "EXP-004 contrasts.csv",
+   "run_ids": "EXP-004-main-* (60 runs)",
+   "metric_definition": "Gini, relevance, miscalibration KL, user control, like rate (protocol section 5)",
+   "result_path": "research/experiments/EXP-004/contrasts.csv",
+   "figure_or_table": "EXP-004 tables.md Table B; manuscript Table 6",
+   "manuscript_section": "5.4",
+   "generator_script": "scripts/analyse_experiment.py (verdict.json, contrasts.csv, summary.csv, figures); scripts/report_tables.py (tables.md)",
+   "config_or_protocol_hash": "43afda057c89f26add143561edbc0b0033de19675b8b5ef1626103518cdba9b2",
+   "code_revision": "f1838f3e8451c8c4275579a5736fe488354a8f3a"
+  },
+  {
+   "artifact_id": "CLM-011",
+   "kind": "claim",
+   "label": "confirmatory secondary result",
+   "description": "Under the Zipf catalog MMR recovered more of the similarity loss than under the uniform catalog (MMR minus similarity +0.3669 and +0.4256 under Zipf against +0.2150 and +0.2306 under uniform, tau 0.1 and 0.3).",
+   "exp_id": "EXP-003 contrasts.csv",
+   "run_ids": "EXP-003-*-{mmr,similarity}-* (160 runs)",
+   "metric_definition": "Gini, relevance, miscalibration KL, user control, like rate (protocol section 5)",
+   "result_path": "research/experiments/EXP-003/contrasts.csv",
+   "figure_or_table": "EXP-003 tables.md Table B; manuscript Table 5",
+   "manuscript_section": "5.3",
+   "generator_script": "scripts/analyse_experiment.py (verdict.json, contrasts.csv, summary.csv, figures); scripts/report_tables.py (tables.md)",
+   "config_or_protocol_hash": "4aafb0446e763a37fe78cf83e00d94bdfc65fd5282579e82e5bd2cd1474b934f",
+   "code_revision": "f1838f3e8451c8c4275579a5736fe488354a8f3a"
+  },
+  {
+   "artifact_id": "CLM-012",
+   "kind": "claim",
+   "label": "exploratory result",
+   "description": "EXPLORATORY (M4, 5 seeds, not a confirmatory result): with the settings of the EXP-003 tau 0.1 block and the midpoint refitted for target true like rates from 0.02 to 0.85, the similarity-minus-random H_exp contrast under the uniform catalog was near zero at like rates 0.02 and 0.05 (-0.0032 and -0.0057), -0.0384 at 0.15, -0.2396 at 0.30 and between -0.3910 and -0.3961 from 0.45 upward; under the Zipf catalog it was positive at 0.02 to 0.15 (+0.1045, +0.1026, +0.0724) and negative from 0.30 upward (-0.1258 to -0.7106).",
+   "exp_id": "XPL-M4-LIKERATE",
+   "run_ids": "XPL-M4-LIKERATE-{UNIFORM,ZIPF}-likerate-* (160 runs, seeds 960001..960005)",
+   "metric_definition": "H_exp(u) = -sum_z q_uz ln q_uz / ln K over the last W = 50 slates, position weights 0.85^(j-1); run value = mean over users (protocol section 4)",
+   "result_path": "results/exploratory/m4-likerate-{uniform;zipf}/report/contrasts.csv; revision 17c2e5f (src identical to f1838f3)",
+   "figure_or_table": "FIG-M4-X01; manuscript Table 7; results/exploratory/m4-likerate-summary.csv",
+   "manuscript_section": "5.5",
+   "generator_script": "scripts/analyse_experiment.py (verdict.json, contrasts.csv, summary.csv, figures); scripts/report_tables.py (tables.md)",
+   "config_or_protocol_hash": "uniform e10e8f06c5994110fd6ea420c7e9afad3bdf666ed6d19718dd23972ed3194a04; zipf 0408cce6bff840bbe3c3df2a64db27ae949c4c85c26b0b88cb309a4d2d81c0ee",
+   "code_revision": "17c2e5f3cd1f905c7914f4bc4d5ed4c70811f4e3 (src/ identical to f1838f3; M4 scripts uncommitted at run time, committed in the M4 commit)"
+  },
+  {
+   "artifact_id": "CLM-013",
+   "kind": "claim",
+   "label": "exploratory disclosure (pre-freeze)",
+   "description": "Before the freeze, under the planning midpoint 0.5 (true like rate about 0.02), the exploratory EXP-001 primary contrast on 10 disjoint seeds was -0.000688 (95% t [-0.002227, 0.000851]); the owner approved the recalibration with this value available.",
+   "exp_id": "freeze.json c4_disclosure",
+   "run_ids": "var-probe seeds 910001..910010",
+   "metric_definition": "Gini, relevance, miscalibration KL, user control, like rate (protocol section 5)",
+   "result_path": "research/freeze.json; results/exploratory/var-probe/report/contrasts.csv",
+   "figure_or_table": "manuscript sections 4.6 and 6.2",
+   "manuscript_section": "4.6",
+   "generator_script": "scripts/analyse_experiment.py (verdict.json, contrasts.csv, summary.csv, figures); scripts/report_tables.py (tables.md)",
+   "config_or_protocol_hash": "see results/exploratory/var-probe/set_manifest.json",
+   "code_revision": "f1838f3e8451c8c4275579a5736fe488354a8f3a"
+  },
+  {
+   "artifact_id": "CLM-014",
+   "kind": "claim",
+   "label": "execution record",
+   "description": "All 1,260 confirmatory runs completed with 0 failures and 0 exclusions in about 19.5 minutes of wall clock (EXP-001 904.6 s, EXP-002 828.2 s, EXP-003 252.2 s, EXP-004 72.4 s, two processes in parallel), against a 4-hour budget.",
+   "exp_id": "CONF-EXP-001 to CONF-EXP-004 (journal)",
+   "run_ids": "all confirmatory runs",
+   "metric_definition": "Gini, relevance, miscalibration KL, user control, like rate (protocol section 5)",
+   "result_path": "research/experiment_journal.jsonl; research/experiments/EXP-00N/run_manifest.json",
+   "figure_or_table": "manuscript Table 1",
+   "manuscript_section": "4.7",
+   "generator_script": "scripts/analyse_experiment.py (verdict.json, contrasts.csv, summary.csv, figures); scripts/report_tables.py (tables.md)",
+   "config_or_protocol_hash": "the four canonical config hashes above",
+   "code_revision": "f1838f3e8451c8c4275579a5736fe488354a8f3a"
+  }
+ ]
 }

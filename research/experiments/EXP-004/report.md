@@ -124,6 +124,7 @@ Source: `tables.md` (Tables A, B, C, E) and `verdict.json`.
 - **User control.** Both rankers were less responsive to dislikes than random, by this narrow metric (limitations 13).
 - **Model-dependent inference.** The inputs are constructed (add-one smoothing, division by catalog share, one primary genre per movie), and the like target comes from selected exposure. The result concerns the simulation on these inputs, not MovieLens users.
 - **Evidence.** The result supports H1 under the frozen rule.
+- **M4 addendum (2026-11-25).** EXP-004 uses the same like-rate target as EXP-001 (c_ML fitted to L* = 0.577143). Its agreement with EXP-001 therefore shows that replacing the Dirichlet generator did not change the result at that calibration; it does not show robustness to the like rate, which the M4 exploratory check found to matter for synthetic users (`research/publication/interpretation_m4.md`; limitations 17). The MovieLens inputs were not included in that check.
 
 ## 10. Threats to validity
 

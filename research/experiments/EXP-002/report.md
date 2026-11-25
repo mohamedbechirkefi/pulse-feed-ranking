@@ -150,13 +150,14 @@ The popularity contrast was below the smallest effect of interest in all four ce
 - **Measured vs model-dependent.**
   - Measured: under the stated drift rule, the ranker strongly governs whether simulated preferences concentrate or spread.
   - Model-dependent: the drift rule itself encodes reinforcement. The experiment shows how rankers interact with it (limitations 4).
-- **Ordering.** The ordering of arms matches their H_exp ordering: similarity, then bandit, then MMR, then popularity, then random. Diversity-aware re-ranking (MMR) roughly halved the similarity contrast.
+- **Ordering.** The ordering of arms matches their H_exp ordering: similarity, then bandit, then MMR, then popularity, then random. Diversity-aware re-ranking (MMR) recovered about 37% of the similarity contrast (MMR minus similarity +0.1626 against similarity minus random -0.4350). The M3 text said "roughly halved"; corrected in the M4 evidence audit (finding F-3).
 - **Drift-form check (negative finding on the check itself).**
   - The frozen rule was not met: the additive-then-clip contrasts equal the multiplicative ones to within 0.0015.
   - After the results it was found that, for non-negative preferences, additive-then-clip followed by normalisation equals the multiplicative rule with rate gamma/(1 + gamma) (0.0476 instead of 0.05), unless the clip at 1 binds (limitations 12).
   - The check therefore tests little more than a small change of gamma. "Not dependent on drift form" has limited construct value. A genuinely different drift form would need a new experiment.
 - **Literature.** The result is consistent with the amplification mechanism modelled by Kalimeris et al. 2021 and Jiang et al. 2019. It adds matched-ranker effect sizes under one rule.
 - **Evidence.** The result supports H1 under the frozen rule.
+- **M4 addendum (2026-11-25).** The M4 exploratory check found the static-preference exposure effect near zero at low like rates (`research/publication/interpretation_m4.md`). Whether the same holds under drift was not tested; this result is stated at the calibrated midpoint only (limitations 17).
 
 ## 10. Threats to validity
 

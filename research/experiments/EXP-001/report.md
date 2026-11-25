@@ -184,6 +184,7 @@ The popularity contrast is negative and its interval excludes 0, but it is small
   - Candidate-pool composition: excluded within a seed by common random numbers, and tested across catalogs in EXP-003.
   - Feedback noise and initial concentration: varied as factors here, with no change in the conclusion.
 - **Evidence.** The result supports H1 under the frozen rule.
+- **M4 addendum (2026-11-25, EXPLORATORY, does not change the verdict).** The frozen design fixed one choice-curve midpoint, so it cannot say whether the effect depends on how often simulated users like what they see. Before the freeze, at the planning midpoint (like rate about 0.02), the exploratory primary contrast was -0.000688 (95% t [-0.002227, 0.000851], 10 seeds; freeze record C4). The M4 exploratory check XPL-M4-LIKERATE (5 seeds, settings of the EXP-003 tau 0.1 uniform cell) found the similarity-minus-random contrast at -0.0032 for a true like rate of 0.02, -0.0384 at 0.15, -0.2396 at 0.30 and between -0.3910 and -0.3961 from 0.45 upward (`results/exploratory/m4-likerate-summary.csv`). The result above therefore holds at the calibrated like rate; at low like rates the exploratory evidence shows no practically relevant reduction (`research/publication/interpretation_m4.md`; limitations 17).
 
 ## 10. Threats to validity
 

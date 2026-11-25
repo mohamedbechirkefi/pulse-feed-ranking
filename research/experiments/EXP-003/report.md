@@ -152,6 +152,7 @@ Source: `tables.md` (Tables A to E) and `verdict.json`.
   - Similarity's miscalibration rose sharply under skew (+1.1293 and +1.4988 nats).
 - **Literature.** This is consistent with simulation work that treats conclusions as conditional on configurable assumptions (Lucherini et al. 2021; Ie et al. 2019).
 - **Evidence.** The result supports H1 in every cell.
+- **M4 addendum (2026-11-25, EXPLORATORY, does not change the verdict).** The M4 exploratory check XPL-M4-LIKERATE repeated the tau 0.1 block with the midpoint refitted for target true like rates from 0.02 to 0.85 (5 seeds, current code). Under the Zipf catalog the similarity-minus-random contrast was positive at like rates 0.02, 0.05 and 0.15 (+0.1045, +0.1026, +0.0724) and negative from 0.30 upward (-0.1258 to -0.7106); at the frozen calibration it was -0.5021, close to the confirmatory -0.5060. This reproduces the pre-freeze reversal with the current code. The frozen verdict ("not restricted to balanced pools") holds at the frozen calibration only; the direction under skew depends on the like rate (`research/publication/interpretation_m4.md`; limitations 15 and 17).
 
 ## 10. Threats to validity
 

@@ -189,3 +189,40 @@ The owner or the coordinator: decide how the 11.3 experiment reports get written
 ## 2026-11-25: M3 done (coordinator)
 
 The owner approved the experiment reports (owner, 2026-11-25, "approve all recommendations, RIGGED A", item 4). Subagents may not write report files, so the reports were composed by the M3 session from committed results only and written by the coordinator: 4 report(s). The coordinator checked that every decimal number in them appears in a committed file. With the complete matrices (or documented failures) recorded above, the M3 gate holds. M3 is **done**. Next: M4 (interpretation), not started.
+
+## 2026-11-25: M4 session (interpretation, evidence audit, manuscript)
+
+**Milestone:** M4. **Authority:** the owner's "Approve all recommendations, push then next" (2026-11-25, item 5) and the coordinator's M4 brief. **Next bounded task at start:** confounder inspection, expected-versus-observed table, claims register, evidence audit, manuscript, second review pass.
+
+### Starting state
+`git status`: branch main, clean, HEAD 17c2e5f. No PULSE-specific follow-up in the 2026-11-25b approvals.
+
+### Commands and actual outputs
+- `PYTHONPATH=src .venv/bin/python scripts/m4_likerate_configs.py`: midpoints fitted by the frozen calibration method (achieved like rates equal to the targets to 1e-9); two exploratory configs written.
+- Two processes, `nice -n 10 env PYTHONPATH=src .venv/bin/python -m pulse.cli run --config experiments/exploratory/m4-likerate-{uniform,zipf}.json`: 80/80 ok each, 61.3 s and 60.4 s. `pulse.cli report --no-pdf` on both; `scripts/m4_likerate_summary.py` wrote `results/exploratory/m4-likerate-summary.csv` and `research/paper/figures/FIG-M4-X01.svg`. Journal XPL-M4-LIKERATE (exploratory).
+- `scripts/analyse_experiment.py EXP-00N` and `scripts/report_tables.py EXP-00N` rerun for all four experiments: `git status` showed no change (byte-identical outputs, no stale tables or figures).
+- `scripts/m4_derived_ratios.py`: `results/derived/mmr_recovery.csv` (13 rows).
+- `scripts/m4_evidence_audit.py > research/publication/evidence_audit_output.txt`: exit 0; Part A 0 problems (1,260 hashes, 351 contrasts, 63 summary rows, Welch and drift form recomputed independently); Parts B to D 0 untraced numbers (one arXiv id token explained). Journal AUD-M4.
+- `scripts/m4_build_manifest.py`: 42 artifacts.
+- WebFetch of the ACM page for Steck 2018: HTTP 403; the formula check stays open.
+- `.venv/bin/python -m pytest -q`: "153 passed".
+
+### Decisions
+D-016.
+
+### Findings
+- The primary effect depends on the like rate (exploratory, 5 seeds): below the smallest effect of interest at true like rates of 0.15 or less (uniform), reversed in sign under Zipf at those rates. All confirmatory verdicts stand; their interpretation is restated as conditional on the calibration (limitations 17).
+- Evidence audit findings F-1 to F-9 (`research/publication/evidence_audit.md`), including one wording error fixed in the EXP-002 report and several draft-manuscript errors caught before commit.
+
+### Files changed
+New: `scripts/m4_{likerate_configs,likerate_summary,derived_ratios,evidence_audit,build_manifest}.py`, `experiments/exploratory/m4-likerate-{uniform,zipf}.json`, `results/exploratory/m4-likerate-*`, `results/exploratory/logs/`, `results/derived/mmr_recovery.csv`, `research/paper/figures/FIG-M4-X01.svg`, `research/publication/{interpretation_m4.md, evidence_audit.md, evidence_audit_output.txt, review_pass_2.md}`. Modified: `research/paper/{manuscript.md, supplementary.md}`, `research/claims_register.csv`, `research/publication/{artifact_manifest.json, claims_audit.md}`, `research/experiments/EXP-00{1,2,3,4}/report.md` (M4 addenda; EXP-002 wording fix), `research/{limitations.md, decision_log.md, experiment_journal.jsonl, experiment_registry.csv}`, `roadmap.md`.
+
+### M4 gate
+Every numerical claim in the manuscript maps to a claim id with result id, config hash and figure or table; every external claim maps to a listed source with the extent of reading marked; unsupported claims were removed or qualified. **M4 is done.** Open items carried to M6: the Steck 2018 formula check (F-5) and the absolute local path in `run_manifest.json` (F-7).
+
+### Risks
+- The like-rate dependence is post hoc and exploratory; presenting it as a finding would need a new registered experiment (EXP-005) frozen by the owner.
+- Manuscript and report PDFs are not built (M6).
+
+### Next action
+The owner: review the manuscript title and decide whether the like-rate dependence becomes a registered EXP-005. Then M5 (interactive page using the same verified results).

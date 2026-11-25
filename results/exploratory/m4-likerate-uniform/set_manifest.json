@@ -1,0 +1,73 @@
+{
+ "environment": {
+  "cpu": "Apple M1 Pro",
+  "git": {
+   "commit": "17c2e5f3cd1f905c7914f4bc4d5ed4c70811f4e3",
+   "dirty": false
+  },
+  "numpy": "2.3.5",
+  "os": "macOS-15.3.1-arm64-arm-64bit",
+  "pulse_version": "0.1.0",
+  "python": "3.12.1"
+ },
+ "experiment_config": {
+  "base": {
+   "alpha0": 1.0,
+   "eta": 0.1,
+   "n_items": 1000,
+   "n_steps": 200,
+   "n_topics": 10,
+   "n_users": 200,
+   "pool_size": 50,
+   "pool_skew": "uniform",
+   "preference_model": "static",
+   "slate_size": 10,
+   "tau": 0.1,
+   "window": 50,
+   "zipf_s": 1.0
+  },
+  "blocks": [
+   {
+    "arms": [
+     {
+      "arm": "random",
+      "ranker": "random"
+     },
+     {
+      "arm": "similarity",
+      "ranker": "similarity"
+     }
+    ],
+    "factors": {
+     "like_midpoint": [
+      0.40676871582400054,
+      0.28171166765969247,
+      0.18852302606683224,
+      0.12026614660862833,
+      0.06642147188540548,
+      0.01042797404807061,
+      -0.08099950884934515,
+      0.5
+     ]
+    },
+    "name": "likerate"
+   }
+  ],
+  "description": "M4 exploratory like-rate sensitivity of the primary contrast (not a confirmatory experiment; never pooled; never changes a frozen verdict). Settings of the EXP-003 tau0.1 block, midpoint crossed as a factor, 5 seeds 960001+.",
+  "experiment_id": "XPL-M4-LIKERATE-UNIFORM",
+  "label": "exploratory",
+  "output_dir": "results/exploratory/m4-likerate-uniform",
+  "seeds": {
+   "count": 5,
+   "first": 960001
+  }
+ },
+ "experiment_config_hash": "e10e8f06c5994110fd6ea420c7e9afad3bdf666ed6d19718dd23972ed3194a04",
+ "experiment_id": "XPL-M4-LIKERATE-UNIFORM",
+ "finished_utc": "2026-11-25T01:20:11Z",
+ "label": "exploratory",
+ "n_failed": 0,
+ "n_runs": 80,
+ "started_utc": "2026-11-25T01:19:10Z",
+ "wall_clock_s": 61.341
+}
