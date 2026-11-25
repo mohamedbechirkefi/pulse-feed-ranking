@@ -1,0 +1,68 @@
+{
+ "experiment_id": "EXP-005",
+ "label": "confirmatory",
+ "status": "registered, not frozen (draft v0.1, 2026-11-25); not runnable: OPEN values must be set and the protocol frozen by the owner (G-FREEZE)",
+ "protocol_path": "research/experiments/EXP-005/protocol.md",
+ "output_dir": "results/raw/EXP-005",
+ "base": {
+  "n_users": 200,
+  "n_items": 1000,
+  "n_topics": 10,
+  "pool_size": 50,
+  "slate_size": 10,
+  "n_steps": 200,
+  "window": 50,
+  "preference_model": "static",
+  "eta": 0.1,
+  "alpha0": 1.0,
+  "zipf_s": 1.0
+ },
+ "seeds": {
+  "first": 105001,
+  "count": 20
+ },
+ "like_rate_reference": {
+  "target": 0.5771428687720555,
+  "like_midpoint_tau0.1": 0.06642147188540548,
+  "source": "protocol 15.4 and 15.11 (frozen)"
+ },
+ "like_rate_levels": "OPEN-1: owner decision at freeze; each target is mapped to like_midpoint by the frozen method of protocol 15.5 before any run",
+ "blocks": [
+  {
+   "name": "tau0.1",
+   "factors": {
+    "pool_skew": [
+     "uniform",
+     "zipf"
+    ],
+    "like_midpoint": "OPEN-1: fitted midpoints for the owner's levels, plus 0.06642147188540548 (reference L*)"
+   },
+   "overrides": {
+    "tau": 0.1
+   },
+   "arms": [
+    {
+     "arm": "random",
+     "ranker": "random"
+    },
+    {
+     "arm": "similarity",
+     "ranker": "similarity"
+    }
+   ],
+   "optional_arms": "OPEN-5: mmr (lambda_mmr 0.5, as EXP-003) included or not"
+  }
+ ],
+ "optional_blocks": "OPEN-4: a tau0.3 block with midpoints fitted per level at tau 0.3, included or not",
+ "primary": {
+  "metric": "h_exp",
+  "treatment": "similarity",
+  "control": "random",
+  "block": "tau0.1",
+  "per_level_contrast": "Delta_l = H_exp(similarity) - H_exp(random), paired by seed, per pool_skew and level",
+  "dependence_contrast": "D_l = Delta_l - Delta_ref, paired by seed, reference level L*",
+  "designated_levels": "OPEN-2",
+  "threshold_and_holm_family": "OPEN-3"
+ },
+ "compute_budget": "OPEN-6"
+}

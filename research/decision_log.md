@@ -131,3 +131,19 @@ Each entry: id, date, decision, decided by, context, alternatives, consequences.
 - **Manuscript:** synthesised to master prompt 11.4 (version 0.2), revised after the second review pass (`research/publication/review_pass_2.md`). Status: independent research manuscript / preprint draft, not peer-reviewed. No PDF built (M6).
 - **Not changed:** no frozen protocol, config, seed or verdict; no confirmatory rerun.
 - **Owner may review:** whether the post hoc like-rate dependence should become a new registered experiment (EXP-005) with its own frozen protocol before any public release; the manuscript's title choice.
+
+## D-017: Manuscript title and statements, owner-approved after M4 (2026-11-25)
+
+- **Authority:** owner, 2026-11-25, "Approve all" (post-M4) (`labs/_shared/owner-approvals-2026-11-25c.md`, items 1 and 2, outside this repository). Item 1: "The titles proposed in M4 are approved for SWARM, PULSE, CHAOS, STREAK, MATCH, FARE, HERD and VIRAL." Item 2: "The wording drafted in each manuscript is approved. Where a draft still has a placeholder that needs a fact only the owner knows, it stays a placeholder."
+- **Title (item 1):** the M4 proposal is the title already in `research/paper/manuscript.md` version 0.2, "Content-similarity ranking and topic exposure in a matched-pool recommender simulation: confirmatory effects and a like-rate boundary". It is the only proposed title: `research/publication/review_pass_2.md` section 2 records the 0.1 draft title as rejected and this one as its revision. No change to the file was needed; the title is now owner-approved.
+- **Statements (item 2):** the funding, competing-interest and AI-use wording of manuscript section 11 ("No funding. No competing interests. An AI system (Claude, Anthropic) acted as research and development assistant ...") and the authorship and AI line under the title are owner-approved. No wording changed.
+- **Placeholders kept:** listed in `progress.md` under "Owner placeholders for M5".
+
+## D-018: EXP-005 registered, not frozen: like-rate dependence of the primary contrast (2026-11-25)
+
+- **Authority:** owner, 2026-11-25, "Approve all" (post-M4) (`labs/_shared/owner-approvals-2026-11-25c.md`, item 3): "PULSE: like-rate dependence (EXP-005). Each gets a protocol and config written before any data. The freeze needs the owner's G-FREEZE word as usual."
+- **Done:** `research/experiments/EXP-005/protocol.md` (11.2 structure, draft v0.1) and `research/experiments/EXP-005/config.json` (draft, not runnable); registry row with status "registered, not frozen" and no protocol hash, so the run guard refuses a confirmatory run.
+- **Derived from the frozen design v1.0:** world and settings of the EXP-003 `tau0.1` block; arms random and similarity; uniform and Zipf catalogs; midpoint fitted by the frozen method of protocol 15.5, fitted on the uniform world and reused under Zipf; reference level L* = 0.577 with its frozen midpoint; 20 seeds per cell (protocol 15.8), first seed 105001 by the EXP-00N convention; per-level decision rules of protocol section 3 and 15.9; uncertainty, exclusion and stopping of protocol sections 7 and 8.
+- **Left open for the owner at freeze (not chosen):** OPEN-1 like-rate levels; OPEN-2 levels designated for the dependence contrast; OPEN-3 its threshold and Holm family; OPEN-4 tau 0.3 block; OPEN-5 MMR arm; OPEN-6 compute budget.
+- **Disclosure:** designed after the confirmatory results and the exploratory XPL-M4-LIKERATE check were seen (protocol section 0). The exploratory values are never pooled with EXP-005.
+- **Not done:** no computation, no midpoint fit, no hash added to `research/freeze.json`, no config in `experiments/`. Before freeze, still to write and test: the midpoint-fit script for the owner's levels and the analysis extension for several levels and the dependence contrast.

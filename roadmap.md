@@ -1,7 +1,7 @@
 <!-- SPDX-License-Identifier: LicenseRef-PULSE-NC-Research-1.0 -->
 # PULSE roadmap
 
-Target: five focused development days (planning estimate, never a reason to weaken evidence). Updated 2026-11-25 (M4 session).
+Target: five focused development days (planning estimate, never a reason to weaken evidence). Updated 2026-11-25 (post-M4 owner decisions, D-017 and D-018).
 
 | ID | Milestone | Depends on | Acceptance criteria (gate) | Priority | Effort | Status | Blockers |
 | --- | --- | --- | --- | --- | --- | --- | --- |
@@ -15,7 +15,7 @@ Target: five focused development days (planning estimate, never a reason to weak
 
 ## Registered experiments
 
-See `research/experiment_registry.csv`: EXP-001 (static, exposure entropy, 480 runs), EXP-002 (drifting, preference reinforcement, 480), EXP-003 (sensitivity: pool skew and choice sharpness, 240), EXP-004 (second test on MovieLens-derived preferences, 60). All frozen (owner-approved 2026-11-24); confirmatory runs complete 2026-11-25, reports pending.
+See `research/experiment_registry.csv`: EXP-001 (static, exposure entropy, 480 runs), EXP-002 (drifting, preference reinforcement, 480), EXP-003 (sensitivity: pool skew and choice sharpness, 240), EXP-004 (second test on MovieLens-derived preferences, 60). All frozen (owner-approved 2026-11-24); confirmatory runs complete 2026-11-25; reports written (D-015). EXP-005 (like-rate dependence of the primary contrast): registered 2026-11-25, not frozen (D-018); protocol and config draft with six open parameters; no run before the owner's G-FREEZE word.
 
 ## Scope cuts if the five-day target is threatened (in order)
 

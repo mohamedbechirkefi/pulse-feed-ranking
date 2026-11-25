@@ -226,3 +226,29 @@ Every numerical claim in the manuscript maps to a claim id with result id, confi
 
 ### Next action
 The owner: review the manuscript title and decide whether the like-rate dependence becomes a registered EXP-005. Then M5 (interactive page using the same verified results).
+
+## 2026-11-25: post-M4 owner decisions (items 1 to 3)
+
+**Authority:** owner, 2026-11-25, "Approve all" (post-M4) (`labs/_shared/owner-approvals-2026-11-25c.md`) and the coordinator's brief `labs/_shared/POST-M4-brief.md`, items 1, 2 and 3 for PULSE. **Starting state:** branch main, clean, HEAD 2010813.
+
+### Work
+- Item 1, title: the M4 proposal is already the manuscript title (version 0.2); only one candidate exists (review_pass_2 section 2). No file change; recorded as owner-approved (D-017).
+- Item 2, statements: manuscript section 11 wording recorded as owner-approved (D-017). No wording changed.
+- Item 3, EXP-005: protocol and config draft written before any data, registry row "registered, not frozen" (D-018). Six parameters left open for the owner at freeze.
+
+### Commands and actual outputs
+- `.venv/bin/python -m pytest -q`: "153 passed in 3.86s".
+- `PYTHONPATH=src .venv/bin/python -m pulse.cli run --experiment EXP-005`: refused with FileNotFoundError (no `experiments/EXP-005.json`; the config stays in `research/experiments/EXP-005/` until the freeze). Nothing ran.
+
+### Owner placeholders for M5
+- `research/paper/manuscript.md` section 10: "public URL: [to be added by the owner on release]". Needs the repository's public address, which only the owner can decide (G-PUBLIC).
+- No other placeholder in the manuscript, supplementary, CITATION.cff or README needs an owner-only fact. Section 11 states "No funding. No competing interests." as facts already approved by the owner (D-017).
+
+### Files changed
+New: `research/experiments/EXP-005/{protocol.md, config.json}`. Modified: `research/experiment_registry.csv`, `research/decision_log.md`, `progress.md`, `roadmap.md`.
+
+### Risks
+- EXP-005 was designed after the results it follows up; the protocol discloses this (section 0). Its value depends on the owner fixing the open levels without reference to further exploratory runs.
+
+### Next action
+The owner: decide OPEN-1 to OPEN-6 of the EXP-005 protocol and give the G-FREEZE word, after which the midpoint-fit script and the analysis extension are written and tested before any run. Otherwise M5 (interactive page).
