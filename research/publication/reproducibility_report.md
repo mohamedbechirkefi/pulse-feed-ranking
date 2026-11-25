@@ -90,3 +90,20 @@ Dependency licences: `research/publication/dependency_licences.md`. No runtime o
 SPDX headers: every tracked text file added since M0 carries the header where the format allows, except generated outputs whose bytes are recorded elsewhere (`research/experiments/EXP-00N/tables.md`, hashed in the artifact manifest; `research/publication/evidence_audit_output.txt`) and the MovieLens-format test fixtures (`tests/fixtures/movielens/*.dat`, whose format has no comment syntax). Headers were added at M6 to `.gitignore` and `demo/.npmrc`. JSON and CSV are covered by `NOTICE.md`.
 
 ## 6. Fresh clone after the fixes
+
+Fresh clone `$CLONE2` of commit 00dfb14 (the M6 fix commit), 2026-11-25:
+
+| Step | Actual output |
+| --- | --- |
+| `uv sync --frozen --all-groups --all-extras` | 6 packages installed |
+| `.venv/bin/python -m pytest -q` | "176 passed, 1 skipped in 5.72s" (same expected MovieLens skip; 177 pass in the working repository, where MovieLens is prepared) |
+| `pulse.cli smoke --out $S/smoke2` and field comparison | 10 files, 0 field differences outside `config`, `config_hash` and `manifest` |
+| `scripts/analyse_experiment.py EXP-00N`, N = 1 to 4 | exit 0 for all four; `git status --short` empty afterwards: R-2 fixed, every analysis output now regenerates byte-identical in a clone |
+| `scripts/m4_evidence_audit.py` | exit 0; manuscript 2 unmatched tokens (the arXiv identifiers 1003.0146 and 2507.02643); row-wise errors 0; Part D errors 0 |
+| `scripts/check_links.py` | "60 Markdown files, 28 relative links checked", "LINK-CHECK PASS" |
+| `npm ci --prefer-offline`; `npm test`; `npm run build` | "added 53 packages"; "Tests 28 passed (28)"; built in 263 ms, `index-1nDd7Q_m.js` 253.35 kB (same file name, so same content hash, as the first clone) |
+| `node tools/a11y_check.mjs dist` | 14 PASS lines, "A11Y-CHECK PASS" |
+| `export_demo_data.py`, `export_sandbox_fixture.py`, `export_demo_data.py --check` | "EXPORT-CHECK identical"; `git status --short` empty |
+| `scripts/build_pdfs.py` (with `PULSE_PANDOC` and `PULSE_TYPST_PYTHON` pointing at the shared toolchain) | `manuscript.tex` byte-identical; the six PDFs differ in bytes only (embedded creation date): same page counts and identical extracted text on every page |
+
+Both clones and the scratch smoke outputs were deleted after these checks.

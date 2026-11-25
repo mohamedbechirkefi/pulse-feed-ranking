@@ -340,3 +340,23 @@ New: `scripts/build_pdfs.py`, `scripts/check_links.py`, `tests/test_release_chec
 
 ### Next action
 A fresh clone of this commit repeats the checks (recorded in the next entry). Then the owner: review and sign `author_review.md`, decide G-PUBLIC, and decide the EXP-005 freeze when wanted.
+
+## 2026-11-25: M6 fresh-clone re-check
+
+**Starting state:** branch main, clean, HEAD 00dfb14 (M6 fix commit).
+
+### Commands and actual outputs (fresh clone of 00dfb14 in the session scratchpad)
+- `uv sync --frozen --all-groups --all-extras`: 6 packages. `pytest -q`: "176 passed, 1 skipped in 5.72s" (MovieLens skip, expected).
+- Smoke: 10 files, 0 field differences outside config and manifest. `analyse_experiment.py EXP-001` to `EXP-004`: exit 0, `git status --short` empty (R-2 fixed). Evidence audit: exit 0, 0 row-wise and 0 Part D errors. Link check: "LINK-CHECK PASS".
+- Demo: "added 53 packages", "Tests 28 passed (28)", build 263 ms, "A11Y-CHECK PASS"; exports: "EXPORT-CHECK identical", tree clean.
+- `build_pdfs.py`: `manuscript.tex` byte-identical; PDFs identical in page count and extracted text (bytes differ by the embedded date).
+- Both clones deleted. Working repository: `pytest -q` "177 passed"; `npm test` "Tests 28 passed (28)".
+
+### Files changed
+`research/publication/reproducibility_report.md` (section 6), `progress.md`.
+
+### M6 status
+Release candidate prepared, awaiting the owner's review and G-PUBLIC. Not done until the owner signs off `research/publication/author_review.md`.
+
+### Next action
+The owner: read the files listed in `author_review.md` "Prepared for the owner", sign it off, take the publication decision (G-PUBLIC), and decide the EXP-005 freeze (OPEN-1 to OPEN-6) when wanted.
