@@ -52,3 +52,33 @@ No mismatch was found between any committed result number and the raw outputs.
 ## 5. Gate check (M4)
 
 Every numerical claim in the manuscript maps to a claim id with result id, config hash and figure or table (`claims_register.csv`, `artifact_manifest.json`). Every external claim maps to a source listed in `research/literature_review.md`, with the extent of reading marked. One open item (F-5, the Steck formula) is disclosed rather than resolved.
+
+## 6. M6 update (2026-11-25): external sources and provenance paths
+
+This section is added at M6; the M4 sections above are kept as written.
+
+### F-5, external sources: what was read
+
+On 2026-11-25 every primary source was retried through free, legal copies only (arXiv, author or institutional pages; no paid access, no login, no third-party mirror). Text was extracted locally from each PDF (or, for the scanned Carbonell and Goldstein PDF, the two page images were viewed), and each statement the manuscript makes about the source was checked at the location below.
+
+| Key | Copy opened | Label | Manuscript statement checked | Location |
+| --- | --- | --- | --- | --- |
+| chaney2018algorithmic | arXiv:1710.11214 (9 pages) | read in full | simulations; data confounded by the system's own recommendations; homogenised user behaviour without increased utility | abstract; section 2; section 5.2 |
+| mansoury2020feedback | arXiv:2007.13019 (5 pages) | read in full | offline simulation of the feedback loop; popularity bias amplified; aggregate diversity declines | abstract; section 2; section 4.3 |
+| jiang2019degenerate | arXiv:1902.10730 (10 pages) | read in full | formalises degenerate feedback loops; separates echo chamber from filter bubble; simulation with bandit algorithms | abstract; introduction (page 1); section "Simulation Experiments" |
+| kalimeris2021preference | author PDF on the Facebook Research site (11 pages) | read in full | users drift toward recommended content (drift function); conditions for preference amplification | abstract; section 2.1 (Definition 1); section 3 |
+| ie2019recsim | arXiv:1909.04847 (23 pages) | read in full | configurable user model, document model and user-choice model | section 3.1 |
+| lucherini2021trecs | arXiv:2107.08959 (17 pages) | read in full | simulation tool with configurable users, items and preference dynamics | sections 4, 4.1, 4.2 |
+| li2010contextual | arXiv:1003.0146 (10 pages) | read in full | LinUCB with ridge regression (A_a initialised to the identity) and exploration parameter alpha, which is how the bandit arm is implemented | section 3.1, equation (5), Algorithm 1 |
+| carbonell1998mmr | author PDF (cs.cmu.edu), 2 pages, scanned | read in full | MMR = Arg max over unselected documents of lambda Sim1(D_i, Q) - (1 - lambda) max over selected Sim2(D_i, D_j); pages 335 to 336 | section 2; printed page numbers |
+| harper2015movielens | author preprint (files.grouplens.org), 20 pages | read in full | MovieLens 1M: 6,040 users, 3,706 movies, 1,000,209 ratings, 1 to 5 stars | section 3, Table II |
+| steck2018calibrated | none: ACM full text returned HTTP 403 (again on 2026-11-25); copies found by search were on third-party sites and were not used | unverified (metadata only) | KL miscalibration with q mixed with p at weight 0.01 | checked only against dasilva2025calibrated |
+| dasilva2025calibrated (new, secondary) | arXiv:2507.02643 (27 pages) | read in full | restates Steck's measure: C_KL(p, q~) with q~ = (1 - alpha) q + alpha p and "a commonly used value for alpha is 0.01" | sections 3.1.4 (equation 5) and 3.1.5 (equation 6) |
+
+Counts: 10 read in full (9 primary sources and 1 secondary source), 0 abstract only, 1 unverified (Steck 2018, metadata only). No checked statement disagreed with its source. Claim qualified: the manuscript now says that the miscalibration formula was checked against a secondary source only (sections 2 and 7). The Carbonell and Goldstein DOI and the Harper and Konstan volume, issue and DOI still come from search results and the GroupLens README respectively, and are marked so.
+
+### F-7, absolute path in run manifests: resolved
+
+`src/pulse/analysis.py` now records `results_dir` relative to the repository (`results/raw/EXP-00N`). `scripts/analyse_experiment.py EXP-00N` was re-run for N = 1 to 4 on the committed raw files: every analysis output (metrics, summary, contrasts, verdict, runs, config, figures) was byte-identical except the one `results_dir` line of each `run_manifest.json`. `scripts/m4_evidence_audit.py` after the change: exit 0; 1,260 raw files and 8 set files match their recorded SHA-256; Parts C and D 0 errors; the manuscript has 2 unmatched decimal tokens, both arXiv identifiers (1003.0146 and 2507.02643).
+
+Absolute local paths remain, by design, in files that are frozen or raw: the frozen protocols (`research/protocol.md`, `research/experiments/EXP-001/protocol.md`, `research/experiments/EXP-004/protocol.md`), the execution logs (`results/raw/logs/EXP-00N.log`, `results/exploratory/logs/m4-likerate-*.log`) and the append-only `progress.md`. They are listed in `research/publication/reproducibility_report.md`, section 5.

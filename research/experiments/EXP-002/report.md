@@ -119,6 +119,7 @@ At alpha_0 0.1, preference entropy rose under every arm, because users start con
 The popularity contrast was below the smallest effect of interest in all four cells (-0.0235 to -0.0335).
 
 **Exposure and secondary metrics, primary cell (Table B).**
+
 - H_exp: similarity minus random -0.4025 [-0.4046, -0.4005].
 - Relevance, evaluated against the current p_u(t): similarity minus random +0.2075 [0.2059, 0.2090].
 - Like rate: similarity minus random +0.2287 [0.2276, 0.2299].

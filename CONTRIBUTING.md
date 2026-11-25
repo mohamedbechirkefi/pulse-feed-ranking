@@ -38,8 +38,8 @@ Never commit an e-mail address, a name or any other personal identifier in code,
 
 ## 6. Development commands
 
-    /Users/bechir/research/labs/.tools/py/bin/uv sync --frozen   # install locked dependencies
-    /Users/bechir/research/labs/.tools/py/bin/uv run pytest -q   # run the test suite
+    uv sync --frozen --all-groups --all-extras   # install locked dependencies (uv 0.9 or later)
+    uv run pytest -q                             # run the test suite
 
 Experiment and report commands (M2). The package is not installed; set `PYTHONPATH=src`:
 
@@ -49,9 +49,14 @@ Experiment and report commands (M2). The package is not installed; set `PYTHONPA
     PYTHONPATH=src uv run python -m pulse.cli report --results results/exploratory/smoke
     PYTHONPATH=src uv run python -m pulse.cli test
 
-Demo (M5). Node 22 is read-only from `/Users/bechir/research/helix/.tools/node/bin`; dependencies are pinned in `demo/package-lock.json`:
+Demo (M5). Node 22 is required (the maintainer's local copy is read-only); dependencies are pinned in `demo/package-lock.json`:
 
     .venv/bin/python scripts/export_demo_data.py                     # demo/public/data/results.json from committed results
     PYTHONPATH=src .venv/bin/python scripts/export_sandbox_fixture.py   # engine parity fixture for the sandbox
     cd demo && npm ci && npm test && npm run build && npm run preview
     node tools/a11y_check.mjs dist --screenshots <dir>                # offline and accessibility check
+
+Release candidate (M6). pandoc and the `typst` Python package are needed for the PDFs (`PULSE_PANDOC` and `PULSE_TYPST_PYTHON` override their locations):
+
+    PYTHONPATH=src .venv/bin/python scripts/build_pdfs.py [--png <dir>]   # manuscript, supplementary and report PDFs, manuscript.tex
+    .venv/bin/python scripts/check_links.py                              # every relative Markdown link and anchor

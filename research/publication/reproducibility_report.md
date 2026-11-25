@@ -1,12 +1,92 @@
 <!-- SPDX-License-Identifier: LicenseRef-PULSE-NC-Research-1.0 -->
-# Reproducibility report (not started: filled at M6)
+# Reproducibility report (M6 release candidate, 2026-11-25)
 
-To be written from an actual clean clone: commands, outputs, versions, checksums, tolerances, failures.
+Written from actual runs on 2026-11-25. Every count and PASS line below is copied from command output. Machine: Apple M1 Pro, macOS 15.3.1; Python 3.12.1 (uv 0.9.5); Node v22.23.3; pandoc 3.6.3; typst Python package 0.15.0. `$S` stands for the session scratch directory outside the repository; `$CLONE` for `$S/clone` (first clean clone) and `$CLONE2` for `$S/clone2` (fresh clone after the fixes). Both clones were deleted at the end of the session.
 
-- [ ] Clean clone into a separate directory.
-- [ ] `uv sync --frozen` from `uv.lock`.
-- [ ] Test suite run; real counts recorded.
-- [ ] Smoke reproduction matches recorded results within documented tolerance.
-- [ ] Demo build from locked dependencies.
-- [ ] Data manifest and links verified.
-- [ ] Secret and licence scan.
+- [x] Clean clone into a separate directory.
+- [x] `uv sync --frozen` from `uv.lock`.
+- [x] Test suite run; real counts recorded.
+- [x] Smoke reproduction matches recorded results within documented tolerance.
+- [x] Demo build from locked dependencies.
+- [x] Data manifest and links verified.
+- [x] Secret and licence scan.
+
+## 1. First clean clone (HEAD 473ff00, the M5 commit)
+
+| Step | Command (in `$CLONE`) | Actual output |
+| --- | --- | --- |
+| Clone | `git clone -q <repository> $S/clone` | HEAD 473ff00 |
+| Install | `../.tools/py/bin/uv sync --frozen --all-groups --all-extras` | 6 packages installed (numpy 2.3.5, pytest 8.4.2, pluggy 1.7.0, packaging 26.3, iniconfig 2.3.1, Pygments 2.21.0) |
+| Tests | `.venv/bin/python -m pytest -q` | "160 passed, 1 skipped in 25.32s"; the skip is `tests/test_movielens_calibration.py:207: MovieLens not prepared`, expected because the MovieLens files are not redistributed |
+| Smoke run | `PYTHONPATH=src .venv/bin/python -m pulse.cli smoke --out $S/smoke` | 10 of 10 runs ok, 0.62 s |
+| Smoke comparison | per-field comparison of the 10 new run files with `results/exploratory/smoke/runs/*.json` | 10 files, 0 differences in `metrics`, `diagnostics`, `status`, `seed`, `arm`, `cell` and the other result fields. Differences only in `config` (four fields added by commit 718e995 with default values, so the config hash changes), `manifest` (commit, timestamps, runtime, memory) |
+| Smoke report | `PYTHONPATH=src .venv/bin/python -m pulse.cli report --results $S/smoke --no-pdf` | `summary.csv` and `FIG-X01.svg` byte-identical to the committed smoke report; `metrics.csv` differs only in the `config_hash` and `runtime_s` columns; `contrasts.csv` differs by design (finding R-1) |
+| Analysis regeneration | `PYTHONPATH=src .venv/bin/python scripts/analyse_experiment.py EXP-00N`, N = 1 to 4, on the committed raw run files | exit 0 for all four; `git status` showed only the four `run_manifest.json` files modified, each in the single `results_dir` line (finding R-2); `metrics.csv`, `summary.csv`, `contrasts.csv`, `verdict.json`, `runs.csv`, `config.json` and every figure byte-identical |
+| Evidence audit | `PYTHONPATH=src .venv/bin/python scripts/m4_evidence_audit.py` | exit 0; output identical to the committed `evidence_audit_output.txt` after replacing the clone path |
+| Demo install | `cd demo && npm ci --prefer-offline` | "added 53 packages in 1s" |
+| Demo tests | `npm test` | "Test Files 2 passed (2)", "Tests 28 passed (28)" |
+| Demo build | `npm run build` | built in 322 ms; `index-1nDd7Q_m.js` 253.35 kB, worker 9.96 kB, CSS 8.80 kB |
+| Accessibility and offline check | `node tools/a11y_check.mjs dist` | 14 PASS lines, last line "A11Y-CHECK PASS" (keyboard 24 of 24, sandbox controls 12 of 12, 0 px overflow at 360 px, no request leaves the local origin, offline after first load) |
+| Export determinism | `.venv/bin/python scripts/export_demo_data.py`; `PYTHONPATH=src .venv/bin/python scripts/export_sandbox_fixture.py`; `scripts/export_demo_data.py --check` | "wrote demo/public/data/results.json"; "wrote demo/src/fixtures/engine_fixture.json (353171 bytes)"; "EXPORT-CHECK identical"; `git status --short` empty (0 lines) |
+
+Documented tolerance: the smoke and analysis comparisons use exact equality (byte or value), which is stricter than any tolerance in the protocol.
+
+## 2. Findings and fixes
+
+- **R-1 (record, not fixed).** The committed exploratory smoke report (`results/exploratory/smoke/report/`, M2, commit df010cd) predates commit 718e995, which restricted the user-control contrast to "arm minus random" and so changed the contrast set and the Holm families. The current code therefore produces one fewer row (no `mmr - similarity` user-control row) and different Holm-adjusted p-values in that family. Run-level metric values are identical. The committed report is an exploratory record of its time and is left unchanged.
+- **R-2 (fixed).** Each `research/experiments/EXP-00N/run_manifest.json` recorded the absolute result directory, which contains the local user name and differs from clone to clone (evidence audit F-7). Fix: `src/pulse/analysis.py` records the path relative to the repository; the four files were regenerated by `scripts/analyse_experiment.py` from the committed raw files, with every other output byte-identical; test `tests/test_release_checks.py::test_run_manifests_record_repo_relative_paths`.
+- **R-3 (fixed).** Home-directory paths in current documents (README, CONTRIBUTING, CLAUDE.md, the manuscript and the four `reproduction.md` files) were replaced by `uv sync ...` or relative paths. See section 5 for what remains.
+- **R-4 (fixed).** PDF build: equal-width table columns, overlapping hashes in supplementary Table S2, three lists printed as raw Markdown and a missing PDF title. See section 3.
+
+## 3. PDFs
+
+Built by `PYTHONPATH=src .venv/bin/python scripts/build_pdfs.py --png $S/png` (pandoc to Typst, compiled by the typst package; the `.typ` intermediates are deleted; `manuscript.tex` generated by pandoc).
+
+| File | Pages | Bytes | Title metadata |
+| --- | --- | --- | --- |
+| `research/paper/manuscript.pdf` | 10 | 176,035 | manuscript title |
+| `research/paper/supplementary.pdf` | 4 | about 107,000 | "Supplementary material" |
+| `research/experiments/EXP-001/report.pdf` | 7 | about 207,000 | report title |
+| `research/experiments/EXP-002/report.pdf` | 6 | about 211,000 | report title |
+| `research/experiments/EXP-003/report.pdf` | 5 | about 166,000 | report title |
+| `research/experiments/EXP-004/report.pdf` | 4 | about 135,000 | report title |
+
+Sizes vary by a few hundred bytes between builds because Typst embeds the creation date; exact sizes are in `git ls-files -s` of the commit. EXP-005 has no report (registered, not run), so it has no PDF.
+
+Visual inspection (pages rendered at 60 ppi, one figure page also at 150 ppi, read one by one): every manuscript and supplementary page; the first page and every figure page of each report (EXP-001 pages 1, 4, 5; EXP-002 pages 1, 4, 5; EXP-003 pages 1, 4; EXP-004 pages 1, 3). Fixed after inspection, in the builder or the Markdown source, never in a PDF:
+
+1. The title was printed as body text and the PDF had no title: the first level-1 heading is now passed to pandoc as the `title` metadata (`scripts/build_pdfs.py`).
+2. Pipe tables were set with equal column widths, so wide columns wrapped into narrow ones (manuscript Table 1): `--columns=1000` lets Typst size columns to their content; table text is ragged-right at 8 pt.
+3. The 64-character hashes in supplementary Table S2 ran into the next column: long hexadecimal strings may now break at any character.
+4. Three lists printed as raw "- item" text (EXP-001 report sections 8 and the nested bandit paragraph, EXP-002 report Table B paragraph) because no blank line preceded them: blank lines added; no wording changed.
+
+Remaining cosmetic issue, not fixed: a bold table caption can fall at the foot of a page with its table on the next page (manuscript Tables 3 and 5). Content is unaffected. Figures are vector (SVG) and readable at 150 ppi; their axis text is small (about 5.5 pt at print size). Equations are plain text in the source, and no glyph was missing.
+
+Metadata (pypdf): every PDF has its title; creator "Typst 0.15.0"; no author field; no e-mail address and no local path in the metadata or the extracted text. All PDFs are under 5 MB and are committed (no `.gitignore` rule or decision excludes them). Checked by `tests/test_release_checks.py::test_pdf_present_small_and_clean`.
+
+## 4. References, links, numbers and manifests
+
+- **Citations.** `research/paper/references.bib` has 11 entries; each is cited in the manuscript and listed in its reference list, and each manuscript reference has an entry (`test_every_bib_entry_is_cited_and_every_reference_has_an_entry`). Reading status: 10 read in full, 0 abstract only, 1 unverified (Steck 2018); details in `evidence_audit.md` section 6.
+- **Relative links.** `.venv/bin/python scripts/check_links.py`: "59 Markdown files, 28 relative links checked, 0 external links not fetched", "LINK-CHECK PASS" (test `test_every_relative_markdown_link_resolves`; a negative test confirms that a missing file and a missing anchor are reported). Path references written in code format were also checked once: 280 found, 19 do not resolve inside the repository, all expected (13 coordinator files outside the repository cited in the journal and decision log, 2 MovieLens member files that are never committed, `experiments/EXP-005.json` which exists only after a freeze (2), 2 demo-relative paths in `progress.md`, and the README shorthand `EXP-004/report.md`).
+- **Numbers.** Every decimal number in `README.md`, `articles/*.md` and `demo/README.md` is printed in the manuscript, the supplementary file or an experiment report (`test_public_text_numbers_come_from_the_paper_or_reports`; 0 missing). The demo is covered by the M5 test `tests/test_demo_export.py`.
+- **Data manifest.** `data/manifest.json`: ml-1m.zip (5,917,549 bytes), the README and the two processed preference files match their SHA-256 values on this machine (4 of 4). They are not committed (licence).
+- **Artifact manifest.** `research/publication/artifact_manifest.json`: 42 artifacts; 47 paths resolve (one `EXP-00N` pattern expanded to four files); 28 recorded file hashes match, 0 mismatch; every generator script exists.
+- **Raw results.** 1,260 run files and 8 set files match the SHA-256 values in the four run manifests.
+
+## 5. Secret, identifier and licence scan (tracked files, `git ls-files`, 1,881 text files)
+
+| Check | Hits before | Action | Hits after |
+| --- | --- | --- | --- |
+| Private key headers, cloud or API tokens (AWS, GitHub, OpenAI-style, Slack, Google) | 0 | none | 0 |
+| Secret-like assignments (key, secret, password, token) | 0 | none | 0 |
+| `.env` files | 0 | none | 0 |
+| E-mail addresses | 1 (`CLAUDE.md`, the commit-trailer service address) | replaced by a reference to the session brief | 0 |
+| Absolute home-directory paths | 22 files | removed from 8 current documents (R-3) and the 4 run manifests (R-2) | 10 files, kept: 3 frozen protocols, 6 execution logs and `progress.md` (see below) |
+
+After the fixes, 10 tracked files still contain a home path: the 3 frozen protocols, the 6 logs and `progress.md`. They are not edited (frozen, raw or append-only). The committed PDFs contain no home path and no e-mail address.
+
+Dependency licences: `research/publication/dependency_licences.md`. No runtime or build dependency is flagged; informational notes only (numpy's optional bundled GCC runtime and libquadmath, not present in this install; pandoc GPL as a build tool; Google Chrome as an optional local test browser).
+
+SPDX headers: every tracked text file added since M0 carries the header where the format allows, except generated outputs whose bytes are recorded elsewhere (`research/experiments/EXP-00N/tables.md`, hashed in the artifact manifest; `research/publication/evidence_audit_output.txt`) and the MovieLens-format test fixtures (`tests/fixtures/movielens/*.dat`, whose format has no comment syntax). Headers were added at M6 to `.gitignore` and `demo/.npmrc`. JSON and CSV are covered by `NOTICE.md`.
+
+## 6. Fresh clone after the fixes

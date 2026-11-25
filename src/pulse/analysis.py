@@ -34,6 +34,7 @@ from pathlib import Path
 
 import numpy as np
 
+from .manifest import REPO_ROOT
 from .stats import paired_summary, t_ppf
 
 SESOI = 0.05
@@ -161,6 +162,14 @@ def _end(start: str, runtime: float) -> str:
     return (t + timedelta(seconds=runtime)).strftime("%Y-%m-%dT%H:%M:%S.%fZ")
 
 
+def _repo_relative(path: Path) -> str:
+    """Path relative to the repository root when inside it, so no local home path is recorded (M6, F-7)."""
+    try:
+        return Path(path).resolve().relative_to(REPO_ROOT.resolve()).as_posix()
+    except ValueError:
+        return str(path)
+
+
 def provenance(results_dir: Path, data_manifest_sha256: str, extra_data: dict | None = None) -> dict:
     """Per-run provenance plus SHA-256 of every raw file in the result set (no run dropped)."""
     results_dir = Path(results_dir)
@@ -175,7 +184,7 @@ def provenance(results_dir: Path, data_manifest_sha256: str, extra_data: dict | 
                      "data_manifest_sha256": data_manifest_sha256, "hardware": man["cpu"], "os": man["os"],
                      "started_utc": man["started_utc"], "ended_utc": _end(man["started_utc"], man["runtime_s"]),
                      "runtime_s": man["runtime_s"], "status": r["status"]})
-    return {"results_dir": str(results_dir), "n_runs": len(runs),
+    return {"results_dir": _repo_relative(results_dir), "n_runs": len(runs),
             "n_failed": sum(r["status"] != "ok" for r in runs), "data": extra_data or {},
             "raw_sha256": {str(f.relative_to(results_dir)): hashlib.sha256(f.read_bytes()).hexdigest()
                            for f in files if f.exists()},

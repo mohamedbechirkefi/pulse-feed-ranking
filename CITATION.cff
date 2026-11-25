@@ -2,10 +2,9 @@
 # Licence: PULSE Source-Available Non-Commercial Research License v1.0 (custom; see LICENSE and NOTICE.md).
 cff-version: 1.2.0
 message: "If you use this work, please cite it as below. Research software in progress; not peer-reviewed. Protocol frozen 2026-11-24 (v1.0). An AI system was used as a research and development assistant; it is not an author. Uses MovieLens 1M (GroupLens, Harper and Konstan 2015) under its research licence; the data is not redistributed."
-title: "PULSE: recommendation feedback and attention (simulation study)"
+title: "Content-similarity ranking and topic exposure in a matched-pool recommender simulation: confirmatory effects and a like-rate boundary"
 type: software
-version: 0.2.0
-date-released: 2026-11-24
+version: 0.2.0-rc1
 authors:
   - family-names: Kefi
     given-names: Mohamed Bechir

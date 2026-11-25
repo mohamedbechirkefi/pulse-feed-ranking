@@ -307,3 +307,36 @@ Repository and demo address (README, demo footer and README, manuscript section 
 
 ### Next action
 The owner: EXP-005 freeze decision (OPEN-1 to OPEN-6) when wanted; repository and demo address at release. Session: M6 (clean clone, PDFs, link and licence checks, owner review checklist).
+
+## 2026-11-25: M6 session (release candidate)
+
+**Milestone:** M6. **Authority:** owner, 2026-11-25, "Next" (second) (`labs/_shared/owner-approvals-2026-11-25e.md`) and the coordinator's brief `labs/_shared/M6-brief.md`. **Next bounded task at start:** clean clone, PDFs, reference, link, manifest and secret checks, owner review checklist. **Starting state:** branch main, clean, HEAD 473ff00.
+
+### Commands and actual outputs
+- First clean clone of 473ff00 in the session scratchpad: `uv sync --frozen --all-groups --all-extras` (6 packages); `pytest -q`: "160 passed, 1 skipped in 25.32s" (skip: MovieLens not prepared, expected in a clone).
+- `pulse.cli smoke --out <scratch>`: 10 of 10 runs ok; 0 differences in metrics and diagnostics against `results/exploratory/smoke/runs/`; config and manifest fields differ (finding R-1: the committed smoke report predates commit 718e995, so its contrast set differs by design).
+- `scripts/analyse_experiment.py EXP-00N` (N = 1 to 4) in the clone on the committed raw files: exit 0; only the `results_dir` line of each `run_manifest.json` changed (finding R-2).
+- `scripts/m4_evidence_audit.py` in the clone: exit 0, identical to the committed output after replacing the clone path.
+- Demo in the clone: `npm ci --prefer-offline` "added 53 packages"; `npm test` "Tests 28 passed (28)"; `npm run build` 322 ms; `node tools/a11y_check.mjs dist`: "A11Y-CHECK PASS". `export_demo_data.py`, `export_sandbox_fixture.py`: `git status --short` empty; `--check`: "EXPORT-CHECK identical".
+- `scripts/build_pdfs.py --png <scratch>`: manuscript 10 pages, supplementary 4, EXP-001 7, EXP-002 6, EXP-003 5, EXP-004 4; every manuscript and supplementary page and each report's first and figure pages inspected. Fixed after inspection: missing title, equal-width table columns, overlapping hashes in Table S2, three lists printed as raw Markdown.
+- References: nine primary sources and one secondary source read in full from free, legal copies; Steck 2018 still metadata only (ACM HTTP 403).
+- `scripts/check_links.py`: "59 Markdown files, 28 relative links checked", "LINK-CHECK PASS".
+- Manifests: artifact manifest 47 paths resolve, 28 of 28 hashes match; data manifest 4 of 4 local MovieLens hashes match; 1,260 raw run files and 8 set files match their run-manifest hashes.
+- Scan of tracked files: 0 keys or tokens, 0 `.env`, 1 e-mail address (commit-trailer service address in `CLAUDE.md`, replaced), 22 files with a home path (12 cleaned, 10 kept: frozen protocols, logs and this journal).
+- Working repository after the changes: `.venv/bin/python -m pytest -q`: "177 passed in 4.67s"; `npm test`: "Tests 28 passed (28)".
+
+### Note on this journal
+Earlier entries of this append-only journal contain a local home path (for example the `df -h` line of the M0 entry). They are not edited; the path is the machine's home folder and carries no secret. The owner decides whether it is acceptable in a public repository.
+
+### Decisions
+D-020.
+
+### Files changed
+New: `scripts/build_pdfs.py`, `scripts/check_links.py`, `tests/test_release_checks.py`, `research/publication/dependency_licences.md`, the six PDFs, `research/paper/manuscript.tex`. Modified: `src/pulse/analysis.py` (repo-relative `results_dir`), the four `run_manifest.json` files (that line only), `CITATION.cff`, `README.md`, `CONTRIBUTING.md`, `CLAUDE.md`, `.gitignore` and `demo/.npmrc` (SPDX header), `research/paper/manuscript.md` (status line, related-work reading labels, limitation on the formula check, reproduction command, test counts, new secondary reference), `research/paper/references.bib`, `research/literature_review.md` (appended), the EXP-001 and EXP-002 `report.md` (blank lines before three lists), the four `reproduction.md` (install command), `research/publication/{evidence_audit.md (appended), reproducibility_report.md, author_review.md (appended), release_checklist.md}`, `research/decision_log.md`, `roadmap.md`, `progress.md`.
+
+### Risks
+- The PDFs embed their creation date, so a rebuild changes their bytes but not their content.
+- The Steck formula is checked only against a secondary source.
+
+### Next action
+A fresh clone of this commit repeats the checks (recorded in the next entry). Then the owner: review and sign `author_review.md`, decide G-PUBLIC, and decide the EXP-005 freeze when wanted.

@@ -3,7 +3,7 @@
 
 **Question.** How do ranking objectives influence exposure diversity and simulated preference reinforcement when all rankers receive identical candidate pools?
 
-**Status (2026-11-25).** Simulation study. Confirmatory experiments EXP-001 to EXP-004 are complete (1,260 runs, 0 failed) under a protocol frozen by the owner before execution; they hold at one calibrated like rate. An exploratory check bounds them. EXP-005 (like-rate dependence) is registered, not frozen and not run. Manuscript version 0.2 is an independent preprint draft, not peer-reviewed; the owner approved its title and statements, and the owner's full-text review is pending (M6). Nothing has been published.
+**Status (2026-11-25).** Simulation study. Confirmatory experiments EXP-001 to EXP-004 are complete (1,260 runs, 0 failed) under a protocol frozen by the owner before execution; they hold at one calibrated like rate. An exploratory check bounds them. EXP-005 (like-rate dependence) is registered, not frozen and not run. Manuscript version 0.2 is an independent preprint draft, not peer-reviewed; the owner approved its title and statements, and the owner's full-text review is pending: a release candidate is prepared (M6) and awaits the owner's review and publication decision. Nothing has been published.
 
 ![The PULSE demo page: the question, the status label and the legend that separates measured confirmatory, measured exploratory, registered-not-run, assumption and sandbox values.](docs/demo.png)
 
@@ -28,21 +28,21 @@ The popularity ranker barely changed topic entropy (-0.0089 [-0.0115, -0.0064], 
 
 ## Research navigation
 
-- Manuscript: `research/paper/manuscript.md` (canonical Markdown; PDF not yet built, M6) and `research/paper/supplementary.md`.
-- Experiment reports: `research/experiments/EXP-001/report.md` to `EXP-004/report.md`; EXP-005 protocol draft: `research/experiments/EXP-005/protocol.md`.
+- Manuscript: `research/paper/manuscript.md` (canonical Markdown), generated `research/paper/manuscript.pdf` and `manuscript.tex`, and `research/paper/supplementary.md` (with its PDF). Rebuild: `PYTHONPATH=src .venv/bin/python scripts/build_pdfs.py`.
+- Experiment reports: `research/experiments/EXP-00N/report.md` and `report.pdf` for N = 1 to 4; EXP-005 protocol draft: `research/experiments/EXP-005/protocol.md`.
 - Registry `research/experiment_registry.csv`, claims register `research/claims_register.csv`, evidence manifest `research/publication/artifact_manifest.json`, limitations `research/limitations.md`, decisions `research/decision_log.md`.
 - Article drafts (unpublished): `articles/medium.md`, `articles/linkedin.md`.
 
 ## What is implemented
 
 - `src/pulse/`: synthetic world and MovieLens-derived inputs, interaction loop with common random numbers, five rankers, metrics, paired statistics, versioned result schema, run manifests, freeze guard, runner, report generator and CLI.
-- `tests/`: 161 Python tests (unit, golden, property, differential, integration, freeze guard, demo export consistency).
+- `tests/`: 177 Python tests (unit, golden, property, differential, integration, freeze guard, demo export consistency, release checks for links, numbers, citations and PDFs).
 - `demo/`: static offline page (React and Vite, pinned) that shows the published results from `demo/public/data/results.json` and a sandbox with two simulated feeds side by side. The sandbox is a TypeScript port of the loop, checked against the Python engine on recorded random inputs, but it uses a different random-number generator and a smaller world: it is illustrative, not the research engine.
 
 ## Quick start
 
 ```
-/Users/bechir/research/labs/.tools/py/bin/uv sync --frozen --all-groups --all-extras
+uv sync --frozen --all-groups --all-extras
 .venv/bin/python -m pytest -q
 ```
 

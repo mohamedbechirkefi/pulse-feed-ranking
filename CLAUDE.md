@@ -26,18 +26,18 @@ Then run `git status` and inspect existing files. Do not overwrite owner changes
 
 ## 3. Toolchain (zero-cost, decision D-002)
 
-- Python 3.12 via uv: `/Users/bechir/research/labs/.tools/py/bin/uv sync`, `uv run pytest`.
+- Python 3.12 via uv: `../.tools/py/bin/uv sync` (the shared toolchain folder one level above this repository), `uv run pytest`.
 - Lockfile: `uv.lock` (resolution limited by `exclude-newer` in `pyproject.toml`).
-- PDFs: pandoc (`/Users/bechir/research/labs/.tools/pandoc`) converts Markdown to Typst; the `typst` Python package (in `/Users/bechir/research/labs/.tools/py/`) compiles it. `manuscript.tex` is generated from Markdown by pandoc. No TeX distribution is installed or required.
-- Node 22 at `/Users/bechir/research/helix/.tools/node/bin` is read-only for this project (M5 demo only). Never modify that folder.
+- PDFs: pandoc (`../.tools/pandoc`) converts Markdown to Typst; the `typst` Python package (in `../.tools/py/`) compiles it. `manuscript.tex` is generated from Markdown by pandoc. No TeX distribution is installed or required.
+- Node 22 at `../../helix/.tools/node/bin` is read-only for this project (M5 demo only). Never modify that folder.
 
 ## 4. Rules
 
 - **Gates.** Never push, add a remote, create a GitHub repository or publish anything (G-PUBLIC). No paid service of any kind. Never freeze a protocol: freezing belongs to the owner (G-FREEZE). Confirmatory experiments run only after the owner freezes the protocol; anything else is labelled exploratory.
-- **Scope.** Work only inside this repository, except read-only use of the tools listed above. Do not touch any other folder under `/Users/bechir/research`. Never kill processes you did not start. Never delete anything you did not create in the current session.
+- **Scope.** Work only inside this repository, except read-only use of the tools listed above. Do not touch any other folder of the research workspace (`../..`). Never kill processes you did not start. Never delete anything you did not create in the current session.
 - **Truthfulness.** Never fabricate results, citations, test counts or PDFs. Record commands and their actual outputs. Unverified means labelled unverified. Never mark incomplete work done.
 - **Files and style.** New text and code files start with `SPDX-License-Identifier: LicenseRef-PULSE-NC-Research-1.0` as a comment where the format allows; JSON and CSV are covered by `NOTICE.md`. English. No em dashes. Plain, formal register. No e-mail address, personal identifier or secret in any committed file (git author metadata excepted). Refer to the owner as "the owner" (they/them).
 - **Licence.** The licence files are the owner's decision (D-001). Do not change them. Development commands may be appended to CONTRIBUTING.md.
 - **Claims boundary (master prompt section 10).** Do not claim that any real platform uses these algorithms. Do not measure or claim addiction or real human behaviour. Simulated agents are not participants. No engagement-maximising deployment, no data collection.
-- **Commits.** Local only: `git -c user.name=mohamedbechirkefi -c user.email=<owner address given in the session brief, never written in the repository> commit`, message ending with a blank line and `Co-Authored-By: Claude Opus 5.5 <noreply@anthropic.com>`. Run `git status` before and after.
+- **Commits.** Local only: `git -c user.name=mohamedbechirkefi -c user.email=<owner address given in the session brief, never written in the repository> commit`, message ending with a blank line and the `Co-Authored-By: Claude Opus 5.5` trailer, with the address given in the session brief. Run `git status` before and after.
 - **Session end.** Append a dated entry to `progress.md` (commands, real outputs, failures, changed files, risks, next action) and update `roadmap.md`.

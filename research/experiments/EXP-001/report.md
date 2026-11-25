@@ -114,6 +114,7 @@
 ## 8. Results
 
 All numbers below are copied from `tables.md`:
+
 - Table A: per-arm means and SD over seeds.
 - Table B: all paired contrasts for every metric, with t and bootstrap intervals and Holm p-values.
 - Table C: the frozen decision rule.
@@ -156,6 +157,7 @@ The popularity contrast is negative and its interval excludes 0, but it is small
 - **Reading user control.** The metric is negative for every arm, with a random reference level of -0.0892 (Table A). A positive arm-minus-random value means that, after a dislike, slates moved away from the disliked topic less than they do under random ranking.
 
 **Nested bandit level (descriptive only; no frozen test, D-013).**
+
 - Primary cell (Table A): H_exp was 0.6803 (SD 0.0086) at alpha_ucb 0.1 and 0.7012 (SD 0.0065) at alpha_ucb 1.0.
 - The lower exploration level also gave the lower H_exp in the other three cells: 0.6124 vs 0.6224, 0.6611 vs 0.6789, and 0.7225 vs 0.7494.
 

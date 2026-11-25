@@ -6,7 +6,7 @@
 ## Environment
 
 ```
-/Users/bechir/research/labs/.tools/py/bin/uv sync --frozen --all-groups --all-extras
+uv sync --frozen --all-groups --all-extras
 .venv/bin/python -m pytest -q
 ```
 

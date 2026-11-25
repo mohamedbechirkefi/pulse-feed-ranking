@@ -1,5 +1,5 @@
 {
- "results_dir": "/Users/bechir/research/labs/pulse-feed-ranking/results/raw/EXP-001",
+ "results_dir": "results/raw/EXP-001",
  "n_runs": 480,
  "n_failed": 0,
  "data": {

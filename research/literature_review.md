@@ -31,3 +31,7 @@ Prior simulations already show homogenisation, popularity-bias amplification and
 1. Open the Steck 2018 full text and confirm the miscalibration formula.
 2. Search for prior matched-pool comparisons of MMR against similarity rankers in simulation.
 3. Search for critiques of recommender simulation methodology (the T-RECS group is reported to have one; not yet located).
+
+## M6 update (2026-11-25)
+
+The full text of nine of the ten sources above was opened from free, legal copies and the statements the manuscript makes about each were checked; locations are in `research/publication/evidence_audit.md`, section 6. Steck 2018 remains metadata only (ACM full text HTTP 403; third-party copies not used). A secondary source was added to check the Steck formula: da Silva and Jannach (2025), "Calibrated Recommendations: Survey and Future Directions", arXiv:2507.02643, sections 3.1.4 and 3.1.5 (`dasilva2025calibrated`). Harper and Konstan 2015 was opened as the author preprint on the GroupLens site. Open item 1 above is therefore closed only through the secondary source.
