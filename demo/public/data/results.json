@@ -1,0 +1,1178 @@
+{
+ "schema": "lab-demo-results",
+ "schema_version": "1.0.0",
+ "project": "PULSE",
+ "question": "How do ranking objectives influence exposure diversity and simulated preference reinforcement when all rankers receive identical candidate pools?",
+ "status_label": "Simulation study. Confirmatory results for EXP-001 to EXP-004 hold at one calibrated like rate (0.577); an exploratory check bounds them; EXP-005 is registered, not frozen and not run. Manuscript version 0.2 is a preprint draft, not peer-reviewed; the owner's full-text review is pending (M6).",
+ "code_revision": "f1838f3e8451c8c4275579a5736fe488354a8f3a",
+ "sources": [
+  {
+   "path": "research/experiment_registry.csv",
+   "sha256": "a27f1d8234bedebcdc9cf8c477c4cace6d5b618d09f87761f6281f23a227c29f"
+  },
+  {
+   "path": "research/claims_register.csv",
+   "sha256": "114be41661eb467687f926e859474167d0260e84ffc677877d49c995495768a5"
+  },
+  {
+   "path": "research/publication/artifact_manifest.json",
+   "sha256": "42aa39d0563e2b445e3ad19575f5ff47c50b29bc886d1e2fc4b0905098c100eb"
+  },
+  {
+   "path": "research/limitations.md",
+   "sha256": "912702c98a08a40b1b4b9871c6a135e82c15147ec4ae84ed2c2d1c2ce3e3439e"
+  },
+  {
+   "path": "research/experiments/EXP-001/verdict.json",
+   "sha256": "ffef0722b13651211420ef772950a559ce454a2af35c9b6efcbfdd7addb06984"
+  },
+  {
+   "path": "research/experiments/EXP-001/contrasts.csv",
+   "sha256": "9de63e179624a186499b5505ea92f32b6bb73fc5ab06cef11675d42116fe7a63"
+  },
+  {
+   "path": "research/experiments/EXP-002/verdict.json",
+   "sha256": "bbd91bd7a5f51346ad5d794eee0d58a6cb90eda49e47cf243296be39df0ad946"
+  },
+  {
+   "path": "research/experiments/EXP-002/contrasts.csv",
+   "sha256": "e0f4fc5e4a27c5d1aa6f15df0768cb24e5143c515359c5420960232c4de268b0"
+  },
+  {
+   "path": "research/experiments/EXP-003/verdict.json",
+   "sha256": "03b2a1b4fad18f233dae01902443b30c5ccfc780d5f0f90de65b32cd24e8353a"
+  },
+  {
+   "path": "research/experiments/EXP-003/contrasts.csv",
+   "sha256": "d6fd3c55e4aac8349f2d3fb57147306fc4261c7ee1c95a1065fc26c7061da956"
+  },
+  {
+   "path": "research/experiments/EXP-004/verdict.json",
+   "sha256": "1f44a0f91588028e7eadf1ef2db34183002797223e71c8e053a65de940eb74fe"
+  },
+  {
+   "path": "research/experiments/EXP-004/contrasts.csv",
+   "sha256": "0e026eeb8e3f68db85bcbfa4785458f6994be470fb4d6d77b0cb7aa67d0044ee"
+  },
+  {
+   "path": "results/exploratory/m4-likerate-summary.csv",
+   "sha256": "6139535598e89452e16bdf07696678717706a10ed7928763d0e63bd17435aeeb"
+  },
+  {
+   "path": "results/exploratory/var-probe/report/contrasts.csv",
+   "sha256": "bb0ea7ccb8028cc54ca9ade3a2558f858faed57b89c7c55994c4e5e0694cbdc0"
+  },
+  {
+   "path": "research/experiments/EXP-001/summary.csv",
+   "sha256": "3b4e9eaf075793bd354021b3c4d658313eff4dd5dc578f534cce69a1a1873988"
+  },
+  {
+   "path": "research/experiments/EXP-001/tables.md",
+   "sha256": "02c1eeb91ade3eb8ba21ed5da21bd634522ce302f58b456ac974b2d6476b5f56"
+  }
+ ],
+ "experiments": [
+  {
+   "id": "EXP-001",
+   "title": "Ranking objective and exposure diversity (static preferences)",
+   "status": "confirmatory, complete (480 runs, 0 failed)",
+   "verdict": "H1 supported in the primary cell and in all three secondary cells",
+   "estimates": [
+    {
+     "label": "Similarity - random, H_exp, eta 0.0, alpha_0 1.0 (primary)",
+     "estimate": -0.40001766885202833,
+     "ci_low": -0.4027923405520533,
+     "ci_high": -0.39724299715200334,
+     "ci_level": 0.95,
+     "unit": "normalised entropy units",
+     "display": "-0.4000",
+     "interval_display": "[-0.4028, -0.3972]"
+    },
+    {
+     "label": "Similarity - random, H_exp, eta 0.0, alpha_0 0.1",
+     "estimate": -0.39381570119859244,
+     "ci_low": -0.3962884175570214,
+     "ci_high": -0.3913429848401635,
+     "ci_level": 0.95,
+     "unit": "normalised entropy units",
+     "display": "-0.3938",
+     "interval_display": "[-0.3963, -0.3913]"
+    },
+    {
+     "label": "Similarity - random, H_exp, eta 0.2, alpha_0 1.0",
+     "estimate": -0.39591102455650673,
+     "ci_low": -0.3991445222790172,
+     "ci_high": -0.39267752683399626,
+     "ci_level": 0.95,
+     "unit": "normalised entropy units",
+     "display": "-0.3959",
+     "interval_display": "[-0.3991, -0.3927]"
+    },
+    {
+     "label": "Similarity - random, H_exp, eta 0.2, alpha_0 0.1",
+     "estimate": -0.39480807260761025,
+     "ci_low": -0.39737584889430055,
+     "ci_high": -0.39224029632091995,
+     "ci_level": 0.95,
+     "unit": "normalised entropy units",
+     "display": "-0.3948",
+     "interval_display": "[-0.3974, -0.3922]"
+    },
+    {
+     "label": "Popularity - random, H_exp, primary cell",
+     "estimate": -0.008940944137268403,
+     "ci_low": -0.011496528699184638,
+     "ci_high": -0.006385359575352167,
+     "ci_level": 0.95,
+     "unit": "normalised entropy units",
+     "display": "-0.0089",
+     "interval_display": "[-0.0115, -0.0064]"
+    },
+    {
+     "label": "Bandit - random, H_exp, primary cell",
+     "estimate": -0.29204231415370785,
+     "ci_low": -0.294956060354973,
+     "ci_high": -0.2891285679524427,
+     "ci_level": 0.95,
+     "unit": "normalised entropy units",
+     "display": "-0.2920",
+     "interval_display": "[-0.2950, -0.2891]"
+    },
+    {
+     "label": "MMR - random, H_exp, primary cell",
+     "estimate": -0.18534412876567102,
+     "ci_low": -0.18732651592766608,
+     "ci_high": -0.18336174160367597,
+     "ci_level": 0.95,
+     "unit": "normalised entropy units",
+     "display": "-0.1853",
+     "interval_display": "[-0.1873, -0.1834]"
+    },
+    {
+     "label": "MMR - similarity, H_exp, primary cell",
+     "estimate": 0.21467354008635725,
+     "ci_low": 0.21248490363365813,
+     "ci_high": 0.21686217653905637,
+     "ci_level": 0.95,
+     "unit": "normalised entropy units",
+     "display": "0.2147",
+     "interval_display": "[0.2125, 0.2169]"
+    }
+   ],
+   "claim_ids": [
+    "CLM-001",
+    "CLM-002",
+    "CLM-003",
+    "CLM-009",
+    "CLM-014"
+   ],
+   "report_path": "research/experiments/EXP-001/report.md",
+   "notes": [
+    "Paired by seed (common random numbers, 20 seeds per cell). The smallest effect of interest is 0.05.",
+    "Popularity changed topic entropy by less than the smallest effect of interest: a practically null contrast, shown with the same weight as the others."
+   ]
+  },
+  {
+   "id": "EXP-002",
+   "title": "Ranking objective and simulated preference reinforcement (drifting preferences)",
+   "status": "confirmatory, complete (480 runs, 0 failed)",
+   "verdict": "H1 supported in all four cells; drift-form rule not met",
+   "estimates": [
+    {
+     "label": "Similarity - random, Delta H_pref, gamma 0.05, alpha_0 1.0 (primary)",
+     "estimate": -0.4350325089446557,
+     "ci_low": -0.4387452745819425,
+     "ci_high": -0.43131974330736894,
+     "ci_level": 0.95,
+     "unit": "normalised entropy change",
+     "display": "-0.4350",
+     "interval_display": "[-0.4387, -0.4313]"
+    },
+    {
+     "label": "Similarity - random, Delta H_pref, gamma 0.01, alpha_0 1.0",
+     "estimate": -0.45828468428632424,
+     "ci_low": -0.46115651271744523,
+     "ci_high": -0.45541285585520325,
+     "ci_level": 0.95,
+     "unit": "normalised entropy change",
+     "display": "-0.4583",
+     "interval_display": "[-0.4612, -0.4554]"
+    },
+    {
+     "label": "Similarity - random, Delta H_pref, gamma 0.01, alpha_0 0.1",
+     "estimate": -0.4549983152124442,
+     "ci_low": -0.4575977520166752,
+     "ci_high": -0.45239887840821325,
+     "ci_level": 0.95,
+     "unit": "normalised entropy change",
+     "display": "-0.4550",
+     "interval_display": "[-0.4576, -0.4524]"
+    },
+    {
+     "label": "Similarity - random, Delta H_pref, gamma 0.05, alpha_0 0.1",
+     "estimate": -0.4335530928393396,
+     "ci_low": -0.4386541242610178,
+     "ci_high": -0.42845206141766146,
+     "ci_level": 0.95,
+     "unit": "normalised entropy change",
+     "display": "-0.4336",
+     "interval_display": "[-0.4387, -0.4285]"
+    },
+    {
+     "label": "Drift-form check, additive-then-clip, alpha_0 1.0",
+     "estimate": -0.43626565709824183,
+     "ci_low": -0.43997692681037726,
+     "ci_high": -0.4325543873861064,
+     "ci_level": 0.95,
+     "unit": "normalised entropy change",
+     "display": "-0.4363",
+     "interval_display": "[-0.4400, -0.4326]"
+    },
+    {
+     "label": "Drift-form check, additive-then-clip, alpha_0 0.1",
+     "estimate": -0.4350824091360094,
+     "ci_low": -0.44021440884665575,
+     "ci_high": -0.429950409425363,
+     "ci_level": 0.95,
+     "unit": "normalised entropy change",
+     "display": "-0.4351",
+     "interval_display": "[-0.4402, -0.4300]"
+    }
+   ],
+   "claim_ids": [
+    "CLM-004",
+    "CLM-005"
+   ],
+   "report_path": "research/experiments/EXP-002/report.md",
+   "notes": [
+    "Drift toward liked topics is an assumption of the model; it encodes reinforcement by construction and says nothing about whether people drift.",
+    "The drift-form check is weak: it is close to a reparametrisation of gamma (limitations 12)."
+   ]
+  },
+  {
+   "id": "EXP-003",
+   "title": "Sensitivity of the primary contrast to pool skew and choice sharpness",
+   "status": "confirmatory sensitivity analysis, complete (240 runs, 0 failed)",
+   "verdict": "H1 supported in all four cells; invalidation criteria not met; no sign reversal at the frozen calibration",
+   "estimates": [
+    {
+     "label": "Similarity - random, H_exp, tau 0.1, Zipf (primary)",
+     "estimate": -0.5060447664417338,
+     "ci_low": -0.5169461551147142,
+     "ci_high": -0.49514337776875345,
+     "ci_level": 0.95,
+     "unit": "normalised entropy units",
+     "display": "-0.5060",
+     "interval_display": "[-0.5169, -0.4951]"
+    },
+    {
+     "label": "Similarity - random, H_exp, tau 0.1, uniform",
+     "estimate": -0.4001487962845734,
+     "ci_low": -0.40277387500265505,
+     "ci_high": -0.39752371756649174,
+     "ci_level": 0.95,
+     "unit": "normalised entropy units",
+     "display": "-0.4001",
+     "interval_display": "[-0.4028, -0.3975]"
+    },
+    {
+     "label": "Similarity - random, H_exp, tau 0.3, uniform",
+     "estimate": -0.3861148227715442,
+     "ci_low": -0.38926316390772875,
+     "ci_high": -0.3829664816353596,
+     "ci_level": 0.95,
+     "unit": "normalised entropy units",
+     "display": "-0.3861",
+     "interval_display": "[-0.3893, -0.3830]"
+    },
+    {
+     "label": "Similarity - random, H_exp, tau 0.3, Zipf",
+     "estimate": -0.5364566755197667,
+     "ci_low": -0.5468759896376271,
+     "ci_high": -0.5260373614019064,
+     "ci_level": 0.95,
+     "unit": "normalised entropy units",
+     "display": "-0.5365",
+     "interval_display": "[-0.5469, -0.5260]"
+    },
+    {
+     "label": "MMR - similarity, H_exp, tau 0.1, Zipf (primary)",
+     "estimate": 0.36688772060317065,
+     "ci_low": 0.359695693068876,
+     "ci_high": 0.3740797481374653,
+     "ci_level": 0.95,
+     "unit": "normalised entropy units",
+     "display": "0.3669",
+     "interval_display": "[0.3597, 0.3741]"
+    },
+    {
+     "label": "MMR - similarity, H_exp, tau 0.1, uniform",
+     "estimate": 0.2150306408417478,
+     "ci_low": 0.2126325432125803,
+     "ci_high": 0.21742873847091532,
+     "ci_level": 0.95,
+     "unit": "normalised entropy units",
+     "display": "0.2150",
+     "interval_display": "[0.2126, 0.2174]"
+    },
+    {
+     "label": "MMR - similarity, H_exp, tau 0.3, uniform",
+     "estimate": 0.23063944264254704,
+     "ci_low": 0.22742923440178095,
+     "ci_high": 0.23384965088331314,
+     "ci_level": 0.95,
+     "unit": "normalised entropy units",
+     "display": "0.2306",
+     "interval_display": "[0.2274, 0.2338]"
+    },
+    {
+     "label": "MMR - similarity, H_exp, tau 0.3, Zipf",
+     "estimate": 0.425632637286175,
+     "ci_low": 0.4151089162060933,
+     "ci_high": 0.4361563583662567,
+     "ci_level": 0.95,
+     "unit": "normalised entropy units",
+     "display": "0.4256",
+     "interval_display": "[0.4151, 0.4362]"
+    },
+    {
+     "label": "Interaction Zipf - uniform, tau 0.1 (Welch)",
+     "estimate": -0.1058959701571604,
+     "ci_low": -0.11703085288990073,
+     "ci_high": -0.09476108742442008,
+     "ci_level": 0.95,
+     "unit": "normalised entropy units",
+     "display": "-0.1059",
+     "interval_display": "[-0.1170, -0.0948]"
+    },
+    {
+     "label": "Interaction Zipf - uniform, tau 0.3 (Welch)",
+     "estimate": -0.15034185274822254,
+     "ci_low": -0.16111457286845962,
+     "ci_high": -0.13956913262798545,
+     "ci_level": 0.95,
+     "unit": "normalised entropy units",
+     "display": "-0.1503",
+     "interval_display": "[-0.1611, -0.1396]"
+    }
+   ],
+   "claim_ids": [
+    "CLM-006",
+    "CLM-007",
+    "CLM-011"
+   ],
+   "report_path": "research/experiments/EXP-003/report.md",
+   "notes": [
+    "The Welch intervals compare two catalogs and are unpaired across skew levels.",
+    "At lower like rates the Zipf contrast reverses sign (exploratory XPL-M4-LIKERATE below)."
+   ]
+  },
+  {
+   "id": "EXP-004",
+   "title": "Second test of the primary contrast on MovieLens-derived preferences and catalog",
+   "status": "confirmatory second test, complete (60 runs, 0 failed)",
+   "verdict": "H1 supported; contradiction rule not met",
+   "estimates": [
+    {
+     "label": "Similarity - random, H_exp",
+     "estimate": -0.40948412472019946,
+     "ci_low": -0.4209991723668337,
+     "ci_high": -0.3979690770735652,
+     "ci_level": 0.95,
+     "unit": "normalised entropy units",
+     "display": "-0.4095",
+     "interval_display": "[-0.4210, -0.3980]"
+    },
+    {
+     "label": "MMR - random, H_exp",
+     "estimate": -0.08643570861194991,
+     "ci_low": -0.09112980013090333,
+     "ci_high": -0.08174161709299649,
+     "ci_level": 0.95,
+     "unit": "normalised entropy units",
+     "display": "-0.0864",
+     "interval_display": "[-0.0911, -0.0817]"
+    },
+    {
+     "label": "MMR - similarity, H_exp",
+     "estimate": 0.3230484161082495,
+     "ci_low": 0.3133743823860215,
+     "ci_high": 0.33272244983047755,
+     "ci_level": 0.95,
+     "unit": "normalised entropy units",
+     "display": "0.3230",
+     "interval_display": "[0.3134, 0.3327]"
+    },
+    {
+     "label": "Similarity - random, relevance",
+     "estimate": 0.03947688853858018,
+     "ci_low": 0.037988692080517604,
+     "ci_high": 0.04096508499664276,
+     "ci_level": 0.95,
+     "unit": "mean true utility",
+     "display": "0.0395",
+     "interval_display": "[0.0380, 0.0410]"
+    },
+    {
+     "label": "MMR - random, relevance",
+     "estimate": 0.038165738538752256,
+     "ci_low": 0.03704423583792891,
+     "ci_high": 0.0392872412395756,
+     "ci_level": 0.95,
+     "unit": "mean true utility",
+     "display": "0.0382",
+     "interval_display": "[0.0370, 0.0393]"
+    },
+    {
+     "label": "MMR - similarity, relevance",
+     "estimate": -0.0013111499998279277,
+     "ci_low": -0.0019177695387617506,
+     "ci_high": -0.0007045304608941047,
+     "ci_level": 0.95,
+     "unit": "mean true utility",
+     "display": "-0.0013",
+     "interval_display": "[-0.0019, -0.0007]"
+    },
+    {
+     "label": "Similarity - random, miscalibration KL",
+     "estimate": 0.7430741379953152,
+     "ci_low": 0.6951137535191267,
+     "ci_high": 0.7910345224715036,
+     "ci_level": 0.95,
+     "unit": "nats",
+     "display": "0.7431",
+     "interval_display": "[0.6951, 0.7910]"
+    },
+    {
+     "label": "MMR - random, miscalibration KL",
+     "estimate": -0.21571106626043407,
+     "ci_low": -0.2337817299760891,
+     "ci_high": -0.19764040254477905,
+     "ci_level": 0.95,
+     "unit": "nats",
+     "display": "-0.2157",
+     "interval_display": "[-0.2338, -0.1976]"
+    },
+    {
+     "label": "MMR - similarity, miscalibration KL",
+     "estimate": -0.9587852042557495,
+     "ci_low": -1.0001549865095423,
+     "ci_high": -0.9174154220019568,
+     "ci_level": 0.95,
+     "unit": "nats",
+     "display": "-0.9588",
+     "interval_display": "[-1.0002, -0.9174]"
+    },
+    {
+     "label": "Similarity - random, like rate",
+     "estimate": 0.08280044545494185,
+     "ci_low": 0.08032042551906886,
+     "ci_high": 0.08528046539081484,
+     "ci_level": 0.95,
+     "unit": "share",
+     "display": "0.0828",
+     "interval_display": "[0.0803, 0.0853]"
+    },
+    {
+     "label": "MMR - random, like rate",
+     "estimate": 0.08119972833029501,
+     "ci_low": 0.07912392548604585,
+     "ci_high": 0.08327553117454417,
+     "ci_level": 0.95,
+     "unit": "share",
+     "display": "0.0812",
+     "interval_display": "[0.0791, 0.0833]"
+    },
+    {
+     "label": "MMR - similarity, like rate",
+     "estimate": -0.0016007171246468443,
+     "ci_low": -0.002945386928754009,
+     "ci_high": -0.0002560473205396798,
+     "ci_level": 0.95,
+     "unit": "share",
+     "display": "-0.0016",
+     "interval_display": "[-0.0029, -0.0003]"
+    }
+   ],
+   "claim_ids": [
+    "CLM-008",
+    "CLM-010",
+    "CLM-014"
+   ],
+   "report_path": "research/experiments/EXP-004/report.md",
+   "notes": [
+    "Preferences are constructed from MovieLens 1M aggregates (held-out half); MovieLens users are not participants and no row-level data is shown or shipped."
+   ]
+  },
+  {
+   "id": "XPL-M4-LIKERATE",
+   "title": "Exploratory check: dependence of the primary contrast on the like rate",
+   "status": "exploratory, post hoc (designed after the confirmatory results; 5 seeds per cell; 160 runs, 0 failed)",
+   "verdict": "no frozen rule applies; it never changes a confirmatory verdict",
+   "estimates": [
+    {
+     "label": "Similarity - random, H_exp, like rate 0.02 (planning midpoint 0.5), uniform catalog",
+     "estimate": -0.003218617061490603,
+     "ci_low": -0.005133095201474752,
+     "ci_high": -0.0013041389215064545,
+     "ci_level": 0.95,
+     "unit": "normalised entropy units",
+     "display": "-0.0032",
+     "interval_display": "[-0.0051, -0.0013]"
+    },
+    {
+     "label": "Similarity - random, H_exp, like rate 0.05, uniform catalog",
+     "estimate": -0.005731747272183041,
+     "ci_low": -0.0076582737467736,
+     "ci_high": -0.003805220797592482,
+     "ci_level": 0.95,
+     "unit": "normalised entropy units",
+     "display": "-0.0057",
+     "interval_display": "[-0.0077, -0.0038]"
+    },
+    {
+     "label": "Similarity - random, H_exp, like rate 0.15, uniform catalog",
+     "estimate": -0.03839382783679044,
+     "ci_low": -0.04315081667227256,
+     "ci_high": -0.03363683900130832,
+     "ci_level": 0.95,
+     "unit": "normalised entropy units",
+     "display": "-0.0384",
+     "interval_display": "[-0.0432, -0.0336]"
+    },
+    {
+     "label": "Similarity - random, H_exp, like rate 0.30, uniform catalog",
+     "estimate": -0.23956195320772528,
+     "ci_low": -0.24730760519856598,
+     "ci_high": -0.23181630121688457,
+     "ci_level": 0.95,
+     "unit": "normalised entropy units",
+     "display": "-0.2396",
+     "interval_display": "[-0.2473, -0.2318]"
+    },
+    {
+     "label": "Similarity - random, H_exp, like rate 0.45, uniform catalog",
+     "estimate": -0.3960115247004198,
+     "ci_low": -0.40575620349748126,
+     "ci_high": -0.3862668459033583,
+     "ci_level": 0.95,
+     "unit": "normalised entropy units",
+     "display": "-0.3960",
+     "interval_display": "[-0.4058, -0.3863]"
+    },
+    {
+     "label": "Similarity - random, H_exp, like rate 0.577 (frozen calibration), uniform catalog",
+     "estimate": -0.3961387494920924,
+     "ci_low": -0.4045607037343143,
+     "ci_high": -0.38771679524987046,
+     "ci_level": 0.95,
+     "unit": "normalised entropy units",
+     "display": "-0.3961",
+     "interval_display": "[-0.4046, -0.3877]"
+    },
+    {
+     "label": "Similarity - random, H_exp, like rate 0.70, uniform catalog",
+     "estimate": -0.39102587078745044,
+     "ci_low": -0.4009078751553241,
+     "ci_high": -0.38114386641957676,
+     "ci_level": 0.95,
+     "unit": "normalised entropy units",
+     "display": "-0.3910",
+     "interval_display": "[-0.4009, -0.3811]"
+    },
+    {
+     "label": "Similarity - random, H_exp, like rate 0.85, uniform catalog",
+     "estimate": -0.39374522069420737,
+     "ci_low": -0.4079620201740301,
+     "ci_high": -0.3795284212143846,
+     "ci_level": 0.95,
+     "unit": "normalised entropy units",
+     "display": "-0.3937",
+     "interval_display": "[-0.4080, -0.3795]"
+    },
+    {
+     "label": "Similarity - random, H_exp, like rate 0.02 (planning midpoint 0.5), Zipf catalog",
+     "estimate": 0.10448787495201388,
+     "ci_low": 0.09250437493619887,
+     "ci_high": 0.11647137496782889,
+     "ci_level": 0.95,
+     "unit": "normalised entropy units",
+     "display": "+0.1045",
+     "interval_display": "[0.0925, 0.1165]"
+    },
+    {
+     "label": "Similarity - random, H_exp, like rate 0.05, Zipf catalog",
+     "estimate": 0.10260198994668948,
+     "ci_low": 0.08983818422434083,
+     "ci_high": 0.11536579566903814,
+     "ci_level": 0.95,
+     "unit": "normalised entropy units",
+     "display": "+0.1026",
+     "interval_display": "[0.0898, 0.1154]"
+    },
+    {
+     "label": "Similarity - random, H_exp, like rate 0.15, Zipf catalog",
+     "estimate": 0.07237017651200639,
+     "ci_low": 0.05723811781601136,
+     "ci_high": 0.08750223520800142,
+     "ci_level": 0.95,
+     "unit": "normalised entropy units",
+     "display": "+0.0724",
+     "interval_display": "[0.0572, 0.0875]"
+    },
+    {
+     "label": "Similarity - random, H_exp, like rate 0.30, Zipf catalog",
+     "estimate": -0.1258342763896101,
+     "ci_low": -0.1479056803171332,
+     "ci_high": -0.10376287246208699,
+     "ci_level": 0.95,
+     "unit": "normalised entropy units",
+     "display": "-0.1258",
+     "interval_display": "[-0.1479, -0.1038]"
+    },
+    {
+     "label": "Similarity - random, H_exp, like rate 0.45, Zipf catalog",
+     "estimate": -0.37222446108166674,
+     "ci_low": -0.39943498671037314,
+     "ci_high": -0.34501393545296033,
+     "ci_level": 0.95,
+     "unit": "normalised entropy units",
+     "display": "-0.3722",
+     "interval_display": "[-0.3994, -0.3450]"
+    },
+    {
+     "label": "Similarity - random, H_exp, like rate 0.577 (frozen calibration), Zipf catalog",
+     "estimate": -0.5020991306735411,
+     "ci_low": -0.5194571289701154,
+     "ci_high": -0.48474113237696664,
+     "ci_level": 0.95,
+     "unit": "normalised entropy units",
+     "display": "-0.5021",
+     "interval_display": "[-0.5195, -0.4847]"
+    },
+    {
+     "label": "Similarity - random, H_exp, like rate 0.70, Zipf catalog",
+     "estimate": -0.6339538395890557,
+     "ci_low": -0.6463658944071969,
+     "ci_high": -0.6215417847709145,
+     "ci_level": 0.95,
+     "unit": "normalised entropy units",
+     "display": "-0.6340",
+     "interval_display": "[-0.6464, -0.6215]"
+    },
+    {
+     "label": "Similarity - random, H_exp, like rate 0.85, Zipf catalog",
+     "estimate": -0.7105964817404837,
+     "ci_low": -0.7246545098934185,
+     "ci_high": -0.696538453587549,
+     "ci_level": 0.95,
+     "unit": "normalised entropy units",
+     "display": "-0.7106",
+     "interval_display": "[-0.7247, -0.6965]"
+    }
+   ],
+   "claim_ids": [
+    "CLM-012"
+   ],
+   "report_path": "research/paper/manuscript.md section 5.5; results/exploratory/m4-likerate-summary.csv",
+   "notes": [
+    "Settings of the EXP-003 tau 0.1 block (static preferences, eta 0.1, alpha_0 1.0); seeds disjoint from the confirmatory seeds.",
+    "Under the uniform catalog the effect is below the smallest effect of interest at low like rates; under the Zipf catalog its sign reverses there."
+   ]
+  },
+  {
+   "id": "XPL-VAR-PROBE",
+   "title": "Pre-freeze exploratory probe at the planning midpoint",
+   "status": "exploratory, before the freeze (planning midpoint 0.5; 10 seeds; earlier code state)",
+   "verdict": "no frozen rule applies; a near-zero contrast, disclosed because the recalibration was approved with it in view",
+   "estimates": [
+    {
+     "label": "Similarity - random, H_exp, EXP-001 primary cell settings",
+     "estimate": -0.0006882490047124601,
+     "ci_low": -0.002227020603650661,
+     "ci_high": 0.0008505225942257406,
+     "ci_level": 0.95,
+     "unit": "normalised entropy units",
+     "display": "-0.000688",
+     "interval_display": "[-0.002227, 0.000851]"
+    }
+   ],
+   "claim_ids": [
+    "CLM-013"
+   ],
+   "report_path": "results/exploratory/var-probe/report/report.md; research/paper/manuscript.md section 4.6",
+   "notes": [
+    "Not comparable as a test: different calibration and code state."
+   ]
+  },
+  {
+   "id": "EXP-005",
+   "title": "Dependence of the primary contrast on the calibrated like rate",
+   "status": "registered, not frozen, not run",
+   "verdict": "none: no data exists; the protocol waits for the owner's freeze decision",
+   "estimates": [],
+   "claim_ids": [],
+   "report_path": "none (not run); protocol draft research/experiments/EXP-005/protocol.md",
+   "notes": [
+    "Six design parameters are open for the owner at freeze. No result of EXP-005 is shown anywhere on this page."
+   ]
+  }
+ ],
+ "assumptions": [
+  {
+   "name": "Topics, items, users",
+   "value": "K = 10 topics, N = 1,000 items, U = 200 simulated users per run",
+   "source": "protocol v1.0, manuscript section 3"
+  },
+  {
+   "name": "Loop",
+   "value": "T = 200 steps; candidate pool C = 50, identical across rankers; slate k = 10",
+   "source": "manuscript section 3"
+  },
+  {
+   "name": "Examination",
+   "value": "position j examined with probability 0.85^(j-1)",
+   "source": "manuscript section 3"
+  },
+  {
+   "name": "Choice",
+   "value": "like with probability sigmoid((r_ui - c) / tau); feedback flipped with probability eta",
+   "source": "manuscript section 3"
+  },
+  {
+   "name": "Calibrated like rate",
+   "value": "L* = 0.577143, the share of MovieLens 1M calibration-half ratings of 4 or more (a selected-exposure like rate)",
+   "source": "manuscript section 4.3"
+  },
+  {
+   "name": "Fitted midpoints",
+   "value": "c = 0.066421 for tau 0.1 and 0.005990 for tau 0.3; c_ML = 0.061067",
+   "source": "manuscript section 4.3"
+  },
+  {
+   "name": "Drift (EXP-002 only)",
+   "value": "after each like of topic z: p_u <- normalise((1 - gamma) p_u + gamma onehot(z))",
+   "source": "manuscript section 3"
+  },
+  {
+   "name": "Smallest effect of interest",
+   "value": "0.05 normalised entropy units",
+   "source": "frozen decision rule, manuscript section 4.4"
+  }
+ ],
+ "limitations": [
+  "Simulation only. Users and items are synthetic.",
+  "No claims about commercial systems. PULSE does not claim that any platform uses these rankers or produces these effects.",
+  "No measurement of addiction or wellbeing. Attention is represented only by a position-based examination probability.",
+  "Drift is an assumption. The drifting preference model encodes reinforcement by construction; EXP-002 measures how rankers interact with that assumption, not whether people drift.",
+  "Narrow operationalisations. \"User control\" is responsiveness of slates to explicit dislikes; it is not human agency. \"Calibration\" follows a KL definition between latent preference and exposure.",
+  "Simple rankers. No learned embedding model, no deep or RL ranker beyond LinUCB.",
+  "Expected primary direction. The primary contrast is expected by construction; the informative parts are effect size, trade-offs and the sensitivity analysis.",
+  "Licence. The repository is source-available under a non-commercial licence (D-001), not open source; reuse is restricted accordingly.",
+  "MovieLens selection (round-2 data). The target like rate L* comes from ratings of movies that users chose to watch, so it is a selected-exposure like rate.",
+  "Constructed preferences in EXP-004. Preference vectors are derived from like counts by add-one smoothing and division by the catalog share of each genre; genres are reduced to one primary topic per movie.",
+  "One midpoint per tau. The fitted midpoint is held fixed across alpha_0, eta, pool skew and drift, so like rates differ by cell.",
+  "Weak drift-form check (EXP-002). For a non-negative preference vector, additive-then-clip followed by normalisation equals the multiplicative rule with rate gamma/(1 + gamma) (0.0476 instead of 0.05) unless the clip at 1 binds.",
+  "User control mixes responsiveness and slate volatility. The random arm's value (about -0.089) shows that slate topic shares change mechanically from step to step.",
+  "Small seed-level variance. With 200 users per run the paired differences vary little across seeds (SD about 0.005 to 0.03), so very large d_z values and tiny p-values follow even for small effects (for example popularity minus random in H_exp, -0.0089).",
+  "Calibration changed an exploratory pattern. Before the freeze, under the planning midpoint 0.5, the Zipf cells of the exploratory sweep showed similarity above random in H_exp (freeze record C4).",
+  "One calibration per experiment family. The confirmatory results hold at the fitted midpoints; no confirmatory run varies the target like rate.",
+  "Like-rate dependence (M4, exploratory evidence). Every confirmatory result holds at one calibrated like rate (0.577).",
+  "Extent of source reading. Most related-work sources were read at the abstract page only; Steck 2018 only at its metadata record, so the miscalibration formula has not been checked against the paper; Harper and Konstan 2015 was not opened (citation from the GroupLens README)."
+ ],
+ "exposure_heatmap": {
+  "experiment_id": "EXP-001",
+  "label": "measured, confirmatory",
+  "metric": "H_exp, final-window normalised exposure topic entropy (0 = one topic, 1 = all ten topics equally)",
+  "uncertainty": "SD over 20 seeds in parentheses",
+  "source": "research/experiments/EXP-001/tables.md",
+  "arms": [
+   {
+    "id": "random",
+    "label": "Random"
+   },
+   {
+    "id": "popularity",
+    "label": "Popularity"
+   },
+   {
+    "id": "bandit",
+    "label": "Bandit (LinUCB)"
+   },
+   {
+    "id": "mmr",
+    "label": "MMR"
+   },
+   {
+    "id": "similarity",
+    "label": "Similarity"
+   }
+  ],
+  "cells": [
+   {
+    "id": "main:alpha0=1.0,eta=0.0",
+    "label": "eta 0.0, alpha_0 1.0 (primary)"
+   },
+   {
+    "id": "main:alpha0=0.1,eta=0.0",
+    "label": "eta 0.0, alpha_0 0.1"
+   },
+   {
+    "id": "main:alpha0=1.0,eta=0.2",
+    "label": "eta 0.2, alpha_0 1.0"
+   },
+   {
+    "id": "main:alpha0=0.1,eta=0.2",
+    "label": "eta 0.2, alpha_0 0.1"
+   }
+  ],
+  "values": [
+   {
+    "arm": "random",
+    "cell": "main:alpha0=1.0,eta=0.0",
+    "mean": 0.9932156732743174,
+    "sd": 0.0009385775457080787,
+    "n": 20,
+    "display": "0.9932 (0.0009)"
+   },
+   {
+    "arm": "popularity",
+    "cell": "main:alpha0=1.0,eta=0.0",
+    "mean": 0.9842747291370489,
+    "sd": 0.0059560928364034,
+    "n": 20,
+    "display": "0.9843 (0.0060)"
+   },
+   {
+    "arm": "bandit",
+    "cell": "main:alpha0=1.0,eta=0.0",
+    "mean": 0.7011733591206095,
+    "sd": 0.0064616569246035765,
+    "n": 20,
+    "display": "0.7012 (0.0065)"
+   },
+   {
+    "arm": "mmr",
+    "cell": "main:alpha0=1.0,eta=0.0",
+    "mean": 0.8078715445086463,
+    "sd": 0.004175440680308799,
+    "n": 20,
+    "display": "0.8079 (0.0042)"
+   },
+   {
+    "arm": "similarity",
+    "cell": "main:alpha0=1.0,eta=0.0",
+    "mean": 0.5931980044222891,
+    "sd": 0.006224896564641704,
+    "n": 20,
+    "display": "0.5932 (0.0062)"
+   },
+   {
+    "arm": "random",
+    "cell": "main:alpha0=0.1,eta=0.0",
+    "mean": 0.9932156732743174,
+    "sd": 0.0009385775457080787,
+    "n": 20,
+    "display": "0.9932 (0.0009)"
+   },
+   {
+    "arm": "popularity",
+    "cell": "main:alpha0=0.1,eta=0.0",
+    "mean": 0.9828998420606601,
+    "sd": 0.007939584328555294,
+    "n": 20,
+    "display": "0.9829 (0.0079)"
+   },
+   {
+    "arm": "bandit",
+    "cell": "main:alpha0=0.1,eta=0.0",
+    "mean": 0.6224083247536271,
+    "sd": 0.005927064696189482,
+    "n": 20,
+    "display": "0.6224 (0.0059)"
+   },
+   {
+    "arm": "mmr",
+    "cell": "main:alpha0=0.1,eta=0.0",
+    "mean": 0.7777591080449839,
+    "sd": 0.0030683373005342064,
+    "n": 20,
+    "display": "0.7778 (0.0031)"
+   },
+   {
+    "arm": "similarity",
+    "cell": "main:alpha0=0.1,eta=0.0",
+    "mean": 0.599399972075725,
+    "sd": 0.005494919633255434,
+    "n": 20,
+    "display": "0.5994 (0.0055)"
+   },
+   {
+    "arm": "random",
+    "cell": "main:alpha0=1.0,eta=0.2",
+    "mean": 0.9932156732743174,
+    "sd": 0.0009385775457080787,
+    "n": 20,
+    "display": "0.9932 (0.0009)"
+   },
+   {
+    "arm": "popularity",
+    "cell": "main:alpha0=1.0,eta=0.2",
+    "mean": 0.9821651667719165,
+    "sd": 0.005978936388984279,
+    "n": 20,
+    "display": "0.9822 (0.0060)"
+   },
+   {
+    "arm": "bandit",
+    "cell": "main:alpha0=1.0,eta=0.2",
+    "mean": 0.7494062926293504,
+    "sd": 0.005137635723921375,
+    "n": 20,
+    "display": "0.7494 (0.0051)"
+   },
+   {
+    "arm": "mmr",
+    "cell": "main:alpha0=1.0,eta=0.2",
+    "mean": 0.8125745311918251,
+    "sd": 0.0035416572375777415,
+    "n": 20,
+    "display": "0.8126 (0.0035)"
+   },
+   {
+    "arm": "similarity",
+    "cell": "main:alpha0=1.0,eta=0.2",
+    "mean": 0.5973046487178106,
+    "sd": 0.007142185739252572,
+    "n": 20,
+    "display": "0.5973 (0.0071)"
+   },
+   {
+    "arm": "random",
+    "cell": "main:alpha0=0.1,eta=0.2",
+    "mean": 0.9932156732743174,
+    "sd": 0.0009385775457080787,
+    "n": 20,
+    "display": "0.9932 (0.0009)"
+   },
+   {
+    "arm": "popularity",
+    "cell": "main:alpha0=0.1,eta=0.2",
+    "mean": 0.9820260351626302,
+    "sd": 0.006754832347857131,
+    "n": 20,
+    "display": "0.9820 (0.0068)"
+   },
+   {
+    "arm": "bandit",
+    "cell": "main:alpha0=0.1,eta=0.2",
+    "mean": 0.6789351456787467,
+    "sd": 0.005893427986883493,
+    "n": 20,
+    "display": "0.6789 (0.0059)"
+   },
+   {
+    "arm": "mmr",
+    "cell": "main:alpha0=0.1,eta=0.2",
+    "mean": 0.781753554783921,
+    "sd": 0.004131229669993201,
+    "n": 20,
+    "display": "0.7818 (0.0041)"
+   },
+   {
+    "arm": "similarity",
+    "cell": "main:alpha0=0.1,eta=0.2",
+    "mean": 0.5984076006667072,
+    "sd": 0.005552545284509375,
+    "n": 20,
+    "display": "0.5984 (0.0056)"
+   }
+  ]
+ },
+ "likerate_curve": {
+  "experiment_id": "XPL-M4-LIKERATE",
+  "label": "measured, exploratory",
+  "metric": "similarity minus random in H_exp, mean paired difference",
+  "uncertainty": "95% paired t-interval over 5 seeds",
+  "sesoi": 0.05,
+  "frozen_like_rate": 0.577,
+  "points": [
+   {
+    "catalog": "uniform",
+    "target_like_rate": 0.02062522456149448,
+    "target_label": "0.02 (planning midpoint 0.5)",
+    "n_seeds": 5,
+    "estimate": -0.003218617061490603,
+    "ci_low": -0.005133095201474752,
+    "ci_high": -0.0013041389215064545,
+    "display": "-0.0032",
+    "interval_display": "[-0.0051, -0.0013]"
+   },
+   {
+    "catalog": "uniform",
+    "target_like_rate": 0.049999999951804694,
+    "target_label": "0.05",
+    "n_seeds": 5,
+    "estimate": -0.005731747272183041,
+    "ci_low": -0.0076582737467736,
+    "ci_high": -0.003805220797592482,
+    "display": "-0.0057",
+    "interval_display": "[-0.0077, -0.0038]"
+   },
+   {
+    "catalog": "uniform",
+    "target_like_rate": 0.15000000001403124,
+    "target_label": "0.15",
+    "n_seeds": 5,
+    "estimate": -0.03839382783679044,
+    "ci_low": -0.04315081667227256,
+    "ci_high": -0.03363683900130832,
+    "display": "-0.0384",
+    "interval_display": "[-0.0432, -0.0336]"
+   },
+   {
+    "catalog": "uniform",
+    "target_like_rate": 0.2999999996743704,
+    "target_label": "0.30",
+    "n_seeds": 5,
+    "estimate": -0.23956195320772528,
+    "ci_low": -0.24730760519856598,
+    "ci_high": -0.23181630121688457,
+    "display": "-0.2396",
+    "interval_display": "[-0.2473, -0.2318]"
+   },
+   {
+    "catalog": "uniform",
+    "target_like_rate": 0.45000000061325124,
+    "target_label": "0.45",
+    "n_seeds": 5,
+    "estimate": -0.3960115247004198,
+    "ci_low": -0.40575620349748126,
+    "ci_high": -0.3862668459033583,
+    "display": "-0.3960",
+    "interval_display": "[-0.4058, -0.3863]"
+   },
+   {
+    "catalog": "uniform",
+    "target_like_rate": 0.5771428692690544,
+    "target_label": "0.577 (frozen calibration)",
+    "n_seeds": 5,
+    "estimate": -0.3961387494920924,
+    "ci_low": -0.4045607037343143,
+    "ci_high": -0.38771679524987046,
+    "display": "-0.3961",
+    "interval_display": "[-0.4046, -0.3877]"
+   },
+   {
+    "catalog": "uniform",
+    "target_like_rate": 0.7000000004877047,
+    "target_label": "0.70",
+    "n_seeds": 5,
+    "estimate": -0.39102587078745044,
+    "ci_low": -0.4009078751553241,
+    "ci_high": -0.38114386641957676,
+    "display": "-0.3910",
+    "interval_display": "[-0.4009, -0.3811]"
+   },
+   {
+    "catalog": "uniform",
+    "target_like_rate": 0.8499999999706096,
+    "target_label": "0.85",
+    "n_seeds": 5,
+    "estimate": -0.39374522069420737,
+    "ci_low": -0.4079620201740301,
+    "ci_high": -0.3795284212143846,
+    "display": "-0.3937",
+    "interval_display": "[-0.4080, -0.3795]"
+   },
+   {
+    "catalog": "zipf",
+    "target_like_rate": 0.02062522456149448,
+    "target_label": "0.02 (planning midpoint 0.5)",
+    "n_seeds": 5,
+    "estimate": 0.10448787495201388,
+    "ci_low": 0.09250437493619887,
+    "ci_high": 0.11647137496782889,
+    "display": "+0.1045",
+    "interval_display": "[0.0925, 0.1165]"
+   },
+   {
+    "catalog": "zipf",
+    "target_like_rate": 0.049999999951804694,
+    "target_label": "0.05",
+    "n_seeds": 5,
+    "estimate": 0.10260198994668948,
+    "ci_low": 0.08983818422434083,
+    "ci_high": 0.11536579566903814,
+    "display": "+0.1026",
+    "interval_display": "[0.0898, 0.1154]"
+   },
+   {
+    "catalog": "zipf",
+    "target_like_rate": 0.15000000001403124,
+    "target_label": "0.15",
+    "n_seeds": 5,
+    "estimate": 0.07237017651200639,
+    "ci_low": 0.05723811781601136,
+    "ci_high": 0.08750223520800142,
+    "display": "+0.0724",
+    "interval_display": "[0.0572, 0.0875]"
+   },
+   {
+    "catalog": "zipf",
+    "target_like_rate": 0.2999999996743704,
+    "target_label": "0.30",
+    "n_seeds": 5,
+    "estimate": -0.1258342763896101,
+    "ci_low": -0.1479056803171332,
+    "ci_high": -0.10376287246208699,
+    "display": "-0.1258",
+    "interval_display": "[-0.1479, -0.1038]"
+   },
+   {
+    "catalog": "zipf",
+    "target_like_rate": 0.45000000061325124,
+    "target_label": "0.45",
+    "n_seeds": 5,
+    "estimate": -0.37222446108166674,
+    "ci_low": -0.39943498671037314,
+    "ci_high": -0.34501393545296033,
+    "display": "-0.3722",
+    "interval_display": "[-0.3994, -0.3450]"
+   },
+   {
+    "catalog": "zipf",
+    "target_like_rate": 0.5771428692690544,
+    "target_label": "0.577 (frozen calibration)",
+    "n_seeds": 5,
+    "estimate": -0.5020991306735411,
+    "ci_low": -0.5194571289701154,
+    "ci_high": -0.48474113237696664,
+    "display": "-0.5021",
+    "interval_display": "[-0.5195, -0.4847]"
+   },
+   {
+    "catalog": "zipf",
+    "target_like_rate": 0.7000000004877047,
+    "target_label": "0.70",
+    "n_seeds": 5,
+    "estimate": -0.6339538395890557,
+    "ci_low": -0.6463658944071969,
+    "ci_high": -0.6215417847709145,
+    "display": "-0.6340",
+    "interval_display": "[-0.6464, -0.6215]"
+   },
+   {
+    "catalog": "zipf",
+    "target_like_rate": 0.8499999999706096,
+    "target_label": "0.85",
+    "n_seeds": 5,
+    "estimate": -0.7105964817404837,
+    "ci_low": -0.7246545098934185,
+    "ci_high": -0.696538453587549,
+    "display": "-0.7106",
+    "interval_display": "[-0.7247, -0.6965]"
+   }
+  ]
+ }
+}

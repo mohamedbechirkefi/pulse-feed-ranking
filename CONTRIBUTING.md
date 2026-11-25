@@ -48,3 +48,10 @@ Experiment and report commands (M2). The package is not installed; set `PYTHONPA
     PYTHONPATH=src uv run python -m pulse.cli run --experiment EXP-001           # refused until the owner freezes the protocol
     PYTHONPATH=src uv run python -m pulse.cli report --results results/exploratory/smoke
     PYTHONPATH=src uv run python -m pulse.cli test
+
+Demo (M5). Node 22 is read-only from `/Users/bechir/research/helix/.tools/node/bin`; dependencies are pinned in `demo/package-lock.json`:
+
+    .venv/bin/python scripts/export_demo_data.py                     # demo/public/data/results.json from committed results
+    PYTHONPATH=src .venv/bin/python scripts/export_sandbox_fixture.py   # engine parity fixture for the sandbox
+    cd demo && npm ci && npm test && npm run build && npm run preview
+    node tools/a11y_check.mjs dist --screenshots <dir>                # offline and accessibility check

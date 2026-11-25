@@ -252,3 +252,58 @@ New: `research/experiments/EXP-005/{protocol.md, config.json}`. Modified: `resea
 
 ### Next action
 The owner: decide OPEN-1 to OPEN-6 of the EXP-005 protocol and give the G-FREEZE word, after which the midpoint-fit script and the analysis extension are written and tested before any run. Otherwise M5 (interactive page).
+
+## 2026-11-25: M5 session (interactive page)
+
+**Milestone:** M5. **Authority:** owner, 2026-11-25, "Next" (`labs/_shared/owner-approvals-2026-11-25d.md`; stack: the shared React, TypeScript and Vite template) and the coordinator's brief `labs/_shared/M5-brief.md`. **Next bounded task at start:** export the published results, build the page and sandbox from the template, check accessibility and offline use, align the texts. **Starting state:** branch main, clean, HEAD 08a6bde.
+
+### Commands and actual outputs
+- `cp` of the template without `node_modules` into `demo/`; `npm ci --prefer-offline` (Node v22.23.3 from helix, read-only; npm cache in the session scratchpad): "added 53 packages".
+- `../.tools/py/bin/uv sync --frozen --all-groups --all-extras`: "Audited 6 packages".
+- `.venv/bin/python scripts/export_demo_data.py`: "wrote demo/public/data/results.json". A first version printed "invalidation criteria met" for EXP-003 because it tested a dictionary for truth; caught when reading the output, fixed to test its values, and the exporter now refuses to export if a verdict differs from its wording.
+- `PYTHONPATH=src .venv/bin/python scripts/export_sandbox_fixture.py`: "wrote demo/src/fixtures/engine_fixture.json (353171 bytes)", 0.22 s.
+- `npm test` (vitest): "Test Files 2 passed (2)", "Tests 28 passed (28)" (13 results-validator tests, 15 engine tests including 11 parity cases: slates identical, metrics within 1e-9).
+- `npm run build`: built in 93 ms; `dist/assets/index-*.js` 253.35 kB, worker 9.96 kB, CSS 8.80 kB.
+- `node tools/a11y_check.mjs dist --screenshots <scratchpad>/pulse/shots`, final run:
+  ```
+  PASS results render (no fail-closed panel): 7 experiment panels
+  PASS text contrast, light scheme (WCAG AA)
+  PASS text contrast, dark scheme (WCAG AA)
+  PASS keyboard reaches every focusable element: 24 reached of 24
+  PASS visible focus indicator
+  PASS no horizontal page scroll at 360 px: overflow 0px
+  PASS reduced motion: no running animations: 0 running
+  PASS no request leaves the local origin
+  PASS offline after first load: results stay, sandbox runs: Sandbox output, seed 1: final-window exposure entropy 0.986 for Random and 0.767
+  PASS sandbox result renders two feeds of topic cards: 20 cards
+  PASS sandbox result: no horizontal page scroll at 360 px: overflow 0px
+  PASS sandbox result: text contrast, light scheme (WCAG AA)
+  PASS sandbox result: text contrast, dark scheme (WCAG AA)
+  PASS sandbox result: keyboard reaches every sandbox control: 12 reached of 12
+  A11Y-CHECK PASS
+  ```
+  Earlier runs failed the keyboard check ("18 reached of 24", then "23 reached of 24") because identical tables and selects had the same key in the checker; ids were added to the page, the checker was not weakened. With `exposure_heatmap` deleted from a copy of the results file, the checker printed "FAIL results render (no fail-closed panel): 0 experiment panels" and "A11Y-CHECK FAIL (2)".
+- Screenshots inspected with the Read tool (desktop light, desktop dark, mobile, and the sandbox result in light and dark). Fixed after inspection: estimate tables clipped at 360 px (now stacked rows), faint sandbox heatmaps in the dark scheme (now scaled to the chart maximum), a legend that wrapped, and a like-rate legend that did not match the marker shapes.
+- `.venv/bin/python scripts/export_demo_data.py --check`: "EXPORT-CHECK identical"; `scripts/export_sandbox_fixture.py --check`: "FIXTURE-CHECK identical".
+- `PYTHONPATH=src .venv/bin/python scripts/m4_evidence_audit.py`: exit 0; Parts A to D unchanged (manuscript: the one explained arXiv token).
+- `.venv/bin/python -m pytest -q`: "161 passed in 3.61s" (153 before, plus 8 in `tests/test_demo_export.py`).
+- `grep -rn REPLACE demo/ --exclude-dir=node_modules`: no match. No em dash and no e-mail address in the new or changed files.
+
+### Decisions
+D-019.
+
+### Files changed
+New: `demo/` (template copy with `src/{engine.ts, engine.test.ts, sandboxConfig.ts, charts.tsx, fixtures/engine_fixture.json}`, rewritten `App.tsx`, `Sandbox.tsx`, `sandbox.worker.ts`, `style.css`, extended `results.ts`, `results.test.ts`, `tools/a11y_check.mjs`, `public/data/results.json`, `package-lock.json`), `scripts/export_demo_data.py`, `scripts/export_sandbox_fixture.py`, `tests/test_demo_export.py`, `docs/demo.png` (185,242 bytes), `articles/medium.md`, `articles/linkedin.md`. Modified: `README.md`, `demo/README.md`, `articles/README.md`, `CONTRIBUTING.md` (demo commands), `research/paper/manuscript.md` (sections 9 and 10, no number changed), `research/publication/claims_audit.md`, `research/decision_log.md`, `roadmap.md` (M0, M2 and M5 statuses), `progress.md`.
+
+### M5 gate
+Offline after the initial load, responsive at 360 px, usable with the keyboard, no fabricated data (every displayed result string is copied from committed files and checked against the manuscript), no runtime service. **M5 is done.**
+
+### Owner placeholders that remain
+Repository and demo address (README, demo footer and README, manuscript section 10, articles); the articles' byline. Funding, competing interests and the manuscript author line are already owner-approved (D-012 C3, D-017).
+
+### Risks
+- The sandbox shares the research loop but not its random-number generator; its label says so, and its numbers are never shown next to published ones.
+- `CITATION.cff` carries `date-released: 2026-11-24` although nothing has been released; left for the owner at M6.
+
+### Next action
+The owner: EXP-005 freeze decision (OPEN-1 to OPEN-6) when wanted; repository and demo address at release. Session: M6 (clean clone, PDFs, link and licence checks, owner review checklist).
