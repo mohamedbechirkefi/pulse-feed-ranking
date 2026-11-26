@@ -38,11 +38,19 @@ where a topic is shown (monitor wall, feed cards). Label kinds keep separate lam
 
 ## Type
 
-- **Archivo Variable** (wdth 62 to 125, wght 100 to 900), display and interface: condensed widths for
-  headings and the wordmark, like broadcast lower thirds; normal width for controls, labels and tabular
-  figures in tables.
-- **Source Serif 4 Variable** (wght), long-form reading: the verdicts, captions and method prose, at
-  18 px with a line height of 1.65 on the dark ground.
+- **Unbounded Variable** (wght 200 to 900), display: headings and the wordmark. A wide, rounded
+  geometric face in the manner of a station ident or an on-screen channel bug; its soft terminals echo the
+  rounded channel bars of the mark. Set at 560 to 640 with tight tracking (-0.01 to -0.018 em) and kept
+  small, because the face is very wide: hero h1 28 to 43 px, h2 22 to 30 px, h3 17 px.
+- **Figtree Variable** (wght 300 to 900), everything else: reading text at 17 px with a line height of
+  1.62, the interface (navigation, controls, labels, buttons) and every number, with tabular figures
+  (`tnum`) in tables, meters, ticks and the sandbox. A clean geometric sans that reads calmly on the dark
+  ground next to the loud display face.
+
+Changed on 2026-11-26 (owner request: no two lab demos share a family). The previous pair was Archivo
+(condensed, lower-third style) and Source Serif 4, both now used by other demos. The control-room
+direction stays; the condensed lower-third reading became the wide channel-ident reading, and the
+wordmark was re-outlined from Unbounded.
 
 ## Layout
 
@@ -103,7 +111,7 @@ same idea drawn in the logo (three segments, then two, then one bar).
   topic hues on the monitor wall, with cue blue and tally coral as a pair for the two feeds.
 - First draft put an all-caps tracked eyebrow above every section and kept the uppercase label tags.
   Revised: sentence case everywhere; label kinds are lamp-and-outline pills in sentence case.
-- First draft used a monospace face for numbers. Revised: tabular figures of Archivo; no mono.
+- First draft used a monospace face for numbers. Revised: tabular figures of the text face (now Figtree); no mono.
 - First draft chopped results into identical rounded cards. Revised: experiment panels are console
   modules with a lamp strip on the left whose style encodes the label kind (solid, dashed, dotted);
   radius differs by level (console 14 px, controls 10 px, lamps round).
@@ -111,7 +119,7 @@ same idea drawn in the logo (three segments, then two, then one bar).
   or in answer to an action.
 - Against the other demos: SCROLL is a stopwatch and film strip, SWARM a dusk murmuration, MARKET a
   ticker tape, ECHO a record sleeve. PULSE keeps the vision-mixer grid of topic colours and the
-  lower-third condensed type, which none of them uses.
+  wide channel-ident display type, which none of them uses.
 
 ## Changes made during the build (screenshot critique)
 

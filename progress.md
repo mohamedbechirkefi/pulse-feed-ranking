@@ -405,3 +405,20 @@ New: `demo/DESIGN.md`, `demo/src/Hero.tsx`, `demo/src/fonts.css`, `demo/tools/bu
 
 ### Next action
 The coordinator deploys `demo/dist` when the owner decides. No push, no deploy from this session.
+
+## 2026-11-26: demo typefaces unique across the labs (owner request)
+
+**Starting state:** branch main, clean. Authority: owner request of 2026-11-26, brief `labs/_shared/FONT-UNIQUE-brief.md` (no two lab demos share a family). Scope: `demo/` only; no number, result, export, fixture, test expectation or accessible name changed.
+
+### Commands and actual outputs
+- Fonts (npm cache in the session scratch): `npm uninstall @fontsource-variable/archivo @fontsource-variable/source-serif-4`: "removed 2 packages"; `npm_config_before=2026-11-12 npm install --save-exact @fontsource-variable/unbounded@5.3.0 @fontsource-variable/figtree@5.3.0`: "added 2 packages". Both have `tnum`; Figtree carries every number.
+- Type: Unbounded (display: headings, wordmark) at 560 to 640, sizes cut because the face is very wide (hero h1 28 to 43 px, h2 22 to 30 px, h3 17 px); Figtree for reading text, interface, tables and charts. `font-stretch` rules removed (no width axis now).
+- Logo: `tools/build_logo.py` now outlines the wordmark from Unbounded at wght 640; the four lockups were rewritten, mark and favicon unchanged (so `favicon-32.png` is unchanged). `svg_audit.py` on all eight SVGs: 100/100 each. Open Graph image re-rendered with Chrome headless (1200 by 630) from the same scratch generator with the new fonts.
+- `npm test`: "Tests 28 passed (28)". `npm run build`: built, 500 KB on disk, 477,035 bytes. `node tools/a11y_check.mjs dist`: "A11Y-CHECK PASS". `tests/test_demo_export.py`: "8 passed".
+- Screenshots (local port 5244, server stopped afterwards): desktop 1440 and phone 390 full page, Chrome headless over CDP. First pass: heading tracking at -0.025 em closed the word spaces of the wide face, opened to -0.018 em; panel titles wrapped to four lines on phones, given a smaller minimum size.
+
+### Files changed
+`demo/package.json`, `demo/package-lock.json`, `demo/src/fonts.css`, `demo/src/style.css`, `demo/src/App.tsx` (font credit line), `demo/tools/build_logo.py`, `demo/public/brand/pulse-lockup*.svg`, `demo/public/brand/og.png`, `demo/DESIGN.md`, `demo/README.md`, `progress.md`.
+
+### Next action
+The coordinator deploys the rebuilt demo when the owner approves.

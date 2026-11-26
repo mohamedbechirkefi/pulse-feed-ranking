@@ -28,9 +28,9 @@ Repository: https://github.com/mohamedbechirkefi/pulse-feed-ranking
 
 ## Brand, type and third-party notes
 
-The page has its own identity, the broadcast control room (plan and review in `DESIGN.md`). Brand files are in `public/brand/`: the mark (`pulse-mark.svg`, with `-mono` and `-on-dark` versions), the lockup (`pulse-lockup.svg`, with `-light`, `-mono` and `-on-dark` versions), `favicon.svg`, `favicon-32.png` and the Open Graph image `og.png` (1200 by 630). The mark is drawn by hand as paths; the wordmark is outlined from Archivo by `tools/build_logo.py`.
+The page has its own identity, the broadcast control room (plan and review in `DESIGN.md`). Brand files are in `public/brand/`: the mark (`pulse-mark.svg`, with `-mono` and `-on-dark` versions), the lockup (`pulse-lockup.svg`, with `-light`, `-mono` and `-on-dark` versions), `favicon.svg`, `favicon-32.png` and the Open Graph image `og.png` (1200 by 630). The mark is drawn by hand as paths; the wordmark is outlined from Unbounded (weight 640) by `tools/build_logo.py`.
 
 Fonts, self-hosted from Fontsource packages pinned in `package-lock.json` (Latin subset only, declared in `src/fonts.css`):
 
-- Archivo Variable, package `@fontsource-variable/archivo` v5.3.0, SIL Open Font License v1.1 (display, interface and tabular figures).
-- Source Serif 4 Variable, package `@fontsource-variable/source-serif-4` v5.3.1, SIL Open Font License v1.1 (reading text).
+- Unbounded Variable (The Unbounded Project Authors), package `@fontsource-variable/unbounded` v5.3.0, SIL Open Font License v1.1 (display: headings and the wordmark).
+- Figtree Variable (The Figtree Project Authors), package `@fontsource-variable/figtree` v5.3.0, SIL Open Font License v1.1 (reading text, interface and tabular figures).

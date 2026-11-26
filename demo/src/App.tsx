@@ -107,7 +107,7 @@ cd demo && npm ci && npm run build && npm run preview`}</code></pre>
           </p>
           <p>An AI system was used as a research and development assistant and is not an author.</p>
           <p>
-            Type: Archivo and Source Serif 4, both under the SIL Open Font License, self-hosted from the Fontsource
+            Type: Unbounded and Figtree, both under the SIL Open Font License, self-hosted from the Fontsource
             packages.
           </p>
         </div>

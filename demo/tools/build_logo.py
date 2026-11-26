@@ -1,7 +1,7 @@
 # SPDX-License-Identifier: LicenseRef-PULSE-NC-Research-1.0
-# Usage (needs fontTools and brotli): python3 -I tools/build_logo.py node_modules/@fontsource-variable/archivo/files/archivo-latin-standard-normal.woff2 public/brand
+# Usage (needs fontTools and brotli): python3 -I tools/build_logo.py node_modules/@fontsource-variable/unbounded/files/unbounded-latin-wght-normal.woff2 public/brand
 import re
-# Builds the PULSE mark and lockup SVGs. Wordmark outlined from Archivo (OFL) at wght 720, wdth 78.
+# Builds the PULSE mark and lockup SVGs. Wordmark outlined from Unbounded (OFL) at wght 640.
 import sys, os
 from fontTools.ttLib import TTFont
 from fontTools.varLib.instancer import instantiateVariableFont
@@ -10,7 +10,7 @@ from fontTools.pens.transformPen import TransformPen
 from fontTools.pens.boundsPen import BoundsPen
 font_path, out = sys.argv[1], sys.argv[2]
 f = TTFont(font_path)
-f = instantiateVariableFont(f, {"wght": 720, "wdth": 78})
+f = instantiateVariableFont(f, {"wght": 640})
 gs = f.getGlyphSet(); cmap = f.getBestCmap(); upm = f["head"].unitsPerEm
 cap = f["OS/2"].sCapHeight
 TOPIC_A, TOPIC_B, TOPIC_C, TOPIC_D, TOPIC_E = "#7CC0FF", "#F2C14E", "#6FD3A8", "#C79BFF", "#FF7466"
