@@ -3,7 +3,7 @@
 
 # When a simulated feed learns what you like, exposure narrows, but only under some conditions
 
-*Draft article. By [author line to be added by the owner]. A simulation study; not peer-reviewed.*
+*Draft article. By Mohamed Bechir Kefi, independent researcher. A simulation study; not peer-reviewed.*
 
 Recommender systems decide what we see, and what we see shapes the feedback they learn from. Several simulation studies have argued that this loop can narrow what people are shown. I wanted to know how much of that narrowing belongs to the ranking objective itself, so I built a small, preregistered simulation in which five rankers face exactly the same simulated users, items and candidate pools.
 
@@ -47,6 +47,6 @@ So the defensible conclusion is conditional: in this model and at this calibrati
 
 ## Reproduce it
 
-Code, configs, raw run files, checksums, the manuscript and the experiment reports are in the repository: [repository link to be added by the owner on release]. An offline interactive page lets you run two simulated feeds side by side; its sandbox is illustrative, not the research engine: [demo link to be added by the owner on release].
+Code, configs, raw run files, checksums, the manuscript and the experiment reports are in the repository: https://github.com/mohamedbechirkefi/pulse-feed-ranking. An offline interactive page lets you run two simulated feeds side by side; its sandbox is illustrative, not the research engine: https://pulse-feed-ranking.kefimohamedbechir.workers.dev.
 
 *AI assistance: an AI system (Claude, Anthropic) acted as a research and development assistant under the owner's direction; it is not an author.*

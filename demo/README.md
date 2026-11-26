@@ -20,4 +20,8 @@ Node 22 and npm. From this folder:
 
 To refresh the data after a change in committed results: `.venv/bin/python scripts/export_demo_data.py` from the repository root, then rebuild. Dependencies are pinned in `package-lock.json`; `.npmrc` disables install scripts.
 
-Repository and demo address: [to be added by the owner on release].
+## Hosting
+
+The built page (`dist/`) is hosted at https://pulse-feed-ranking.kefimohamedbechir.workers.dev as Cloudflare Workers static assets on the free plan, configured by `wrangler.jsonc` (assets only, no Worker script). It is deployed by the coordinator of the research workspace, not by any script of this repository. The hosted page makes no request to any other host (checked by `tools/a11y_check.mjs`).
+
+Repository: https://github.com/mohamedbechirkefi/pulse-feed-ranking

@@ -3,7 +3,7 @@
 
 **Question.** How do ranking objectives influence exposure diversity and simulated preference reinforcement when all rankers receive identical candidate pools?
 
-**Status (2026-11-25).** Simulation study. Confirmatory experiments EXP-001 to EXP-004 are complete (1,260 runs, 0 failed) under a protocol frozen by the owner before execution; they hold at one calibrated like rate. An exploratory check bounds them. EXP-005 (like-rate dependence) is registered, not frozen and not run. Manuscript version 0.2 is an independent preprint draft, not peer-reviewed; the owner approved its title and statements, and the owner's full-text review is pending: a release candidate is prepared (M6) and awaits the owner's review and publication decision. Nothing has been published.
+**Status (2026-11-26).** Simulation study. Confirmatory experiments EXP-001 to EXP-004 are complete (1,260 runs, 0 failed) under a protocol frozen by the owner before execution; they hold at one calibrated like rate. An exploratory check bounds them. EXP-005 (like-rate dependence) is registered, not frozen and not run. Manuscript version 0.2 is an independent preprint draft, not peer-reviewed; the owner approved its title and statements, and the owner's full-text review is pending: a release candidate is prepared (M6) and awaits the owner's review and publication decision. The repository is public at https://github.com/mohamedbechirkefi/pulse-feed-ranking since 2026-11-25; no tag, release, DOI or preprint exists, and the article drafts are unpublished.
 
 ![The PULSE demo page: the question, the status label and the legend that separates measured confirmatory, measured exploratory, registered-not-run, assumption and sandbox values.](docs/demo.png)
 
@@ -77,4 +77,7 @@ PULSE Source-Available Non-Commercial Research License v1.0 (`LICENSE`, `NOTICE.
 
 ## Citation
 
-See `CITATION.cff`. Repository and demo address: [to be added by the owner on release].
+Mohamed Bechir Kefi, independent researcher. See `CITATION.cff`.
+
+- Repository: https://github.com/mohamedbechirkefi/pulse-feed-ranking
+- Interactive page: https://pulse-feed-ranking.kefimohamedbechir.workers.dev (static page hosted as Cloudflare Workers static assets; see `demo/README.md`)

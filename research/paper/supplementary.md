@@ -1,6 +1,8 @@
 <!-- SPDX-License-Identifier: LicenseRef-PULSE-NC-Research-1.0 -->
 # Supplementary material
 
+Author: Mohamed Bechir Kefi, independent researcher.
+
 Companion to `research/paper/manuscript.md` (version 0.2, 2026-11-25). Status: independent research manuscript / preprint draft, not peer-reviewed. Every number below is copied from a committed result file named in its table caption; `research/publication/artifact_manifest.json` maps each to its runs, config hash and code revision.
 
 ## S1. Complete experimental matrix

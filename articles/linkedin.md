@@ -9,5 +9,5 @@ One defensible finding: at the calibrated like rate, content-similarity ranking 
 
 The caveat matters as much as the finding: an exploratory check found the effect near zero when simulated users like few of the items they see, and reversed under a skewed catalog. A confirmatory test of that boundary is registered but not yet run. This is a simulation; it says nothing about real people or any real platform.
 
-Paper draft, reports and code: [repository link to be added by the owner on release]
-Interactive page: [demo link to be added by the owner on release]
+Paper draft, reports and code: https://github.com/mohamedbechirkefi/pulse-feed-ranking
+Interactive page: https://pulse-feed-ranking.kefimohamedbechir.workers.dev

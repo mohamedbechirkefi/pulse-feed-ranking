@@ -172,3 +172,16 @@ Each entry: id, date, decision, decided by, context, alternatives, consequences.
 - **Path and identifier scrub:** home-directory paths removed from current documents; kept in frozen protocols, execution logs and the append-only journal, which are not edited. The commit-trailer address in `CLAUDE.md` replaced by a reference to the session brief.
 - **Not changed:** no frozen protocol, config, seed or result value; no confirmatory run; EXP-005 untouched (registered, not frozen, not run); no `author_review.md` box ticked; no licence file; no push, tag, release or remote.
 - **Status:** M6 is "release candidate prepared, awaiting owner review and G-PUBLIC"; it is not done until the owner signs off.
+
+## D-021: owner answers of 2026-11-26 applied (2026-11-26)
+
+- **Authority:** owner, 2026-11-26, decision sheet (`labs/_shared/owner-decision-sheet-2026-11-26.md` and `labs/_shared/owner-approvals-2026-11-26.md`, outside this repository). Coordinator brief: `labs/_shared/OWNER-ANSWERS-brief.md`.
+- **A1:** out-of-date "nothing published / nothing pushed / nothing has left this machine" sentences corrected in the README, `author_review.md` and `release_checklist.md`: the repository is public at https://github.com/mohamedbechirkefi/pulse-feed-ranking since 2026-11-25. Append-only records unchanged.
+- **B1, B2:** repository URL and demo URL https://pulse-feed-ranking.kefimohamedbechir.workers.dev filled in the README, `demo/README.md`, the demo footer, manuscript section 10 and both articles; `CITATION.cff` gains `repository-code` and `url`. `demo/wrangler.jsonc` added (assets only, directory `./dist`, no Worker script); hosting is Cloudflare Workers static assets on the free plan, deployed by the coordinator, not by this repository.
+- **B3:** author line "Mohamed Bechir Kefi, independent researcher" in the manuscript, supplementary, the four experiment reports (identification table only), README, Medium byline and demo footer; `CITATION.cff` `affiliation: "Independent researcher"`. Frozen protocols not edited.
+- **B4:** manuscript section 11 now reads "No funding was received. The author declares no competing interests."
+- **B8:** `0.2.0-rc1` and no `date-released` kept; release step recorded in `release_checklist.md` (`0.2.0` and the release day at release; `pyproject.toml` keeps `0.1.0`).
+- **B9:** no editable file held a home path; the ten frozen, raw or append-only files that do are listed in `reproducibility_report.md` section 7.
+- **B10, B11, B13, B14:** PDFs kept; no PULSE figure listed under B11; "Release notes (draft)" added to `release_checklist.md` with the build-tool sentence; source labels accepted (Steck 2018 secondary only).
+- **R-PULSE-1:** EXP-005 registered, not frozen, not run; the owner will freeze it later. **R-PULSE-2:** M2 smoke report kept as a historical record.
+- **Not changed:** no result, analysis, figure, config, seed, frozen protocol, protocol hash or checksummed output; no `author_review.md` box ticked; no push or deploy from this session. B15, B16, B18 and the EXP-005 freeze stay with the owner.

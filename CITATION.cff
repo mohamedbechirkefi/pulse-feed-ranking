@@ -8,6 +8,9 @@ version: 0.2.0-rc1
 authors:
   - family-names: Kefi
     given-names: Mohamed Bechir
+    affiliation: "Independent researcher"
+repository-code: "https://github.com/mohamedbechirkefi/pulse-feed-ranking"
+url: "https://pulse-feed-ranking.kefimohamedbechir.workers.dev"
 keywords:
   - recommender systems
   - feedback loops

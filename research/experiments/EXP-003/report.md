@@ -9,7 +9,7 @@
 | --- | --- |
 | Experiment | EXP-003, protocol v1.0 (frozen 2026-11-24, owner-approved, D-012) |
 | Report date | 2026-11-25 (M3). Written after the run from the committed results, tables and figures only (owner decision D-015) |
-| Authorship | Mohamed Bechir Kefi (no affiliation; owner decision C3). An AI system acted as research and development assistant; it is not an author. |
+| Authorship | Mohamed Bechir Kefi, independent researcher (owner decision C3; author line confirmed by the owner on 2026-11-26). An AI system acted as research and development assistant; it is not an author. |
 | Protocol SHA-256 | `07e68a736cfa05850970859b0ac14e5c8a19e4ce241fe48940dcc83be3b672eb` (main protocol `87fbfae1016c543f9736828d8e17d7015d42b894e62886eb798f38e3d8fcb12c`) |
 | Config | `experiments/EXP-003.json`, file SHA-256 `418e85636e4120bcc2b74dab6a1385cf7421beeeb1874ccb39bcd96cc58d2081`, canonical SHA-256 `4aafb0446e763a37fe78cf83e00d94bdfc65fd5282579e82e5bd2cd1474b934f` |
 | Code revision | `f1838f3e8451c8c4275579a5736fe488354a8f3a` (clean tree for every run) |

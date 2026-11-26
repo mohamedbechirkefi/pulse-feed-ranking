@@ -62,7 +62,8 @@ export function App() {
           <p>
             Runs offline after the first load. No data about visitors is collected, stored or sent anywhere; there are no
             cookies, analytics or external requests. Source-available under the PULSE Non-Commercial Research License
-            (see <code>LICENSE</code>). Repository and demo address: [to be added by the owner on release].
+            (see <code>LICENSE</code>). By Mohamed Bechir Kefi, independent researcher. Repository:{" "}
+            <a href="https://github.com/mohamedbechirkefi/pulse-feed-ranking">github.com/mohamedbechirkefi/pulse-feed-ranking</a>. Page address: pulse-feed-ranking.kefimohamedbechir.workers.dev.
           </p>
         </div>
       </footer>

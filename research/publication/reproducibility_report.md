@@ -107,3 +107,25 @@ Fresh clone `$CLONE2` of commit 00dfb14 (the M6 fix commit), 2026-11-25:
 | `scripts/build_pdfs.py` (with `PULSE_PANDOC` and `PULSE_TYPST_PYTHON` pointing at the shared toolchain) | `manuscript.tex` byte-identical; the six PDFs differ in bytes only (embedded creation date): same page counts and identical extracted text on every page |
 
 Both clones and the scratch smoke outputs were deleted after these checks.
+
+## 7. Owner answers applied (2026-11-26)
+
+Wording and configuration changes only (decision D-021); no result, analysis, figure, config, seed, frozen protocol, protocol hash or checksummed output changed. The repository is public at https://github.com/mohamedbechirkefi/pulse-feed-ranking since 2026-11-25.
+
+| Step | Actual output |
+| --- | --- |
+| `scripts/build_pdfs.py --png <scratch>` | six PDFs rebuilt (every source changed: author line, statements, repository and demo address); page counts unchanged (manuscript 10, supplementary 4, reports 7, 6, 5, 4); manuscript pages 1 and 9, supplementary page 1 and EXP-001 page 1 inspected as PNG |
+| `.venv/bin/python -m pytest -q` | "177 passed" |
+| `scripts/m4_evidence_audit.py` | exit 0; row-wise errors 0; Part D errors 0 |
+| `scripts/check_links.py` | "LINK-CHECK PASS" |
+| `export_demo_data.py`, `export_demo_data.py --check` | "EXPORT-CHECK identical"; `results.json` unchanged |
+| `npm test`; `npm run build` | "Tests 28 passed (28)"; built into `demo/dist` |
+| `node tools/a11y_check.mjs dist` | "A11Y-CHECK PASS" (keyboard 25 of 25 with the new repository link in the footer; no request leaves the local origin) |
+
+Home paths (owner's answer B9: scrub editable files, keep frozen, append-only and checksummed files). A scan of the tracked files on 2026-11-26 found no home path in any editable file: `CLAUDE.md`, the README, docs, scripts, source code and demo files were already repository-relative since M6 (section 5). Ten tracked files still contain one, and stay as they are:
+
+- three frozen protocols: `research/protocol.md` (a disk-check command in the resource table), `research/experiments/EXP-001/protocol.md` and `research/experiments/EXP-004/protocol.md` (the install command);
+- six execution logs, hashed or raw: `results/raw/logs/EXP-001.log` to `EXP-004.log`, `results/exploratory/logs/m4-likerate-uniform.log` and `m4-likerate-zipf.log`;
+- the append-only journal `progress.md` (2026-11-24 entry).
+
+`tests/test_release_checks.py` contains the string `/Users/` only as the pattern that the PDF check rejects; it is not a path.

@@ -360,3 +360,25 @@ Release candidate prepared, awaiting the owner's review and G-PUBLIC. Not done u
 
 ### Next action
 The owner: read the files listed in `author_review.md` "Prepared for the owner", sign it off, take the publication decision (G-PUBLIC), and decide the EXP-005 freeze (OPEN-1 to OPEN-6) when wanted.
+
+## 2026-11-26: owner answers of 2026-11-26 applied (D-021)
+
+**Starting state:** branch main, clean, HEAD 7c1f95f. Authority: owner, 2026-11-26, decision sheet; brief `labs/_shared/OWNER-ANSWERS-brief.md`.
+
+### Commands and actual outputs
+- `PYTHONPATH=src .venv/bin/python scripts/build_pdfs.py --png <scratch>`: six PDFs written (manuscript 176411 bytes, supplementary 112783, EXP-001 to EXP-004 209373, 212159, 167343, 134704); `manuscript.tex` written. Every PDF source changed, so none was restored. Inspected as PNG: manuscript pages 1 (author line) and 9 (sections 10 and 11), supplementary page 1, EXP-001 page 1.
+- `.venv/bin/python -m pytest -q`: "177 passed" (before and after the record edits).
+- `scripts/m4_evidence_audit.py`: exit 0, "row-wise errors: 0", "Part D errors: 0". `scripts/check_links.py`: "LINK-CHECK PASS".
+- `export_demo_data.py`: "wrote demo/public/data/results.json"; `--check`: "EXPORT-CHECK identical"; `tests/test_demo_export.py`: "8 passed"; `results.json` unchanged.
+- Demo (Node at the helix toolchain, npm cache in the session scratch): `npm test` "Tests 28 passed (28)"; `npm run build` "built in 122ms" into `dist`; `node tools/a11y_check.mjs dist` "A11Y-CHECK PASS" (keyboard 25 of 25, no request leaves the local origin).
+- Home-path scan of tracked files: 10 files plus the test pattern, all frozen, raw or append-only (`reproducibility_report.md` section 7).
+
+### Files changed
+`README.md`, `CITATION.cff`, `articles/{README,medium,linkedin}.md`, `demo/README.md`, `demo/src/App.tsx`, new `demo/wrangler.jsonc`, `research/paper/{manuscript.md,manuscript.tex,manuscript.pdf,supplementary.md,supplementary.pdf}`, `research/experiments/EXP-00{1..4}/report.{md,pdf}` (identification table only), `research/publication/{author_review.md,release_checklist.md,reproducibility_report.md}`, `research/decision_log.md` (D-021), `roadmap.md`, `progress.md`.
+
+### Risks and notes
+- `pyproject.toml` version is `0.1.0`, not `0.0.0` as the brief assumed; it was left unchanged and the release checklist says so.
+- No box in `author_review.md` ticked. No push, no deploy.
+
+### Next action
+The owner: B15 (articles), B16 (full-text review and sign-off), B18 (release), and the EXP-005 freeze when wanted. The coordinator deploys `demo/dist` with `demo/wrangler.jsonc`.
