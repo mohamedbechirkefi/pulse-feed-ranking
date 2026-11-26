@@ -1,7 +1,63 @@
 // SPDX-License-Identifier: LicenseRef-PULSE-NC-Research-1.0
 // Hand-written SVG and HTML charts. Every chart has a plain-language caption; no value is shown only
 // on hover. Published charts read the validated results file; sandbox charts read sandbox output.
+import { useEffect, useRef } from "react";
 import type { Estimate, Heatmap, LikeRateCurve } from "./results";
+
+/** Adds the class "in" once, the first time the element scrolls into view (no-op without IntersectionObserver). */
+export function useReveal<T extends HTMLElement>() {
+  const ref = useRef<T | null>(null);
+  useEffect(() => {
+    const el = ref.current;
+    if (!el) return;
+    if (typeof IntersectionObserver === "undefined") {
+      el.classList.add("in");
+      return;
+    }
+    el.classList.add("armed");
+    const io = new IntersectionObserver(
+      (entries) => {
+        for (const e of entries) {
+          if (e.isIntersecting) {
+            el.classList.add("in");
+            io.disconnect();
+          }
+        }
+      },
+      { threshold: 0.2 },
+    );
+    io.observe(el);
+    return () => io.disconnect();
+  }, []);
+  return ref;
+}
+
+/** Key result: the measured EXP-001 primary-cell exposure entropy of each ranker, drawn as channel meters.
+ * Values and their printed text come from the validated heatmap data; nothing is recomputed. */
+export function ExposureMeters({ h }: { h: Heatmap }) {
+  const ref = useReveal<HTMLDivElement>();
+  const cell = h.cells[0];
+  const rows = h.arms.map((a) => ({ a, v: h.values.find((v) => v.arm === a.id && v.cell === cell.id)! }));
+  return (
+    <figure className="meters-fig">
+      <div ref={ref} className="meters" role="list" aria-label={`Measured exposure topic entropy by ranker, ${h.experiment_id}, ${cell.label}`}>
+        {rows.map(({ a, v }, i) => (
+          <div role="listitem" key={a.id} className={`meter m-${a.id}`} style={{ ["--i" as string]: i }}>
+            <span className="meter-name">{a.label}</span>
+            <span className="meter-track" aria-hidden="true">
+              <span className="meter-fill" style={{ ["--v" as string]: v.mean }} />
+            </span>
+            <span className="meter-val">{v.display}</span>
+          </div>
+        ))}
+      </div>
+      <figcaption>
+        Measured, confirmatory ({h.experiment_id}, {cell.label}): mean final-window exposure topic entropy H_exp per
+        ranker; {h.uncertainty}. A full bar means slates spread evenly over all ten topics. Source: <code>{h.source}</code>.
+      </figcaption>
+    </figure>
+  );
+}
 
 export const TOPIC_NAMES = Array.from({ length: 10 }, (_, z) => `Topic ${z + 1}`);
 
@@ -44,9 +100,10 @@ function level(v: number): number {
 }
 
 export function MeasuredHeatmap({ h }: { h: Heatmap }) {
+  const ref = useReveal<HTMLElement>();
   const val = (arm: string, cell: string) => h.values.find((v) => v.arm === arm && v.cell === cell)!;
   return (
-    <figure className="figure">
+    <figure className="figure heat-fig" ref={ref}>
       <div id="heatmap-exp-001" className="table-scroll" role="region" aria-label="Measured exposure heatmap, EXP-001" tabIndex={0}>
         <table className="heat">
           <caption>
@@ -67,7 +124,7 @@ export function MeasuredHeatmap({ h }: { h: Heatmap }) {
                 {h.cells.map((c) => {
                   const v = val(a.id, c.id);
                   return (
-                    <td key={c.id} className={`h${level(v.mean)}`}>{v.display}</td>
+                    <td key={c.id} className={`h${level(v.mean)}`}><span className="hv">{v.display}</span></td>
                   );
                 })}
               </tr>
@@ -90,6 +147,7 @@ export function MeasuredHeatmap({ h }: { h: Heatmap }) {
 }
 
 export function LikeRateChart({ c }: { c: LikeRateCurve }) {
+  const ref = useReveal<HTMLElement>();
   const W = 640;
   const H = 300;
   const m = { l: 56, r: 16, t: 16, b: 46 };
@@ -106,7 +164,7 @@ export function LikeRateChart({ c }: { c: LikeRateCurve }) {
   const yTicks = [-0.6, -0.4, -0.2, 0, 0.2].filter((v) => v >= y0 && v <= y1);
   const xTicks = [0, 0.15, 0.3, 0.45, 0.6, 0.75, 0.9];
   return (
-    <figure className="figure">
+    <figure className="figure lr-fig" ref={ref}>
       <svg viewBox={`0 0 ${W} ${H}`} className="chart" role="img" aria-labelledby="lr-title lr-desc">
         <title id="lr-title">Similarity minus random in H_exp against the target like rate (exploratory)</title>
         <desc id="lr-desc">
@@ -131,7 +189,7 @@ export function LikeRateChart({ c }: { c: LikeRateCurve }) {
         {series.map((s) => {
           const pts = c.points.filter((p) => p.catalog === s.id).sort((a, b) => a.target_like_rate - b.target_like_rate);
           return (
-            <g key={s.id} className={s.cls}>
+            <g key={s.id} className={`series ${s.cls}`}>
               <polyline points={pts.map((p) => `${X(p.target_like_rate) + s.dx},${Y(p.estimate)}`).join(" ")} className="line" />
               {pts.map((p) => (
                 <g key={p.target_label}>
@@ -148,7 +206,7 @@ export function LikeRateChart({ c }: { c: LikeRateCurve }) {
         })}
       </svg>
       <p className="legend" aria-hidden="true">
-        <span className="key sa">Uniform catalog (blue circles, solid line)</span> <span className="key sb">Zipf catalog (rust squares)</span>{" "}
+        <span className="key sa">Uniform catalog (blue circles, solid line)</span> <span className="key sb">Zipf catalog (coral squares)</span>{" "}
         <span className="key band-key">shaded: within the smallest effect of interest ({c.sesoi})</span>{" "}
         <span className="key">dashed: frozen calibration ({c.frozen_like_rate})</span>
       </p>
@@ -231,7 +289,7 @@ export function StepHeatmap({ shares, label, marker }: { shares: number[][]; lab
   const vmax = Math.max(...cells.flat(), 1e-9);
   return (
     <figure className="figure small">
-      <svg viewBox={`0 0 ${W} ${H}`} className="chart" role="img" aria-label={`Exposure heatmap, ${label}: topic share of slate positions per ${bin}-step bin. In the last bin, ${TOPIC_NAMES[top.z]} has the largest share, ${Math.round(top.v * 100)}%.`}>
+      <svg viewBox={`0 0 ${W} ${H}`} className="chart heatplate" role="img" aria-label={`Exposure heatmap, ${label}: topic share of slate positions per ${bin}-step bin. In the last bin, ${TOPIC_NAMES[top.z]} has the largest share, ${Math.round(top.v * 100)}%.`}>
         {cells.map((row, z) => (
           <g key={z}>
             <text x={m.l - 6} y={m.t + z * ch + ch - 3} textAnchor="end" className="tick">{TOPIC_NAMES[z]}</text>

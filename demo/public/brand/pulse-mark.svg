@@ -1,0 +1,9 @@
+<!-- SPDX-License-Identifier: LicenseRef-PULSE-NC-Research-1.0 -->
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 256 256" role="img" aria-label="Pulse"><title>Pulse</title>
+  <path fill="#7CC0FF" d="M48 40H56A24 24 0 0 1 56 88H48A24 24 0 0 1 48 40Z"/>
+  <path fill="#F2C14E" d="M124 40H132A24 24 0 0 1 132 88H124A24 24 0 0 1 124 40Z"/>
+  <path fill="#FF7466" d="M200 40H208A24 24 0 0 1 208 88H200A24 24 0 0 1 200 40Z"/>
+  <path fill="#7CC0FF" d="M48 104H94A24 24 0 0 1 94 152H48A24 24 0 0 1 48 104Z"/>
+  <path fill="#FF7466" d="M162 104H208A24 24 0 0 1 208 152H162A24 24 0 0 1 162 104Z"/>
+  <path fill="#FF7466" d="M48 168H208A24 24 0 0 1 208 216H48A24 24 0 0 1 48 168Z"/>
+</svg>

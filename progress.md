@@ -382,3 +382,26 @@ The owner: read the files listed in `author_review.md` "Prepared for the owner",
 
 ### Next action
 The owner: B15 (articles), B16 (full-text review and sign-off), B18 (release), and the EXP-005 freeze when wanted. The coordinator deploys `demo/dist` with `demo/wrangler.jsonc`.
+
+## 2026-11-26: demo brand identity, motion and UI redesign (owner request)
+
+**Starting state:** branch main, clean, HEAD c47692f. Authority: owner request of 2026-11-26, brief `labs/_shared/DEMO-BRAND-brief.md`. Scope: `demo/` only; no number, result, export, fixture or test changed.
+
+### Commands and actual outputs
+- Fonts (npm cache in the session scratch, `npm_config_before=2026-11-12`): `npm install --save-exact @fontsource-variable/archivo @fontsource-variable/source-serif-4`: "added 2 packages"; pinned 5.3.0 and 5.3.1.
+- Logo: `tools/build_logo.py` (fontTools) wrote the mark, lockup and favicon SVGs; `svg_audit.py` on all eight: mark and favicon 100/100, lockups 99/100, no failure. Favicon PNG 32 px, and the Open Graph image 1200 by 630, rendered with Chrome headless.
+- `npm test`: "Test Files 2 passed (2)", "Tests 28 passed (28)".
+- `npm run build`: "built in 85ms" into `dist` (554,647 bytes in total; fonts 141 KB, JS 261 KB).
+- `node tools/a11y_check.mjs dist`: first run "A11Y-CHECK FAIL (4)" (segmented-control label contrast read against the gallery); after the fix "A11Y-CHECK PASS" (keyboard 31 of 31, sandbox 12 of 12, 0 px overflow at 360 px, 0 running animations under reduced motion, no foreign request).
+- `.venv/bin/python -m pytest -q`: "177 passed".
+- Screenshots (served on 127.0.0.1:5225, server stopped afterwards): desktop 1440 and phone 390 full page, two critique passes recorded in `demo/DESIGN.md`.
+
+### Files changed
+New: `demo/DESIGN.md`, `demo/src/Hero.tsx`, `demo/src/fonts.css`, `demo/tools/build_logo.py`, `demo/public/brand/` (eight SVGs, `favicon-32.png`, `og.png`). Modified: `demo/index.html` (description, theme colour, icons, Open Graph), `demo/src/App.tsx` (top bar, hero, key result meters, reproduce section, footer links), `demo/src/charts.tsx` (exposure meters from the heatmap data, reveal on entry, legend colour word "coral"), `demo/src/Sandbox.tsx` (progress bar, per-run settle), `demo/src/main.tsx`, `demo/src/style.css`, `demo/README.md` (brand and font notes), `demo/package.json`, `demo/package-lock.json`, `roadmap.md`, `progress.md`.
+
+### Risks
+- The page is dark only by design; the a11y contrast check passes in both emulated schemes because both render the same palette.
+- Not checked on a real phone; headless screenshots only.
+
+### Next action
+The coordinator deploys `demo/dist` when the owner decides. No push, no deploy from this session.

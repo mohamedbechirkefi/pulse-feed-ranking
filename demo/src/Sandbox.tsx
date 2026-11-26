@@ -54,6 +54,7 @@ export function Sandbox() {
   const [out, setOut] = useState("");
   const [res, setRes] = useState<Done | null>(null);
   const [step, setStep] = useState<number>(SANDBOX_SIZE.nSteps);
+  const [runId, setRunId] = useState(0);
 
   useEffect(() => {
     const w = new Worker(new URL("./sandbox.worker.ts", import.meta.url), { type: "module" });
@@ -65,6 +66,7 @@ export function Sandbox() {
       }
       if (m.type === "done") {
         setRes(m);
+        setRunId((n) => n + 1);
         setStep(m.settings.nSteps);
         setOut(
           `Sandbox output, seed ${m.params.seed}: final-window exposure entropy ${f3(m.a.metrics.h_exp)} for ${RANKER_LABEL[m.a.ranker]} and ${f3(m.b.metrics.h_exp)} for ${RANKER_LABEL[m.b.ranker]}; observed like rate ${f3(m.a.metrics.like_rate)} and ${f3(m.b.metrics.like_rate)}.`,
@@ -189,11 +191,14 @@ export function Sandbox() {
         measured again and shown after each run. Reset restores the defaults and clears the output.
       </p>
       {running && (
-        <p role="status" className="note">Computing: {Math.round(progress * 100)}% of the steps done.</p>
+        <div className="run-progress">
+          <span className="bar" aria-hidden="true"><span className="fill" style={{ transform: `scaleX(${progress})` }} /></span>
+          <p role="status" className="note">Computing: {Math.round(progress * 100)}% of the steps done.</p>
+        </div>
       )}
       <p aria-live="polite" className="sandbox-out">{out}</p>
 
-      {res && <SandboxResult res={res} step={step} setStep={setStep} onExport={exportJson} />}
+      {res && <SandboxResult key={runId} res={res} step={step} setStep={setStep} onExport={exportJson} />}
     </section>
   );
 }
@@ -292,7 +297,7 @@ function Feed({ arm, tag, step }: { arm: ArmResult; tag: string; step: number })
           const z = s.focalTopics[j];
           const state = !s.focalExamined[j] ? "not examined" : s.focalLiked[j] ? "liked (observed)" : "disliked (observed)";
           return (
-            <li key={j} className={`card t${z}`}>
+            <li key={j} className={`card t${z}`} style={{ ["--j" as string]: j }}>
               <span className="topic">
                 <span className="dot" aria-hidden="true" />
                 {TOPIC_NAMES[z]}

@@ -2,7 +2,10 @@
 import { useEffect, useState } from "react";
 import { fmtEstimate, fmtInterval, loadResults, ResultsError, type Experiment, type Results } from "./results";
 import { Sandbox } from "./Sandbox";
-import { axisFor, IntervalGlyph, LikeRateChart, MeasuredHeatmap } from "./charts";
+import { axisFor, ExposureMeters, IntervalGlyph, LikeRateChart, MeasuredHeatmap } from "./charts";
+import { Hero } from "./Hero";
+
+const REPO = "https://github.com/mohamedbechirkefi/pulse-feed-ranking";
 
 type State = { kind: "loading" } | { kind: "error"; message: string } | { kind: "ready"; results: Results };
 
@@ -27,43 +30,85 @@ export function App() {
   return (
     <>
       <a className="skip" href="#main">Skip to content</a>
-      <header className="site">
-        <div className="wrap">
-          <p className="kicker">PULSE, a recommender simulation study</p>
-          <h1>What happens to exposure when a feed learns what you like?</h1>
-          <p className="dek">
-            Five ranking objectives, identical candidate pools, simulated users only. Nothing on this page describes a real
-            platform or real people.
-          </p>
+      <header className="topbar">
+        <div className="topbar-in">
+          <a className="brand" href="#top" aria-label="Pulse, back to the top">
+            <img src="./brand/pulse-lockup.svg" alt="" width="70" height="21" />
+          </a>
           <nav aria-label="Sections">
             <a href="#overview">Overview</a>
             <a href="#results">Results</a>
             <a href="#figures">Figures</a>
-            <a href="#assumptions">Assumptions</a>
-            <a href="#method">Method and limitations</a>
             <a href="#sandbox">Sandbox</a>
+            <a href="#method">Limitations</a>
+            <a href="#reproduce">Reproduce</a>
           </nav>
         </div>
       </header>
-      <main id="main" className="wrap">
-        {state.kind === "loading" && <p role="status">Loading the published results.</p>}
+      <div className="hero" id="top">
+        <div className="wrap hero-in">
+          <div className="hero-copy">
+            <p className="kicker">PULSE, a recommender simulation study</p>
+            <h1>What happens to exposure when a feed learns what you like?</h1>
+            <p className="answer">
+              Within this simulation, ranking by content similarity narrowed the topics simulated users were shown,
+              compared with random ranking, in every confirmatory exposure test. That result is conditional: it holds at
+              the calibrated like rate.
+            </p>
+            <p className="dek">
+              Five ranking objectives, identical candidate pools, simulated users only. Nothing on this page describes a
+              real platform or real people.
+            </p>
+          </div>
+          <Hero />
+        </div>
+      </div>
+      <main id="main">
+        {state.kind === "loading" && <p role="status" className="wrap">Loading the published results.</p>}
         {state.kind === "error" && (
-          <div role="alert" className="panel error">
+          <div role="alert" className="wrap panel error">
             <h2>Results unavailable</h2>
             <p>The published results file failed validation, so no numbers are shown.</p>
             <p><code>{state.message}</code></p>
           </div>
         )}
         {state.kind === "ready" && <Published r={state.results} />}
-        <Sandbox />
+        <div className="wrap"><Sandbox /></div>
+        {state.kind === "ready" && <Method r={state.results} />}
+        <section id="reproduce" aria-labelledby="h-reproduce" className="wrap">
+          <h2 id="h-reproduce">Reproduce</h2>
+          <p>
+            Every number above is exported from committed results by <code>scripts/export_demo_data.py</code> and checked
+            against the manuscript by the repository's tests. From a clone of the repository:
+          </p>
+          <pre className="cmd" tabIndex={0} role="region" aria-label="Reproduction commands"><code>{`uv sync --frozen --all-groups --all-extras
+.venv/bin/python -m pytest -q
+PYTHONPATH=src .venv/bin/python -m pulse.cli run --experiment EXP-001
+PYTHONPATH=src .venv/bin/python scripts/analyse_experiment.py EXP-001
+cd demo && npm ci && npm run build && npm run preview`}</code></pre>
+          <p className="note">
+            A run is refused unless its config matches the owner's freeze record. EXP-004 also needs the MovieLens 1M
+            files, which are not redistributed; the repository README explains how to fetch and check them.
+          </p>
+        </section>
       </main>
       <footer className="site">
-        <div className="wrap">
+        <div className="wrap foot">
+          <p>By Mohamed Bechir Kefi, independent researcher.</p>
+          <ul className="foot-links">
+            <li><a href={REPO}>Source repository on GitHub</a></li>
+            <li><a href={`${REPO}/blob/main/research/paper/manuscript.md`}>Manuscript (preprint draft, not peer-reviewed)</a></li>
+            <li><a href="https://labs.kefimohamedbechir.workers.dev">All studies in the labs index</a></li>
+          </ul>
           <p>
             Runs offline after the first load. No data about visitors is collected, stored or sent anywhere; there are no
             cookies, analytics or external requests. Source-available under the PULSE Non-Commercial Research License
-            (see <code>LICENSE</code>). By Mohamed Bechir Kefi, independent researcher. Repository:{" "}
-            <a href="https://github.com/mohamedbechirkefi/pulse-feed-ranking">github.com/mohamedbechirkefi/pulse-feed-ranking</a>. Page address: pulse-feed-ranking.kefimohamedbechir.workers.dev.
+            (see <code>LICENSE</code>). Page address: pulse-feed-ranking.kefimohamedbechir.workers.dev.
+          </p>
+          <p>An AI system was used as a research and development assistant and is not an author.</p>
+          <p>
+            Type: Archivo and Source Serif 4, both under the SIL Open Font License, self-hosted from the Fontsource
+            packages.
           </p>
         </div>
       </footer>
@@ -74,7 +119,15 @@ export function App() {
 function Published({ r }: { r: Results }) {
   return (
     <>
-      <section id="overview" aria-labelledby="h-overview">
+      <section id="key" aria-labelledby="h-key" className="wrap keyres">
+        <h2 id="h-key">The key result, as exposure meters</h2>
+        <p className="lede">
+          How evenly each ranker spread its slates over the ten topics in the primary cell of EXP-001, with static
+          preferences. Random ranking stays near the pool's own topic mix; similarity ranking is the narrowest.
+        </p>
+        <ExposureMeters h={r.exposure_heatmap} />
+      </section>
+      <section id="overview" aria-labelledby="h-overview" className="wrap">
         <h2 id="h-overview">Overview</h2>
         <p className="status-label">{r.status_label}</p>
         <p className="question">{r.question}</p>
@@ -94,7 +147,7 @@ function Published({ r }: { r: Results }) {
         </dl>
       </section>
 
-      <section id="results" aria-labelledby="h-results">
+      <section id="results" aria-labelledby="h-results" className="wrap">
         <h2 id="h-results">Published results</h2>
         <p className="note">
           Numbers are copied from the committed results (analysis code revision <code>{r.code_revision.slice(0, 7)}</code>) and
@@ -105,7 +158,7 @@ function Published({ r }: { r: Results }) {
         {r.experiments.map((e) => <ExperimentPanel key={e.id} e={e} />)}
       </section>
 
-      <section id="figures" aria-labelledby="h-figures">
+      <section id="figures" aria-labelledby="h-figures" className="wrap">
         <h2 id="h-figures">Figures from the exported data</h2>
         <h3><span className="label-tag lab-conf">Measured, confirmatory</span> Exposure heatmap, EXP-001</h3>
         <MeasuredHeatmap h={r.exposure_heatmap} />
@@ -113,7 +166,14 @@ function Published({ r }: { r: Results }) {
         <LikeRateChart c={r.likerate_curve} />
       </section>
 
-      <section id="assumptions" aria-labelledby="h-assumptions">
+    </>
+  );
+}
+
+function Method({ r }: { r: Results }) {
+  return (
+    <>
+      <section id="assumptions" aria-labelledby="h-assumptions" className="wrap">
         <h2 id="h-assumptions"><span className="label-tag lab-assume">Assumption</span> Assumptions</h2>
         <p className="note">Model inputs fixed or fitted before the confirmatory runs. They are not results.</p>
         <dl className="assumptions">
@@ -128,7 +188,7 @@ function Published({ r }: { r: Results }) {
         </dl>
       </section>
 
-      <section id="method" aria-labelledby="h-method">
+      <section id="method" aria-labelledby="h-method" className="wrap">
         <h2 id="h-method">Method and limitations</h2>
         <p>
           Each run simulates 200 users for 200 steps. At every step each user receives a pool of 50 items, identical for

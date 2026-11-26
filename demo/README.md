@@ -25,3 +25,12 @@ To refresh the data after a change in committed results: `.venv/bin/python scrip
 The built page (`dist/`) is hosted at https://pulse-feed-ranking.kefimohamedbechir.workers.dev as Cloudflare Workers static assets on the free plan, configured by `wrangler.jsonc` (assets only, no Worker script). It is deployed by the coordinator of the research workspace, not by any script of this repository. The hosted page makes no request to any other host (checked by `tools/a11y_check.mjs`).
 
 Repository: https://github.com/mohamedbechirkefi/pulse-feed-ranking
+
+## Brand, type and third-party notes
+
+The page has its own identity, the broadcast control room (plan and review in `DESIGN.md`). Brand files are in `public/brand/`: the mark (`pulse-mark.svg`, with `-mono` and `-on-dark` versions), the lockup (`pulse-lockup.svg`, with `-light`, `-mono` and `-on-dark` versions), `favicon.svg`, `favicon-32.png` and the Open Graph image `og.png` (1200 by 630). The mark is drawn by hand as paths; the wordmark is outlined from Archivo by `tools/build_logo.py`.
+
+Fonts, self-hosted from Fontsource packages pinned in `package-lock.json` (Latin subset only, declared in `src/fonts.css`):
+
+- Archivo Variable, package `@fontsource-variable/archivo` v5.3.0, SIL Open Font License v1.1 (display, interface and tabular figures).
+- Source Serif 4 Variable, package `@fontsource-variable/source-serif-4` v5.3.1, SIL Open Font License v1.1 (reading text).
